@@ -40,8 +40,6 @@
                     <GridViewColumn Header="Report" DisplayMemberBinding="{Binding FilePath}"/>
                     <GridViewColumn Header="Symbol" DisplayMemberBinding="{Binding Curency}"/>
                     <GridViewColumn Header="Magic" DisplayMemberBinding="{Binding Curency}"/>
-                    <GridViewColumn Header="Start" DisplayMemberBinding="{Binding Curency}"/>
-                    <GridViewColumn Header="End" DisplayMemberBinding="{Binding Curency}"/>
                     <GridViewColumn Header="Type" DisplayMemberBinding="{Binding ReportType}"/>
                 </GridView>
             </ListView.View>

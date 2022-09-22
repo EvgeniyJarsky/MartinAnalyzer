@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_UI", "WPF_UI\WPF_UI.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_UI", "Console_UI\Console_UI.csproj", "{975A9D2C-F9DF-4D22-97CE-85F98BBA7304}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "Logging\Logging.csproj", "{84E7BF01-611C-48E9-B2DC-BEA727A20EC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{975A9D2C-F9DF-4D22-97CE-85F98BBA7304}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975A9D2C-F9DF-4D22-97CE-85F98BBA7304}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{975A9D2C-F9DF-4D22-97CE-85F98BBA7304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84E7BF01-611C-48E9-B2DC-BEA727A20EC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84E7BF01-611C-48E9-B2DC-BEA727A20EC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84E7BF01-611C-48E9-B2DC-BEA727A20EC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84E7BF01-611C-48E9-B2DC-BEA727A20EC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

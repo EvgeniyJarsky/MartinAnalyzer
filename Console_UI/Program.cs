@@ -89,6 +89,11 @@ namespace Console_UI
             var newDic = Report_BL.Controller.MainInfo.AddNewSymbolMagicToDic.Add(dic, newSymbol, newMagic);
             #endregion
 
+
+            #region Пишем лог
+            Logging.Logging.WriteLog("massege");
+            #endregion
+
             Console.ReadLine();
         }
     }
