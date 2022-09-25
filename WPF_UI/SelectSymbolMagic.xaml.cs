@@ -59,6 +59,10 @@ namespace WPF_UI
             EndDate.DisplayDate = firstInfo.EndDate;
             EndDate.SelectedDate = firstInfo.EndDate;
             #endregion
+
+            #region Выводим депозит
+            Deposit.Text = firstInfo.StartDeposit.ToString();
+            #endregion
         }
 
         // Выбрали новый символ
@@ -83,8 +87,22 @@ namespace WPF_UI
             DateTime start = StartDate.DisplayDate;
             DateTime end = EndDate.DisplayDate;
 
-            // Закрываем окно
-            this.Close();
+            // Проверим что в окне Депозит введено целое число
+            if (Deposit.Text.All(char.IsDigit))
+            {
+                if (!int.TryParse(Deposit.Text, out int depo))
+                {
+                    MessageBox.Show("Депозит должен быть целым числом!");
+                }
+                else
+                {
+                    // TODO тут нужно создать или поменять first info и
+                    // передать его
+                    // Закрываем окно
+                    this.Close();
+                }
+            }
+            else MessageBox.Show("Значение депозита должен быть целым числом!");
         }
     }
 }

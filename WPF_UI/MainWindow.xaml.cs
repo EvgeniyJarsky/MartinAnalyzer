@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -83,11 +84,14 @@ namespace WPF_UI
             Report_BL.ReportModel.FirstInfo firstInfo = Report_BL.Controller.MainInfo.FirstInfo.Get(reportType, filePath);
 
             if (firstInfo == null)
-                throw new Exception("Ошибка получения первичной информаци");
-
-            // Окно выбора символа и меджика и даты
-            SelectSymbolMagic selectMagSym = new SelectSymbolMagic(firstInfo);
-            selectMagSym.ShowDialog();
+                MessageBox.Show("Ошибка чтения файла!!!");
+            else
+            {
+                // Окно выбора символа и меджика и даты и депозита
+                SelectSymbolMagic selectMagSym = new SelectSymbolMagic(firstInfo);
+                selectMagSym.ShowDialog();
+            }
+            
             
             
             // Создаем новый объект класса Report и вытягиваем

@@ -32,7 +32,7 @@ namespace Report_BL.Controller.MainInfo
                 var result = dicFirstInfo[reportType](filePath);
                 return result;
             }
-            catch(Exception e)
+            catch(Exception)
             {
                 return null;
             }

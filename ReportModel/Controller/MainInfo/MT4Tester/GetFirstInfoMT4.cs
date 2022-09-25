@@ -20,9 +20,17 @@ namespace Report_BL.Controller.MainInfo.MT4Tester
         public static Report_BL.ReportModel.FirstInfo GetSymbolDateMagic(string filePath)
         {
             string? line;
-            string symbol = String.Empty;
+            string? symbol = String.Empty;
             DateTime startDate;
             DateTime endDate;
+
+            /// <summary>
+            /// Ключеая строка которая должна содержаться в
+            /// строке отчета - там где есть имя символа
+            /// В отчете содержиться несколько таких строк
+            /// нам нужна первая
+            /// </summary>
+            const string keyLine = "<tr align=left><td colspan=2>";
 
             Report_BL.ReportModel.FirstInfo firstInfo =
                 new Report_BL.ReportModel.FirstInfo(
@@ -36,48 +44,40 @@ namespace Report_BL.Controller.MainInfo.MT4Tester
                 while ((line = sr.ReadLine()) != null)
                 {
                     #region Определяем имя символа
-                    if (symbol == String.Empty)
+                    // Если нашли строке с ключевыми символами
+                    // и символ еще не определялся, т.е. равен пустой строке
+                    if(line.Contains(keyLine) && symbol == String.Empty)
                     {
+                        // Парсим имя символа.
                         symbol = 
                             Report_BL.Controller.Parser.MT4Tester.MA4TesterSymbolParse.SymbolParse(line);
-                        
-                        // Если имя символа прочитано - запоминаем его
-                        if(symbol != String.Empty)
+                        // Если парсинг успешный
+                        if (symbol != null)
                         {
-                            firstInfo.DicSymbolMagic.Add(symbol,new List<int>{ 0 });
+                            firstInfo.DicSymbolMagic.Add(symbol, new List<int> { 0 });
                             continue;
                         }
-                        else
-                        {
-                            continue;
-                        }
+                        // Иначе первичная инфрмация Null
+                        else return null;
                     }
                     #endregion
 
                     #region Определим даты начала и конца теста
-                    if (line.Contains("<tr align=left><td colspan=2>"))
+                    if (line.Contains("<tr align=left><td colspan=2>") && firstInfo.StartDate == DateTime.MinValue)
                         {
-                            // "<tr align=left><td colspan=2>������</td><td colspan=4>15 ����� (M15)  2012.01.03 01:00 - 2020.02.20 01:45</td></tr>"
-                            try
+
+// "<tr align=left><td colspan=2>������</td><td colspan=4>15 ����� (M15)  2012.01.03 01:00 - 2020.02.20 01:45</td></tr>"
+                            DateTime[]? date = new DateTime[2];
+                            date = Report_BL.Controller.Parser.MT4Tester.MT4TesterDataParse.DateParse(line);
+                            if (date == null)
+                                return null;
+                            else
                             {
-                                // TODO вынести парсинг в отдельную функцию
-                                startDate = DateTime.Parse(
-                                line.Split('(')[1].Split(')')[1].Trim().Split('<')[0].Split('-')[0]
-                                );
-                            // TODO вынести парсинг в отдельную функцию
-                                endDate = DateTime.Parse(
-                                    line.Split('(')[1].Split(')')[1].Trim().Split('<')[0].Split('-')[1]
-                                    );
-                                firstInfo.StartDate = startDate;
-                                firstInfo.EndDate = endDate;
-                            }
-                            catch(FormatException e)
-                            {
-                                //Console.WriteLine(e.Message);
+                                firstInfo.StartDate = date[0];
+                                firstInfo.EndDate   = date[1];
                                 continue;
                             }
-                            break;
-                        }
+                         }
                     #endregion
 
                     #region Определяем начальный депозит
@@ -86,8 +86,11 @@ namespace Report_BL.Controller.MainInfo.MT4Tester
                         if (line.Contains("</td><td></td><td align=right></td><td>"))
                         {
                             line = sr.ReadLine();
+                            line = sr.ReadLine();
+
                             // TODO вынести парсинг в отдельную функцию
-                            firstInfo.StartDeposit = int.Parse(line.Split('>')[4].Split('<')[0]);
+                            // line = "<tr align=left><td>Initial deposit</td><td align=right>10000.00</td><td></td><td align=right></td><td>Spread</td><td align=right>Variable</td></tr>"
+                            firstInfo.StartDeposit = int.Parse(line.Split('>')[4].Split('<')[0].Split('.')[0]);
                         }
                     }
                     #endregion

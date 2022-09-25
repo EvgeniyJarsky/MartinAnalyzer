@@ -1,9 +1,6 @@
-﻿using Report_BL.Controller;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Console_UI
 {
@@ -91,7 +88,7 @@ namespace Console_UI
 
 
             #region Пишем лог
-            Logging.Logging.WriteLog("massege");
+            //Logging.Logging.WriteLog("massege");
             #endregion
 
             Console.ReadLine();

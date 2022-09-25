@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
 namespace Logging
 {
-    public class Logging
+    public static class Logging
     {
         /// <summary>
         /// Записываем лог в файл \\Log\\log.txt
@@ -24,13 +20,7 @@ namespace Logging
             if(!Directory.Exists(filePath))
                 Directory.CreateDirectory(dirPath);
             using(StreamWriter sw = File.AppendText(filePath))
-                
                 sw.WriteLine($"{DateTime.Now} {massege}");
-                
-
-                
-
-            
         }
     }
 }

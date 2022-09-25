@@ -55,6 +55,7 @@
     <Compile Include="Controller\MainInfo\MT4Tester\GetMainInfoMT4Tester.cs" />
     <Compile Include="Controller\MainInfo\MainInfo.cs" />
     <Compile Include="Controller\Parser\MT4Tester\MA4TesterSymbolParse.cs" />
+    <Compile Include="Controller\Parser\MT4Tester\MT4TesterDataParse.cs" />
     <Compile Include="DataCollection\ClearAllData.cs" />
     <Compile Include="DataCollection\DealsCollection.cs" />
     <Compile Include="DataCollection\ParamCollection.cs" />
@@ -65,6 +66,11 @@
     <Compile Include="ReportModel\Info.cs" />
     <Compile Include="ReportModel\Report.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Logging\Logging.csproj">
+      <Project>{84e7bf01-611c-48e9-b2dc-bea727a20ec3}</Project>
+      <Name>Logging</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
