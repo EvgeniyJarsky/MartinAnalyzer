@@ -88,6 +88,7 @@ namespace WPF_UI
             DateTime end = EndDate.DisplayDate;
 
             // Проверим что в окне Депозит введено целое число
+            // TODO Можно вынести в отдельную функцию 
             if (Deposit.Text.All(char.IsDigit))
             {
                 if (!int.TryParse(Deposit.Text, out int depo))

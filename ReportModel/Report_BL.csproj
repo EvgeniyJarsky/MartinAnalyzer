@@ -64,6 +64,7 @@
     <Compile Include="ReportModel\Daels.cs" />
     <Compile Include="ReportModel\FirstInfo.cs" />
     <Compile Include="ReportModel\Info.cs" />
+    <Compile Include="ReportModel\NewReport.cs" />
     <Compile Include="ReportModel\Report.cs" />
   </ItemGroup>
   <ItemGroup>
