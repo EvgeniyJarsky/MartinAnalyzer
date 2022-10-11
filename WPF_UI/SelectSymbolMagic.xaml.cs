@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Report_BL.ReportModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -83,7 +84,7 @@ namespace WPF_UI
         private void ClickButton(object sender, RoutedEventArgs e)
         {
             string sym = symbol.SelectedItem.ToString();
-            string mag = magic.SelectedItem.ToString();
+            int mag = int.Parse(magic.SelectedItem.ToString());
             DateTime start = StartDate.DisplayDate;
             DateTime end = EndDate.DisplayDate;
 
@@ -99,6 +100,15 @@ namespace WPF_UI
                 {
                     // TODO тут нужно создать или поменять first info и
                     // передать его
+                    NewReport rep = new NewReport();
+                    rep.FilePath = firstInfo1.FilePath;
+                    rep.ReportType = firstInfo1.ReportType;
+                    rep.Symbol = sym;
+                    rep.Magic = mag;
+                    rep.StartDate = start;
+                    rep.EndDate = end;
+                    rep.Deposit = depo;
+                    
                     // Закрываем окно
                     this.Close();
                 }

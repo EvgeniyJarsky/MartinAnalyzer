@@ -51,6 +51,7 @@ namespace Report_BL.ReportModel
         /// <summary>
         /// Имя файла берется из filePath
         /// </summary>
+        // TODO Здесь надо получить имя файла из всего пути
         private string fileName;
         public string FileName
         {
@@ -95,14 +96,22 @@ namespace Report_BL.ReportModel
         /// <summary>
         /// Дата начала рапорта
         /// </summary>
-        private DateTime startDate;
-        public DateTime StartDate { get; set; }
+        private DateTime startDate = DateTime.MinValue;
+        public DateTime StartDate
+        {
+            get { return this.startDate; }
+            set { this.startDate = value; }
+        }
 
         /// <summary>
         /// Дата конца раппорта
         /// </summary>
         private DateTime endDate;
-        public DateTime EndDate { get; set; }
+        public DateTime EndDate
+        {
+            get { return this.endDate; }
+            set { this.endDate = value; }
+        }
 
         /// <summary>
         /// Период тестирования
@@ -239,6 +248,18 @@ namespace Report_BL.ReportModel
                 }
             }
         }
+
+        /// <summary>
+        /// Статус объекта:
+        /// false - заполнена первичная информация
+        /// true - заполнен полностью
+        /// </summary>
+        private bool reportStatus = false;
+        public bool ReportStatus
+        {
+            get { return this.reportStatus; }
+            set { this.reportStatus = value; }
+        }
         #endregion
 
         /// <summary>
@@ -247,27 +268,40 @@ namespace Report_BL.ReportModel
         /// <param name="reportType">Тип рапорта</param>
         /// <param name="filePath">Путь к файлу отчета</param>
         /// <param name="expertName">Название советника</param>
-        /// <param name="curency">Валюта(Символ)</param>
+        /// <param name="symbol">Валюта(Символ)</param>
+        /// <param name="startDate">Дата начала теста</param>
+        /// <param name="endDate">Дата конца теста</param>
         /// <param name="timeFrame">Период тестирования</param>
-        /// <param name="testPeriod">Таймфрейм отчета тестироани</param>
         /// <param name="deposit">Начальный депозит</param>
         /// <param name="profit">Суммарная прибыль</param>
         /// <param name="drawDown">Максимальная просадка</param>
         /// <param name="magic">Меджик номер ордеров</param>
-        /// <param name="profitability">Рентабельность</param>
         /// <param name="digits">Кол-во цифр после запятой в котировках</param>
+        /// <param name="reportStatus">Статус заполнености объекта</param>
         public NewReport(string reportType = "",
                       string filePath = "",
                       string expertName = "",
-                      string curency = "",
+                      string symbol = "",
+                      DateTime startDate = new DateTime(),
+                      DateTime endDate = new DateTime(),
                       string timeFrame = "",
                       string testPeriod = "",
-                      string deposit = "",
-                      string profit = "",
-                      string drawDown = "",
-                      string magic = "",
-                      string profitability = "",
-                      string digits = "")
+                      int deposit = 0,
+                      double profit = 0,
+                      double drawDown = 0,
+                      int magic = 0,
+                      int digits = 0,
+                      bool reportStatus = true)
+        {
+            //if (digits != 3 || digits != 4 || digits != 5)
+            //    throw new ArgumentException("Digits must be equal 3 or 4 or 5");
+        }
+
+        public NewReport(string filePath,
+            DateTime startDate,
+            DateTime endDate,
+            int deposit,
+            int magic)
         {
 
         }

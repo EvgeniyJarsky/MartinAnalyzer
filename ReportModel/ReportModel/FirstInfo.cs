@@ -16,6 +16,16 @@ namespace Report_BL.ReportModel
     {
         #region Поля и свойства
         /// <summary>
+        /// Путь к файлу
+        /// </summary>
+        private string filePath = String.Empty;
+        public string FilePath { get { return filePath; } }
+        /// <summary>
+        /// Тип отчета
+        /// </summary>
+        private string reportType = String.Empty;
+        public string ReportType { get { return reportType; } }
+        /// <summary>
         /// Словарь <symbol, magic>
         /// </summary>
         private Dictionary<string, List<int>> _dicSymbolMagic;
@@ -55,12 +65,14 @@ namespace Report_BL.ReportModel
         /// <param name="mag">Мэджик номер</param>
         /// <param name="startD">Дата начала торгов</param>
         /// <param name="endD">Дата конца торгов</param>
-        public FirstInfo(Dictionary<string, List<int>> dic, DateTime startD, DateTime endD, int startDeposit)
+        public FirstInfo(string filePath, string reportType, Dictionary<string, List<int>> dic, DateTime startD, DateTime endD, int startDeposit)
         {
-            DicSymbolMagic = dic;
-            StartDate = startD;
-            EndDate = endD;
-            StartDeposit = startDeposit;
+            this.filePath       = filePath;
+            this.reportType = reportType;
+            this.DicSymbolMagic = dic;
+            this.StartDate      = startD;
+            this.EndDate        = endD;
+            this.StartDeposit   = startDeposit;
         }
     }
 }

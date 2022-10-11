@@ -24,6 +24,8 @@ namespace Report_BL.Controller.MainInfo.MT4History
 
             Report_BL.ReportModel.FirstInfo firstInfo =
                 new Report_BL.ReportModel.FirstInfo(
+                    filePath,
+                    "MT4History",
                     new Dictionary<string, List<int>>(),
                     DateTime.MinValue,
                     DateTime.MinValue,

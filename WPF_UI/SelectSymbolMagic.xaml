@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_UI"
         mc:Ignorable="d"
-        Title="SelectSymbolMagic" Height="433" Width="790">
+        Title="SelectSymbolMagic" Height="469" Width="790">
     <Grid Margin="0,0,71,209">
         <Button Content="Select" HorizontalAlignment="Left" Margin="26,178,0,0" VerticalAlignment="Top" Width="677" Click="ClickButton"/>
         <ComboBox x:Name="symbol"  HorizontalAlignment="Left" Height="26" Margin="48,69,0,0" VerticalAlignment="Top" Width="124" SelectionChanged="SymbolChanged"/>

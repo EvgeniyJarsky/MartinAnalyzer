@@ -34,6 +34,8 @@ namespace Report_BL.Controller.MainInfo.MT4Tester
 
             Report_BL.ReportModel.FirstInfo firstInfo =
                 new Report_BL.ReportModel.FirstInfo(
+                    filePath,
+                    "MT4Tester",
                     new Dictionary<string, List<int>>(),
                     DateTime.MinValue,
                     DateTime.MinValue,
