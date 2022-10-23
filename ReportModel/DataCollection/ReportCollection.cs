@@ -14,10 +14,19 @@ namespace Report_BL.DataCollection
     public static class ReportCollection
     {
         /// <summary>
+        /// Коллекция объектов NewReport - замена Report!!!!
+        /// </summary>
+        public static ObservableCollection<NewReport> newReport =
+            new ObservableCollection<NewReport>();
+
+
+
+
+        /// <summary>
         /// Коллекция объектов Report(отчетов)
         /// </summary>
         public static ObservableCollection<Report> report = new ObservableCollection<Report>();
-
+       
         /// <summary>
         /// Добавить довый объект Report в коллекцию report
         /// </summary>

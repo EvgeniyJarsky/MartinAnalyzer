@@ -56,7 +56,7 @@ namespace Report_BL.ReportModel
         public string FileName
         {
             get { return this.fileName;} 
-            private set { this.fileName = Path.GetFileName(filePath); }
+            set { this.fileName = Path.GetFileName(filePath); }
         }
 
         /// <summary>
@@ -100,7 +100,14 @@ namespace Report_BL.ReportModel
         public DateTime StartDate
         {
             get { return this.startDate; }
-            set { this.startDate = value; }
+            set
+            {
+                if(this.startDate != value)
+                {
+                    this.startDate = value;
+                    this.NotifyPropertyChanged("StartDate");
+                }
+            }
         }
 
         /// <summary>
@@ -110,7 +117,15 @@ namespace Report_BL.ReportModel
         public DateTime EndDate
         {
             get { return this.endDate; }
-            set { this.endDate = value; }
+            //set { this.endDate = value; }
+            set
+            {
+                if (this.endDate != value)
+                {
+                    this.endDate = value;
+                    this.NotifyPropertyChanged("EndDate");
+                }
+            }
         }
 
         /// <summary>
@@ -119,8 +134,8 @@ namespace Report_BL.ReportModel
         private string tradePeriod = String.Empty;
         public string TradePeriod
         {
-            get { return $"{this.StartDate.ToString()} + \" - \" {this.EndDate.ToString()}"; }
-            private set
+            get { return $"{this.StartDate.ToString()}  -  {this.EndDate.ToString()}"; }
+            set
             {
                 if (this.tradePeriod != value)
                 {
@@ -298,15 +313,26 @@ namespace Report_BL.ReportModel
         }
 
         public NewReport(string filePath,
+            string reportType,
+            string symbol,
+            int magic,
             DateTime startDate,
             DateTime endDate,
-            int deposit,
-            int magic)
+            int deposit)
         {
+            this.filePath = filePath;
+            this.reportType = reportType;
+            this.symbol = symbol;
+            this.magic = magic;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.deposit = deposit;
 
+            this.fileName = Path.GetFileName(filePath);
+            this.tradePeriod = $"{this.StartDate.ToString()}  -  {this.EndDate.ToString()}";
         }
 
-
+        
 
 
 

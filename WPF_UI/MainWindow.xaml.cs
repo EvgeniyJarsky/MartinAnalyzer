@@ -25,7 +25,11 @@ namespace WPF_UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static ObservableCollection<NewReport> newReport =
+            Report_BL.DataCollection.ReportCollection.newReport;
 
+
+        
         /// <summary>
         /// Коллекция объектов Info(состоит из 2-х значений - парамет и значение)
         /// </summary>
@@ -44,7 +48,9 @@ namespace WPF_UI
         public MainWindow()
         {
             InitializeComponent();
-            listBox_.ItemsSource = report;
+            listBox_.ItemsSource = newReport;
+
+            //listBox_.ItemsSource = report;
             info.ItemsSource = param;
             deals.ItemsSource = dealsCollection;
         }
@@ -127,12 +133,17 @@ namespace WPF_UI
             var selectedList = listBox_.SelectedItems;// список выбранных отчетов
             if (selectedList.Count != 0)
             {
+                NewReport firstselected = ((NewReport)selectedList[0]);
+                //******************************************************
+                /*
                 Report firstSelected = ((Report)selectedList[0]);
 
                 Report_BL.DataCollection.ParamentrsCollection.AddNewItem(firstSelected);
 
                 // todo заполняем таблицу сделок
                 Report_BL.Controller.GetDeals.GetDeals.Get(firstSelected);
+                */
+                //*********************************************************
             }
         }
     }

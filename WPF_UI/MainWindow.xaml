@@ -37,10 +37,11 @@
             </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Report" DisplayMemberBinding="{Binding FilePath}"/>
-                    <GridViewColumn Header="Symbol" DisplayMemberBinding="{Binding Curency}"/>
-                    <GridViewColumn Header="Magic" DisplayMemberBinding="{Binding Curency}"/>
+                    <GridViewColumn Header="Report" DisplayMemberBinding="{Binding FileName}"/>
+                    <GridViewColumn Header="Symbol" DisplayMemberBinding="{Binding Symbol}"/>
+                    <GridViewColumn Header="Magic" DisplayMemberBinding="{Binding Magic}"/>
                     <GridViewColumn Header="Type" DisplayMemberBinding="{Binding ReportType}"/>
+                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding TradePeriod}"/>
                 </GridView>
             </ListView.View>
         </ListView>

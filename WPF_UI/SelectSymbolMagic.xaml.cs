@@ -85,8 +85,8 @@ namespace WPF_UI
         {
             string sym = symbol.SelectedItem.ToString();
             int mag = int.Parse(magic.SelectedItem.ToString());
-            DateTime start = StartDate.DisplayDate;
-            DateTime end = EndDate.DisplayDate;
+            DateTime start = StartDate.SelectedDate.Value;
+            DateTime end = EndDate.SelectedDate.Value;
 
             // Проверим что в окне Депозит введено целое число
             // TODO Можно вынести в отдельную функцию 
@@ -98,17 +98,19 @@ namespace WPF_UI
                 }
                 else
                 {
-                    // TODO тут нужно создать или поменять first info и
-                    // передать его
-                    NewReport rep = new NewReport();
-                    rep.FilePath = firstInfo1.FilePath;
-                    rep.ReportType = firstInfo1.ReportType;
-                    rep.Symbol = sym;
-                    rep.Magic = mag;
-                    rep.StartDate = start;
-                    rep.EndDate = end;
-                    rep.Deposit = depo;
-                    
+                    // Создаем неполный объект из первичной информации
+                    NewReport rep = new NewReport
+                    (
+                        firstInfo1.FilePath,
+                        firstInfo1.ReportType,
+                        sym,
+                        mag,
+                        start,
+                        end,
+                        depo
+                    );
+
+                    Report_BL.DataCollection.ReportCollection.newReport.Add(rep);
                     // Закрываем окно
                     this.Close();
                 }
