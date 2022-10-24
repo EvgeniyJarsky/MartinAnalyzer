@@ -131,9 +131,11 @@ namespace WPF_UI
             Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
 
             var selectedList = listBox_.SelectedItems;// список выбранных отчетов
-            if (selectedList.Count != 0)
+            if (selectedList.Count != 0) // todo излишняя проверка!!! наверное
             {
-                NewReport firstselected = ((NewReport)selectedList[0]);
+                NewReport firstSelected = (NewReport)selectedList[0];
+                Report_BL.DataCollection.ParamentrsCollection.AddNewItem(firstSelected);
+
                 //******************************************************
                 /*
                 Report firstSelected = ((Report)selectedList[0]);

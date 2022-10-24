@@ -22,15 +22,15 @@ namespace Report_BL.DataCollection
         /// При выборе отчета заполняем param новыми объектами что бы потом отобразить их
         /// </summary>
         /// <param name="report"> Объект класса Report</param>
-        public static void AddNewItem(Report report)
+        public static void AddNewItem(NewReport report)
         {
             param.Add(new Info() { Value = report.ExpertName, Parametr = "Expert name" });
-            param.Add(new Info() { Value = report.Curency, Parametr = "Symbol" });
+            param.Add(new Info() { Value = report.Symbol, Parametr = "Symbol" });
             param.Add(new Info() { Value = report.TimeFrame, Parametr = "Timeframe" });
-            param.Add(new Info() { Value = report.TestPeriod, Parametr = "Test period" });
-            param.Add(new Info() { Value = report.Deposit, Parametr = "Deposit" });
-            param.Add(new Info() { Value = report.Profit, Parametr = "Profit" });
-            param.Add(new Info() { Value = report.DrawDown, Parametr = "DrawDown" });
+            param.Add(new Info() { Value = report.TradePeriod, Parametr = "Test period" });
+            param.Add(new Info() { Value = report.Deposit.ToString(), Parametr = "Deposit" });
+            param.Add(new Info() { Value = report.Profit.ToString(), Parametr = "Profit" });
+            param.Add(new Info() { Value = report.DrawDown.ToString(), Parametr = "DrawDown" });
         }
         
         /// <summary>
