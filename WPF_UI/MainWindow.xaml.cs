@@ -2,18 +2,8 @@
 using System.Windows;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 using WorkWithFiles.LoadFile;
 
 using Report_BL.ReportModel;
@@ -58,8 +48,6 @@ namespace WPF_UI
         /// <summary>
         /// Кнопка открыть файл
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Btn_LoadFile(object sender, RoutedEventArgs e)
         {
             // Очишаем данные
@@ -131,7 +119,8 @@ namespace WPF_UI
             Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
 
             var selectedList = listBox_.SelectedItems;// список выбранных отчетов
-            if (selectedList.Count != 0) // todo излишняя проверка!!! наверное
+            
+            if (selectedList.Count != 0) // проверка если удалили последний объект
             {
                 NewReport firstSelected = (NewReport)selectedList[0];
                 Report_BL.DataCollection.ParamentrsCollection.AddNewItem(firstSelected);
