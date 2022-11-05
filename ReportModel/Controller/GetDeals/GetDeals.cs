@@ -8,7 +8,7 @@ namespace Report_BL.Controller.GetDeals
 {
     public class GetDeals
     {
-        public static void Get(Report_BL.ReportModel.Report report)
+        public static void Get(Report_BL.ReportModel.NewReport report)
         {
             if (report.ReportType == "MT4Tester")
                 Report_BL.Controller.GetDeals.TesterMT4.GetDealsMT4Tester.Get(report);

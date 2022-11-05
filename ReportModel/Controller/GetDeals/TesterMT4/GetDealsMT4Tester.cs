@@ -14,7 +14,7 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
         /// выбираем сделки из отчета и заносим их в писок DealsCollection
         /// </summary>
         /// <param name="report">Объект класса Report</param>
-        public static void Get(Report report)
+        public static void Get(NewReport report)
         {
             int digits = 0; //количество знаков после запятой
             List<int> buy = new List<int>();
@@ -28,9 +28,9 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                     if (line.Contains(key))
                     {
                         string[] parseResult =
-                            Report_BL.Controller.GetDeals.TesterMT4.ParseMT4Tester.ParseDealsMT4Tester(line, report.Curency);
+                            Report_BL.Controller.GetDeals.TesterMT4.ParseMT4Tester.ParseDealsMT4Tester(line, report.Symbol);
                         // Number|Symbol|Date|Buy_Sell|Direct|Lot|Price|Profit|Balance
-
+                        
                         // определяем максимальное количество знаков после запятой
                         int currentDigit = Report_BL.Controller.GetDeals.CountDigits.Count(parseResult[6]);
                         if (digits < currentDigit)
@@ -50,7 +50,7 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                         }
                         
                         Report_BL.DataCollection.DealsCollection.AddNewItem(parseResult);
-                        report.Digits = digits.ToString();
+                        report.Digits = digits;
                         break;
                     }
                 }

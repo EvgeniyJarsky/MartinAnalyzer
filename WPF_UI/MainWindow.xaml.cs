@@ -124,6 +124,8 @@ namespace WPF_UI
             {
                 NewReport firstSelected = (NewReport)selectedList[0];
                 Report_BL.DataCollection.ParamentrsCollection.AddNewItem(firstSelected);
+                
+                Report_BL.Controller.GetDeals.GetDeals.Get(firstSelected);
 
                 //******************************************************
                 /*
