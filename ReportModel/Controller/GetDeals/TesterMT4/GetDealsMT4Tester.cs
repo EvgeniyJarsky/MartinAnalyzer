@@ -1,4 +1,5 @@
-﻿using Report_BL.ReportModel;
+﻿using Microsoft.Data.Sqlite;
+using Report_BL.ReportModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -50,7 +51,19 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                         }
                         
                         Report_BL.DataCollection.DealsCollection.AddNewItem(parseResult);
+                        
                         report.Digits = digits;
+                        /*
+                        ///////////////////////////////////////////
+                        // SQL write
+                        using (var connection = new SqliteConnection("Data Source=usersdata.db"))
+                        {
+                            connection.Open();
+                            SqliteCommand command = connection.CreateCommand();
+                        }
+                        //////////////////////////////////////////
+                        */
+
                         break;
                     }
                 }
