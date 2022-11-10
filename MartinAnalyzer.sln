@@ -3,21 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report_BL", "ReportModel\Report_BL.csproj", "{583A784C-4D98-4FCC-8E83-410119F513DF}"
-	ProjectSection(ProjectDependencies) = postProject
-		{84E7BF01-611C-48E9-B2DC-BEA727A20EC3} = {84E7BF01-611C-48E9-B2DC-BEA727A20EC3}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_UI", "WPF_UI\WPF_UI.csproj", "{BD14540F-4BCB-41AE-88CF-4A785363BD54}"
-	ProjectSection(ProjectDependencies) = postProject
-		{84E7BF01-611C-48E9-B2DC-BEA727A20EC3} = {84E7BF01-611C-48E9-B2DC-BEA727A20EC3}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console_UI", "Console_UI\Console_UI.csproj", "{975A9D2C-F9DF-4D22-97CE-85F98BBA7304}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "Logging\Logging.csproj", "{84E7BF01-611C-48E9-B2DC-BEA727A20EC3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_NET6", "WPF_NET6\WPF_NET6.csproj", "{B98FDCCC-1FAB-4BCF-BA81-93C82D3C4A46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report_BL", "Report_BL\Report_BL.csproj", "{40841F65-5DCF-41F8-B09E-AA008D80DB8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQL_Work", "ClassLibrary3\SQL_Work.csproj", "{4BB6870E-7C9E-44F7-B483-ABBD8E5A10DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{583A784C-4D98-4FCC-8E83-410119F513DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{583A784C-4D98-4FCC-8E83-410119F513DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{583A784C-4D98-4FCC-8E83-410119F513DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{583A784C-4D98-4FCC-8E83-410119F513DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD14540F-4BCB-41AE-88CF-4A785363BD54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD14540F-4BCB-41AE-88CF-4A785363BD54}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD14540F-4BCB-41AE-88CF-4A785363BD54}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD14540F-4BCB-41AE-88CF-4A785363BD54}.Release|Any CPU.Build.0 = Release|Any CPU
 		{975A9D2C-F9DF-4D22-97CE-85F98BBA7304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{975A9D2C-F9DF-4D22-97CE-85F98BBA7304}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975A9D2C-F9DF-4D22-97CE-85F98BBA7304}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +31,14 @@ Global
 		{B98FDCCC-1FAB-4BCF-BA81-93C82D3C4A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B98FDCCC-1FAB-4BCF-BA81-93C82D3C4A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B98FDCCC-1FAB-4BCF-BA81-93C82D3C4A46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40841F65-5DCF-41F8-B09E-AA008D80DB8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40841F65-5DCF-41F8-B09E-AA008D80DB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40841F65-5DCF-41F8-B09E-AA008D80DB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40841F65-5DCF-41F8-B09E-AA008D80DB8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BB6870E-7C9E-44F7-B483-ABBD8E5A10DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BB6870E-7C9E-44F7-B483-ABBD8E5A10DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BB6870E-7C9E-44F7-B483-ABBD8E5A10DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BB6870E-7C9E-44F7-B483-ABBD8E5A10DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

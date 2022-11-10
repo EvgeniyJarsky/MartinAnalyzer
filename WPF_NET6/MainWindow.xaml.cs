@@ -29,7 +29,7 @@ namespace WPF_NET6
         /// Коллекция объектов Report(отчетов)
         /// </summary>
         public static ObservableCollection<Report> report = Report_BL.DataCollection.ReportCollection.report;
-
+        
         /// <summary>
         /// Коллекция объектов "Сделка" с основными переметрами - время открытия/закрытия, тип ордера, лот и т.д.
         /// </summary>
@@ -44,7 +44,7 @@ namespace WPF_NET6
             info.ItemsSource = param;
             deals.ItemsSource = dealsCollection;
         }
-
+        
         /// <summary>
         /// Кнопка открыть файл
         /// </summary>
