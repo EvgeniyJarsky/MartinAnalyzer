@@ -15,6 +15,19 @@ VALUES
 (SELECT id FROM symbol WHERE symbol_name = "GBPUSD")
 );
 
+INSERT INTO grid (
+    grid_number,
+    grid_type_id,
+    symbol_id,
+    file_id
+    )
+VALUES(
+    gridCount,
+    (SELECT id FROM buy_sell WHERE type = "buy"),
+    (SELECT id FROM symbol WHERE symbol_name = "EURJPY"),
+    (SELECT id FROM file WHERE file_path = "PATH")
+    )
+
 INSERT INTO deal (
                      order_number,
                      open_date,
@@ -31,6 +44,11 @@ INSERT INTO deal (
                     (SELECT id FROM symbol WHERE symbol_name = "GBPUSD"),
                     (SELECT id FROM buy_sell WHERE type = "buy")
                  );
+
+d = "UPDATE dealSETclose_date = \"06.01.2020 13:14:00\",profit = \"-8.01\",balance = \"10001.71\"WHERE order_number = 2;"
+
+
+
 
 -- Добавить информацию о закрытии позиции
 -- Нужно знать номер ордера который закрывается - 3

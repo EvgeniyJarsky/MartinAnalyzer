@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,15 +23,15 @@ namespace Report_BL.DataCollection
         {
             dealsCollection.Add(new Deal()
             {
-                Number   = param[0],
-                Symbol   = param[1],
-                Date     = param[2],
+                Number = int.Parse(param[0]),
+                Symbol = param[1],
+                Date = DateTime.Parse(param[2]),
                 Buy_Sell = param[3],
-                Direct   = param[4],
-                Lot      = param[5],
-                Price    = param[6],
-                Profit   = param[7],
-                Balance  = param[8]
+                Direct = param[4],
+                Lot = double.Parse(param[5].Replace(',', '.'), CultureInfo.InvariantCulture),
+                Price = double.Parse(param[6].Replace(',', '.'), CultureInfo.InvariantCulture),
+                Profit = param[7],
+                Balance = param[8]
             });
         }
     }

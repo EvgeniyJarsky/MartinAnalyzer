@@ -15,8 +15,8 @@ namespace Report_BL.ReportModel
         /// <summary>
         /// номер сделки
         /// </summary>
-        string number;
-        public string Number
+        int number;
+        public int Number
         {
             get { return this.number; }
             set
@@ -49,8 +49,8 @@ namespace Report_BL.ReportModel
         /// <summary>
         /// Дата
         /// </summary>
-        string date;
-        public string Date
+        DateTime date;
+        public DateTime Date
         {
             get { return this.date; }
             set
@@ -100,8 +100,8 @@ namespace Report_BL.ReportModel
         /// <summary>
         /// Лот
         /// </summary>
-        string lot;
-        public string Lot
+        double lot;
+        public double Lot
         {
             get { return this.lot; }
             set
@@ -117,8 +117,8 @@ namespace Report_BL.ReportModel
         /// <summary>
         /// Цена открытия или закрытия позиции
         /// </summary>
-        string price;
-        public string Price
+        double price;
+        public double Price
         {
             get { return this.price; }
             set

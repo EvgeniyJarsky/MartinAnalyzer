@@ -1,0 +1,172 @@
+﻿using Report_BL.ReportModel;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Configuration;
+using System.Data.SQLite;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Report_BL.SQL_Work
+{
+    
+    public static class CreateDB_MT4Tester
+    {
+        async public static void Create_DB(NewReport report)
+        {
+            /// Список сделок
+            var dealsList = Report_BL.DataCollection.DealsCollection.dealsCollection;
+
+            // Создаем виртуальную БД
+            string connectionString = "Data Source = :memory:;";
+            SQLiteConnection connection = new SQLiteConnection(connectionString);
+            
+            connection.Open();
+
+            #region Создаем таблицы
+            SQLiteCommand command;
+            command = new SQLiteCommand(CreateMainTables.buySellTable, connection);
+            var rez = command.ExecuteNonQuery();
+
+            command = new SQLiteCommand(CreateMainTables.addBuySell, connection);
+            rez = command.ExecuteNonQuery();
+
+            command = new SQLiteCommand(CreateMainTables.deals, connection);
+            rez = command.ExecuteNonQuery();
+
+            command = new SQLiteCommand(CreateMainTables.file, connection);
+            rez = command.ExecuteNonQuery();
+
+            command = new SQLiteCommand(CreateMainTables.grid, connection);
+            rez = command.ExecuteNonQuery();
+
+            command = new SQLiteCommand(CreateMainTables.symbol, connection);
+            rez = command.ExecuteNonQuery();
+            #endregion
+
+            #region заполнение БД
+
+            var sell = new List<double>();
+            var buy  = new List<double>();
+            int gridCount = 0;
+
+            // Добавим нужный символ
+            command = new SQLiteCommand(CreateMainTables.AddSymbol(report.Symbol), connection);
+            rez = command.ExecuteNonQuery();
+            // Добавим путь к файлу
+            command = new SQLiteCommand(CreateMainTables.AddFilePath(report.FilePath), connection);
+            rez = command.ExecuteNonQuery();
+
+            foreach (var deal in dealsList)
+            {
+                // Если это сделка buy
+                if(deal.Buy_Sell == "buy")
+                {
+                    // Если это открытие позиции
+                    if (deal.Direct == "open")
+                    {
+                        // Если открытых позиций buy нет - первое калено
+                        if(buy.Count == 0)
+                        {
+                            gridCount++;
+
+                            #region Записываем в БД новую сетку
+                            command = new SQLiteCommand(
+                                CreateMainTables.CreateNewGrid(
+                                    gridCount,
+                                    deal.Buy_Sell,
+                                    report.Symbol,
+                                    report.FilePath),
+                                connection);
+                            rez = command.ExecuteNonQuery();
+                            #endregion
+
+                            #region Записываем сделку в БД
+                            command = new SQLiteCommand(
+                                CreateMainTables.CreateNewDeal(
+                                    deal.Number,
+                                    gridCount,
+                                    deal.Date,// 02.01.2020 3:22:00
+                                    deal.Lot,
+                                    deal.Symbol,
+                                    deal.Buy_Sell),
+                                connection);
+                            rez = command.ExecuteNonQuery();
+                            #endregion
+
+                            buy.Add(deal.Lot);
+                        }
+                        // Иначе это следующее колено сетки buy
+                        else
+                        {
+                            #region Записываем сделку в БД
+                            command = new SQLiteCommand(
+                                CreateMainTables.CreateNewDeal(
+                                    deal.Number,
+                                    gridCount,
+                                    deal.Date,// 02.01.2020 3:22:00
+                                    deal.Lot,
+                                    deal.Symbol,
+                                    deal.Buy_Sell),
+                                connection);
+                            rez = command.ExecuteNonQuery();
+                            #endregion
+
+                            buy.Add(deal.Lot);
+                        }
+
+                    }
+                    // Иначе это закрытие ордера buy
+                    else
+                    {
+                        //*
+                        #region Записываем закрытие сделки в БД
+                        command = new SQLiteCommand(
+                            CreateMainTables.UpdateDeal(
+                                deal.Date,// 02.01.2020 3:22:00
+                                deal.Profit,
+                                deal.Balance,
+                                deal.Number),
+                            connection);
+                        rez = command.ExecuteNonQuery();
+                        #endregion
+
+                        buy.Add(deal.Lot * -1);
+                        double f = buy.Sum();
+                        if ( Math.Round(buy.Sum(), 2) == 0)
+                        {
+                            gridCount++;
+
+                            #region Записываем в БД новую сетку
+                            command = new SQLiteCommand(
+                                CreateMainTables.CreateNewGrid(
+                                    gridCount,
+                                    deal.Buy_Sell,
+                                    report.Symbol,
+                                    report.FilePath),
+                                connection);
+                            rez = command.ExecuteNonQuery();
+                            #endregion
+                        }
+                        //*/
+                    }
+
+                }
+            }
+
+            #endregion
+
+            #region Сохраняем БД
+            const string databaseName = @"F:\!Coding\C#\MartinAnalyzer\database\daptabase111.db";
+            using (var destination = new SQLiteConnection(string.Format("Data Source={0};", databaseName)))
+            {
+                destination.Open();
+                connection.BackupDatabase(destination, "main", "main", -1, null, 0);
+                destination.Close();
+            }
+            #endregion
+
+            connection.Close();
+        }
+    }
+}
