@@ -50,6 +50,9 @@ namespace Report_BL.SQL_Work
             var buy  = new List<double>();
             int gridCount = 0;
 
+            int gridCountBuy = 0;
+            int gridCountSell = 0;
+
             // Добавим нужный символ
             command = new SQLiteCommand(CreateMainTables.AddSymbol(report.Symbol), connection);
             rez = command.ExecuteNonQuery();
@@ -68,12 +71,12 @@ namespace Report_BL.SQL_Work
                         // Если открытых позиций buy нет - первое калено
                         if(buy.Count == 0)
                         {
-                            gridCount++;
+                            gridCountBuy = (Math.Max(gridCountBuy, gridCountSell)) + 1;
 
                             #region Записываем в БД новую сетку
                             command = new SQLiteCommand(
                                 CreateMainTables.CreateNewGrid(
-                                    gridCount,
+                                    gridCountBuy,
                                     deal.Buy_Sell,
                                     report.Symbol,
                                     report.FilePath),
@@ -85,7 +88,7 @@ namespace Report_BL.SQL_Work
                             command = new SQLiteCommand(
                                 CreateMainTables.CreateNewDeal(
                                     deal.Number,
-                                    gridCount,
+                                    gridCountBuy,
                                     deal.Date,// 02.01.2020 3:22:00
                                     deal.Lot,
                                     deal.Symbol,
@@ -103,7 +106,7 @@ namespace Report_BL.SQL_Work
                             command = new SQLiteCommand(
                                 CreateMainTables.CreateNewDeal(
                                     deal.Number,
-                                    gridCount,
+                                    gridCountBuy,
                                     deal.Date,// 02.01.2020 3:22:00
                                     deal.Lot,
                                     deal.Symbol,
@@ -119,7 +122,6 @@ namespace Report_BL.SQL_Work
                     // Иначе это закрытие ордера buy
                     else
                     {
-                        //*
                         #region Записываем закрытие сделки в БД
                         command = new SQLiteCommand(
                             CreateMainTables.UpdateDeal(
@@ -132,15 +134,16 @@ namespace Report_BL.SQL_Work
                         #endregion
 
                         buy.Add(deal.Lot * -1);
-                        double f = buy.Sum();
+
+                        // Если сетка buy закрыта
                         if ( Math.Round(buy.Sum(), 2) == 0)
                         {
-                            gridCount++;
+                            buy.Clear();
 
                             #region Записываем в БД новую сетку
                             command = new SQLiteCommand(
                                 CreateMainTables.CreateNewGrid(
-                                    gridCount,
+                                    gridCountBuy,
                                     deal.Buy_Sell,
                                     report.Symbol,
                                     report.FilePath),
@@ -148,16 +151,105 @@ namespace Report_BL.SQL_Work
                             rez = command.ExecuteNonQuery();
                             #endregion
                         }
-                        //*/
                     }
 
+                }
+                // Иначе это сделка sell
+                else
+                {
+                    // Если это открытие позиции
+                    if(deal.Direct == "open")
+                    {
+                        if(sell.Count == 0)
+                        {
+                            gridCountSell = (Math.Max(gridCountBuy, gridCountSell)) + 1;
+
+                            #region Записываем в БД новую сетку
+                            command = new SQLiteCommand(
+                                CreateMainTables.CreateNewGrid(
+                                    gridCountSell,
+                                    deal.Buy_Sell,
+                                    report.Symbol,
+                                    report.FilePath),
+                                connection);
+                            rez = command.ExecuteNonQuery();
+                            #endregion
+
+                            #region Записываем сделку в БД
+                            command = new SQLiteCommand(
+                                CreateMainTables.CreateNewDeal(
+                                    deal.Number,
+                                    gridCountSell,
+                                    deal.Date,// 02.01.2020 3:22:00
+                                    deal.Lot,
+                                    deal.Symbol,
+                                    deal.Buy_Sell),
+                                connection);
+                            rez = command.ExecuteNonQuery();
+                            #endregion
+                        
+                            sell.Add(deal.Lot);
+                        }
+                        // Иначе это следующее колено сетки sell
+                        else
+                        {
+                            #region Записываем сделку в БД
+                            command = new SQLiteCommand(
+                                CreateMainTables.CreateNewDeal(
+                                    deal.Number,
+                                    gridCountSell,
+                                    deal.Date,// 02.01.2020 3:22:00
+                                    deal.Lot,
+                                    deal.Symbol,
+                                    deal.Buy_Sell),
+                                connection);
+                            rez = command.ExecuteNonQuery();
+                            #endregion
+
+                            sell.Add(deal.Lot);
+                        }
+                    }
+                    // Иначе это закрытие ордера sell
+                    else
+                    {
+                        #region Записываем закрытие сделки в БД
+                        command = new SQLiteCommand(
+                            CreateMainTables.UpdateDeal(
+                                deal.Date,// 02.01.2020 3:22:00
+                                deal.Profit,
+                                deal.Balance,
+                                deal.Number),
+                            connection);
+                        rez = command.ExecuteNonQuery();
+                        #endregion
+
+                        sell.Add(deal.Lot * -1);
+
+                        // Если сетка sell закрыта
+                        if ( Math.Round(sell.Sum(), 2) == 0)
+                        {
+                            // gridCount++;
+                            sell.Clear();
+
+                            #region Записываем в БД новую сетку
+                            // command = new SQLiteCommand(
+                            //     CreateMainTables.CreateNewGrid(
+                            //         gridCountSell,
+                            //         deal.Buy_Sell,
+                            //         report.Symbol,
+                            //         report.FilePath),
+                            //     connection);
+                            // rez = command.ExecuteNonQuery();
+                            #endregion
+                        }
+                    }
                 }
             }
 
             #endregion
 
             #region Сохраняем БД
-            const string databaseName = @"F:\!Coding\C#\MartinAnalyzer\database\daptabase111.db";
+            const string databaseName = @"F:\!Coding\C#\MartinAnalyzer_v1.0\database\daptabase111.db";
             using (var destination = new SQLiteConnection(string.Format("Data Source={0};", databaseName)))
             {
                 destination.Open();
