@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Configuration;
+using System.Collections.Specialized;
+
 namespace Report_BL.SQL_Work
 {
     
     public static class CreateDB_MT4Tester
     {
-        async public static void Create_DB(NewReport report)
+        public static void Create_DB(NewReport report)
         {
             /// Список сделок
             var dealsList = Report_BL.DataCollection.DealsCollection.dealsCollection;
@@ -34,9 +37,6 @@ namespace Report_BL.SQL_Work
             command = new SQLiteCommand(CreateMainTables.deals, connection);
             rez = command.ExecuteNonQuery();
 
-            // command = new SQLiteCommand(CreateMainTables.file, connection);
-            // rez = command.ExecuteNonQuery();
-
             command = new SQLiteCommand(CreateMainTables.grid, connection);
             rez = command.ExecuteNonQuery();
 
@@ -48,7 +48,6 @@ namespace Report_BL.SQL_Work
 
             var sell = new List<double>();
             var buy  = new List<double>();
-            int gridCount = 0;
 
             int gridCountBuy = 0;
             int gridCountSell = 0;
@@ -252,6 +251,7 @@ namespace Report_BL.SQL_Work
             const string databaseName = @"F:\!Coding\C#\MartinAnalyzer_v1.0\database\daptabase111.db";
             using (var destination = new SQLiteConnection(string.Format("Data Source={0};", databaseName)))
             {
+                string? sAttr = ConfigurationManager.AppSettings.Get("pathToBD");
                 destination.Open();
                 connection.BackupDatabase(destination, "main", "main", -1, null, 0);
                 destination.Close();

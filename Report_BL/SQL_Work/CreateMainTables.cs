@@ -41,9 +41,6 @@
         public static string AddSymbol(string symbol)
         { return $"INSERT OR IGNORE  INTO symbol (symbol_name) VALUES (\"{symbol}\");"; }
 
-        public static string AddFilePath(string filePath)
-        { return $"INSERT INTO file (file_path) VALUES (\"{filePath}\");"; }
-
         public static string CreateNewGrid(
             int gridCount,
             string gridType,
