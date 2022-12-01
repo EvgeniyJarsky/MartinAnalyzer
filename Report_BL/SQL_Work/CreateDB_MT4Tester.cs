@@ -34,8 +34,8 @@ namespace Report_BL.SQL_Work
             command = new SQLiteCommand(CreateMainTables.deals, connection);
             rez = command.ExecuteNonQuery();
 
-            command = new SQLiteCommand(CreateMainTables.file, connection);
-            rez = command.ExecuteNonQuery();
+            // command = new SQLiteCommand(CreateMainTables.file, connection);
+            // rez = command.ExecuteNonQuery();
 
             command = new SQLiteCommand(CreateMainTables.grid, connection);
             rez = command.ExecuteNonQuery();
@@ -57,8 +57,8 @@ namespace Report_BL.SQL_Work
             command = new SQLiteCommand(CreateMainTables.AddSymbol(report.Symbol), connection);
             rez = command.ExecuteNonQuery();
             // Добавим путь к файлу
-            command = new SQLiteCommand(CreateMainTables.AddFilePath(report.FilePath), connection);
-            rez = command.ExecuteNonQuery();
+            // command = new SQLiteCommand(CreateMainTables.AddFilePath(report.FilePath), connection);
+            // rez = command.ExecuteNonQuery();
 
             foreach (var deal in dealsList)
             {

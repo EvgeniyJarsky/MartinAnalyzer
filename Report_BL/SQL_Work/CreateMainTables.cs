@@ -13,8 +13,8 @@
         public readonly static string deals = "CREATE TABLE deal (" +
             "id INTEGER  PRIMARY KEY AUTOINCREMENT," +
             "order_number INTEGER," +
-            "open_date    DATETIME," +
-            "close_date   DATETIME," +
+            "open_date DATETIME," +
+            "close_date DATETIME," +
             "lot REAL," +
             "profit REAL," +
             "balance REAL," +
@@ -22,18 +22,12 @@
             "comment TEXT," +
             "grid_id INTEGER  REFERENCES grid (id) ON DELETE NO ACTION ON UPDATE NO ACTION," +
             "symbol_id INTEGER  REFERENCES symbol (id) ON DELETE NO ACTION ON UPDATE NO ACTION," +
-            "buy_sell_id INTEGER  REFERENCES buy_sell (id) ON DELETE NO ACTION ON UPDATE NO ACTION," +
-            "file_id INTEGER  REFERENCES file (id));";
-
-        public readonly static string file = "CREATE TABLE file (" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "file_path TEXT UNIQUE ON CONFLICT FAIL);";
+            "buy_sell_id INTEGER REFERENCES buy_sell (id) ON DELETE NO ACTION ON UPDATE NO ACTION);";
 
         public readonly static string grid = "CREATE TABLE grid (" +
             "id INTEGER PRIMARY KEY AUTOINCREMENT," +
             "grid_number INTEGER UNIQUE ON CONFLICT IGNORE, grid_type_id INTEGER," +
             "symbol_id INTEGER," +
-            "file_id INTEGER REFERENCES file (id)," +
             "FOREIGN KEY (grid_type_id)" +
             "REFERENCES buy_sell (id)," +
             "FOREIGN KEY (symbol_id) REFERENCES symbol (id));";
@@ -59,13 +53,11 @@
             return $"INSERT INTO grid (" +
                 $"grid_number," +
                 $"grid_type_id," +
-                $"symbol_id," +
-                $"file_id)" +
+                $"symbol_id)" +
                 $"VALUES(" +
                 $"{gridCount}," +
                 $"(SELECT id FROM buy_sell WHERE type = \"{gridType}\")," +
-                $"(SELECT id FROM symbol WHERE symbol_name = \"{symbol}\")," +
-                $"(SELECT id FROM file WHERE file_path = \"{filePath}\"))";
+                $"(SELECT id FROM symbol WHERE symbol_name = \"{symbol}\"));";
         }
 
         public static string CreateNewDeal(
