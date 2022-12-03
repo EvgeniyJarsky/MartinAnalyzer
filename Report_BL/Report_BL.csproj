@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Configuration\**" />
+    <EmbeddedResource Remove="Configuration\**" />
+    <None Remove="Configuration\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.117" />
   </ItemGroup>

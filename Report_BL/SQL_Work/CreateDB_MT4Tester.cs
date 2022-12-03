@@ -1,7 +1,6 @@
 ﻿using Report_BL.ReportModel;
 using System;
 using System.Collections.Generic;
-//using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
@@ -248,10 +247,13 @@ namespace Report_BL.SQL_Work
             #endregion
 
             #region Сохраняем БД
-            const string databaseName = @"F:\!Coding\C#\MartinAnalyzer\database\daptabase111.db";
-            using (var destination = new SQLiteConnection(string.Format("Data Source={0};", databaseName)))
+            if (!Directory.Exists("database"))
+            { Directory.CreateDirectory("database"); }
+            string pathToBD = $"database/{report.FileName.Split('.')[0] + ".db"}";
+
+            //const string databaseName = @"F:\!Coding\C#\MartinAnalyzer\database\daptabase111.db";
+            using (var destination = new SQLiteConnection(string.Format("Data Source={0};", pathToBD)))
             {
-                string? sAttr = ConfigurationManager.AppSettings.Get("pathToBD");
                 destination.Open();
                 connection.BackupDatabase(destination, "main", "main", -1, null, 0);
                 destination.Close();
