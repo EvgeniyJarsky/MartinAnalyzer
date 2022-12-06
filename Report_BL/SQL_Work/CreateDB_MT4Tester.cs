@@ -137,17 +137,6 @@ namespace Report_BL.SQL_Work
                         if ( Math.Round(buy.Sum(), 2) == 0)
                         {
                             buy.Clear();
-
-                            #region Записываем в БД новую сетку
-                            command = new SQLiteCommand(
-                                CreateMainTables.CreateNewGrid(
-                                    gridCountBuy,
-                                    deal.Buy_Sell,
-                                    report.Symbol,
-                                    report.FilePath),
-                                connection);
-                            rez = command.ExecuteNonQuery();
-                            #endregion
                         }
                     }
 
@@ -228,17 +217,6 @@ namespace Report_BL.SQL_Work
                         {
                             // gridCount++;
                             sell.Clear();
-
-                            #region Записываем в БД новую сетку
-                            // command = new SQLiteCommand(
-                            //     CreateMainTables.CreateNewGrid(
-                            //         gridCountSell,
-                            //         deal.Buy_Sell,
-                            //         report.Symbol,
-                            //         report.FilePath),
-                            //     connection);
-                            // rez = command.ExecuteNonQuery();
-                            #endregion
                         }
                     }
                 }

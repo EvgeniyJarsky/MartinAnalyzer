@@ -13,8 +13,8 @@
         public readonly static string deals = "CREATE TABLE deal (" +
             "id INTEGER  PRIMARY KEY AUTOINCREMENT," +
             "order_number INTEGER," +
-            "open_date DATETIME," +
-            "close_date DATETIME," +
+            "open_date TEXT," +
+            "close_date TEXT," +
             "lot REAL," +
             "profit REAL," +
             "balance REAL," +

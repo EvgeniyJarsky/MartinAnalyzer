@@ -44,6 +44,8 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                             buy.Add(Int16.Parse(parseResult[0]));
                         if (parseResult[3] == "sell")
                             sell.Add(Int16.Parse(parseResult[0]));
+                        //! TODO Если есть сделки закрыытые close at stop - их нужно удалить
+                        //! т.к. они закрыты не по стратегии и портят статистику
                         if (parseResult[3] == "t/p" || parseResult[3] == "close at stop")
                         {
                             if (buy.Contains(Int16.Parse(parseResult[0])))

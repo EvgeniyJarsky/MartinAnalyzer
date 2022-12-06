@@ -18,8 +18,6 @@ namespace WPF_NET6
         public static ObservableCollection<NewReport> newReport =
             Report_BL.DataCollection.ReportCollection.newReport;
 
-
-
         /// <summary>
         /// Коллекция объектов Info(состоит из 2-х значений - парамет и значение)
         /// </summary>
@@ -40,9 +38,15 @@ namespace WPF_NET6
             InitializeComponent();
             listBox_.ItemsSource = newReport;
 
-            //listBox_.ItemsSource = report;
             info.ItemsSource = param;
             deals.ItemsSource = dealsCollection;
+
+            var f = new TreeViewItem();
+            f.Header = "Header";
+            f.Items.Add("1 item");
+            f.Items.Add("2 item");
+            f.Items.Add("3 item");
+            TreeGrid.Items.Add(f);
         }
         
         /// <summary>
