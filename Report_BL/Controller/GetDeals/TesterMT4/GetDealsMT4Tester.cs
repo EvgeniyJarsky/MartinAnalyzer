@@ -44,8 +44,26 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                             buy.Add(Int16.Parse(parseResult[0]));
                         if (parseResult[3] == "sell")
                             sell.Add(Int16.Parse(parseResult[0]));
-                        //! TODO Если есть сделки закрыытые close at stop - их нужно удалить
-                        //! т.к. они закрыты не по стратегии и портят статистику
+                        
+                        #region Удалить сделки закрытые по причине окончания теста
+                        // Если есть сделки закрыытые close at stop - их нужно удалить
+                        // т.к. они закрыты не по стратегии и портят статистику
+                        var col = Report_BL.DataCollection.DealsCollection.dealsCollection;
+                        if(parseResult[3] == "close at stop")
+                        {
+                            foreach( var deal in Report_BL.DataCollection.DealsCollection.dealsCollection)
+                            {
+                                // Находим ордер с таким же номером как и текущий ордер который
+                                // закрыт по close at stop
+                                if(deal.Number == int.Parse(parseResult[0]))
+                                {
+                                    Report_BL.DataCollection.DealsCollection.dealsCollection.Remove(deal);
+                                    break;
+                                }
+                            }
+                        }
+                        #endregion
+
                         if (parseResult[3] == "t/p" || parseResult[3] == "close at stop")
                         {
                             if (buy.Contains(Int16.Parse(parseResult[0])))
