@@ -15,6 +15,8 @@
             "order_number INTEGER," +
             "open_date TEXT," +
             "close_date TEXT," +
+            "open_price, " +
+            "close_price, " +
             "lot REAL," +
             "profit REAL," +
             "balance REAL," +
