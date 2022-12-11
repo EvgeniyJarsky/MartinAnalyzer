@@ -90,7 +90,8 @@ namespace Report_BL.SQL_Work
                                     deal.Date,// 02.01.2020 3:22:00
                                     deal.Lot,
                                     deal.Symbol,
-                                    deal.Buy_Sell),
+                                    deal.Buy_Sell,
+                                    deal.Price),
                                 connection);
                             rez = command.ExecuteNonQuery();
                             #endregion
@@ -108,7 +109,8 @@ namespace Report_BL.SQL_Work
                                     deal.Date,// 02.01.2020 3:22:00
                                     deal.Lot,
                                     deal.Symbol,
-                                    deal.Buy_Sell),
+                                    deal.Buy_Sell,
+                                    deal.Price),
                                 connection);
                             rez = command.ExecuteNonQuery();
                             #endregion
@@ -126,7 +128,8 @@ namespace Report_BL.SQL_Work
                                 deal.Date,// 02.01.2020 3:22:00
                                 deal.Profit,
                                 deal.Balance,
-                                deal.Number),
+                                deal.Number,
+                                deal.Price),
                             connection);
                         rez = command.ExecuteNonQuery();
                         #endregion
@@ -170,7 +173,8 @@ namespace Report_BL.SQL_Work
                                     deal.Date,// 02.01.2020 3:22:00
                                     deal.Lot,
                                     deal.Symbol,
-                                    deal.Buy_Sell),
+                                    deal.Buy_Sell,
+                                    deal.Price),
                                 connection);
                             rez = command.ExecuteNonQuery();
                             #endregion
@@ -188,7 +192,8 @@ namespace Report_BL.SQL_Work
                                     deal.Date,// 02.01.2020 3:22:00
                                     deal.Lot,
                                     deal.Symbol,
-                                    deal.Buy_Sell),
+                                    deal.Buy_Sell,
+                                    deal.Price),
                                 connection);
                             rez = command.ExecuteNonQuery();
                             #endregion
@@ -205,7 +210,8 @@ namespace Report_BL.SQL_Work
                                 deal.Date,// 02.01.2020 3:22:00
                                 deal.Profit,
                                 deal.Balance,
-                                deal.Number),
+                                deal.Number,
+                                deal.Price),
                             connection);
                         rez = command.ExecuteNonQuery();
                         #endregion

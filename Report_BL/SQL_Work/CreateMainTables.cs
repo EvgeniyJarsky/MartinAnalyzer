@@ -65,13 +65,15 @@
             DateTime dateTime,
             double lot,
             string symbol,
-            string orderType
+            string orderType,
+            double price
             )
         {
             string lotStr = lot.ToString().Replace(',','.');
             return "INSERT INTO deal (" +
                 "order_number," +
                 "open_date," +
+                "open_price," +
                 "lot," +
                 "grid_id," +
                 "symbol_id," +
@@ -79,6 +81,7 @@
                 "VALUES (" +
                 $"{order_number}," +
                 $"\"{dateTime}\"," +
+                $"\"{price}\"," +
                 $"{lotStr}," +
                 $"(SELECT id FROM grid WHERE grid_number = {gridCount})," +
                 $"(SELECT id FROM symbol WHERE symbol_name = \"{symbol}\")," +
@@ -89,11 +92,13 @@
             DateTime dateTime,
             string profit,
             string balance,
-            int orderNumber
+            int orderNumber,
+            double price
             )
         {
             return "UPDATE deal " +
                 "SET " +
+                    $"close_price = \"{price}\", " +
                     $"close_date = \"{dateTime}\", " +
                     $"profit = \"{profit}\", " +
                     $"balance = \"{balance}\" " +
