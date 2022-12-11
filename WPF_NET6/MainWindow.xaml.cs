@@ -8,6 +8,9 @@ using WorkWithFiles.LoadFile;
 
 using Report_BL.ReportModel;
 
+using System.Data.SQLite;
+
+
 namespace WPF_NET6
 {
     /// <summary>
@@ -40,13 +43,6 @@ namespace WPF_NET6
 
             info.ItemsSource = param;
             deals.ItemsSource = dealsCollection;
-
-            var f = new TreeViewItem();
-            f.Header = "Header";
-            f.Items.Add("1 item");
-            f.Items.Add("2 item");
-            f.Items.Add("3 item");
-            TreeGrid.Items.Add(f);
         }
         
         /// <summary>
@@ -118,6 +114,7 @@ namespace WPF_NET6
             Report_BL.DataCollection.ClearAllData.ClearAll();
         }
 
+        // При изменении выбранного отчета
         private void ChangeSelectedListBox(object sender, SelectionChangedEventArgs e)
         {
             Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
@@ -132,14 +129,113 @@ namespace WPF_NET6
                 Report_BL.Controller.GetDeals.GetDeals.Get(firstSelected);
 
                 //******************************************************
-                /*
-                Report firstSelected = ((Report)selectedList[0]);
+                // Читаем БД и формируем дерево во второй вкладке
+                string pathToBD = $"database/{firstSelected.FileName.Split('.')[0] + ".db"}";
+                using (var connection = new SQLiteConnection(string.Format("Data Source={0};", pathToBD)))
+                {
+                    connection.Open();
+                    SQLiteCommand command = new SQLiteCommand();
+                    command.Connection = connection;
+                    // Определим сколько всего сеток было построено
+                    command.CommandText = "SELECT COUNT(id) FROM grid";
+                    var countGrid = command.ExecuteScalar();
+                    // переведем значение в int32
+                    int count = Convert.ToInt32(countGrid);
+                    // перебираем все сетки
+                    for(int i =1; i <= count; i++ )
+                    {
+                        // Создаем новый элемент
+                        var newGrid = new TreeViewItem();
 
-                Report_BL.DataCollection.ParamentrsCollection.AddNewItem(firstSelected);
+                        #region  Получим информацию о сетке
+                        command.CommandText = "SELECT " +
+                                                "grid_number, " +
+                                                "symbol_name, " +
+                                                "type " +
+                                            "FROM grid " +
+                                            "JOIN  symbol ON symbol.id  = symbol_id " +
+                                            "JOIN buy_sell ON buy_sell.id = grid_type_id " +
+                                            $"WHERE grid_number = {i};";
+                        string symbol = "";
+                        string gridType = "";
+                        using(SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            reader.Read();
+                            symbol = reader["symbol_name"].ToString() ?? "";
+                            gridType = reader["type"].ToString() ?? "";
+                        }
+                        #endregion
 
-                // todo заполняем таблицу сделок
-                Report_BL.Controller.GetDeals.GetDeals.Get(firstSelected);
-                */
+                        #region  Получим все сделки входящие в эту сетку
+                        command.CommandText = "SELECT    open_date, " +
+                                                        "close_date, " +
+                                                        "lot, " +
+                                                        "profit " +
+                                                "FROM deal " +
+                                                "JOIN grid ON grid.id = grid_id " +
+                                                "JOIN symbol ON symbol.id = deal.symbol_id " +
+                                                $"WHERE grid_number = {i} " +
+                                                $"AND symbol.symbol_name = \"{firstSelected.Symbol}\";";
+                        string openDate = "";
+                        string closeDate = "";
+                        double lot = 0;
+                        double profit = 0;
+                        using(SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            if(reader.HasRows)
+                            {
+                                while(reader.Read())
+                                {
+                                    openDate = Convert.ToString(reader["open_date"]) ?? "";
+                                    closeDate = Convert.ToString(reader["close_date"]) ?? "";
+                                    lot = Convert.ToDouble(reader["lot"]);
+                                    profit = Convert.ToDouble(reader["profit"]);
+                                    newGrid.Items.Add($"Дата открытия = {openDate} | Дата закрытия = {closeDate} | Лот = {lot} | Прибыль = {profit}");
+                                }
+                            }
+                        }
+                        #endregion
+
+                        #region  Получим колличество колен в сетке
+                        command.CommandText = "SELECT   COUNT(lot) " +
+                                                "FROM deal " +
+                                                "JOIN grid ON grid.id = grid_id " +
+                                                "JOIN symbol ON symbol.id = deal.symbol_id " +
+                                                $"WHERE grid_number = {i} " +
+                                                $"AND symbol.symbol_name = \"{firstSelected.Symbol}\";"; 
+                        int countColen = Convert.ToInt32(command.ExecuteScalar());
+                        #endregion
+                        
+                        #region  Получим сумарную лотность
+                        command.CommandText = "SELECT   SUM(lot) " +
+                                                "FROM deal " +
+                                                "JOIN grid ON grid.id = grid_id " +
+                                                "JOIN symbol ON symbol.id = deal.symbol_id " +
+                                                $"WHERE grid_number = {i} " +
+                                                $"AND symbol.symbol_name = \"{firstSelected.Symbol}\";"; 
+                        double sumLot = Math.Round(Convert.ToDouble(command.ExecuteScalar()), 2);
+                        #endregion
+
+                        #region  Получим сумарную прибыль
+                        command.CommandText = "SELECT   SUM(profit) " +
+                                                "FROM deal " +
+                                                "JOIN grid ON grid.id = grid_id " +
+                                                "JOIN symbol ON symbol.id = deal.symbol_id " +
+                                                $"WHERE grid_number = {i} " +
+                                                $"AND symbol.symbol_name = \"{firstSelected.Symbol}\";"; 
+                        double sumProfit = Math.Round(Convert.ToDouble(command.ExecuteScalar()), 2);
+                        #endregion
+
+                        // Добавим основную информацию о сетке - голова дерева
+                        newGrid.Header = $"Сетка {i} | Колен = {countColen} | Символ = {symbol} | Тип = {gridType} | Суммарный лот = {sumLot} | Прибыль = {sumProfit}";
+                        TreeGrid.Items.Add(newGrid);
+
+                    }
+
+                    connection.Close();
+
+                }
+
                 //*********************************************************
             }
         }

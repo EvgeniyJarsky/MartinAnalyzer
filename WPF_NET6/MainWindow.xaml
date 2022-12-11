@@ -72,25 +72,9 @@
                     </ListView.View>
                 </ListView>
             </TabItem>
-            <TabItem Header="Вкладка 2">
+            <TabItem Header="Сетки">
                 <TreeView x:Name="TreeGrid">
-                    <TextBox>Элемент TreeView</TextBox>
-                    <TreeViewItem Header="Setka1">
-                        <TreeViewItem Header="1 order" />
-                        <TreeViewItem Header="2 order" />
-                        <TreeViewItem Header="3 order" />
-                        <TreeViewItem Header="4 order" />
-                    </TreeViewItem>
-                    <TreeViewItem Header="Setka2">
-                        <TreeViewItem Header="1 order" />
-                        <TreeViewItem Header="2 order" />
-                        <TreeViewItem Header="3 order" />
-                    </TreeViewItem>
-                    <TreeViewItem Header="Setka4">
-                        <TreeViewItem Header="1 order" />
-                        <TreeViewItem Header="2 order" />
-                        <TreeViewItem Header="3 order" />
-                    </TreeViewItem>
+                <!-- Строится в коде -->
                 </TreeView>
             </TabItem>
         </TabControl>

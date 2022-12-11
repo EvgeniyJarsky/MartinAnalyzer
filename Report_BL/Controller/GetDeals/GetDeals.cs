@@ -24,7 +24,7 @@ namespace Report_BL.Controller.GetDeals
                 Report_BL.Controller.GetDeals.TesterMT4.GetDealsMT4Tester.Get(report);
 
                 // Читаем БД
-                Report_BL.SQL_Work.ReadDB.ReadDBExampl(report);
+                //Report_BL.SQL_Work.ReadDB.ReadDBExampl(report);
 
                 // Создаем базу данных
                 Report_BL.SQL_Work.CreateDB_MT4Tester.Create_DB(report);
