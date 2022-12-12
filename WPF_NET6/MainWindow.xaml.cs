@@ -134,28 +134,34 @@ namespace WPF_NET6
                 using (var connection = new SQLiteConnection(string.Format("Data Source={0};", pathToBD)))
                 {
                     connection.Open();
+
                     SQLiteCommand command = new SQLiteCommand();
                     command.Connection = connection;
+
                     // Определим сколько всего сеток было построено
                     command.CommandText = "SELECT COUNT(id) FROM grid";
                     var countGrid = command.ExecuteScalar();
                     // переведем значение в int32
                     int count = Convert.ToInt32(countGrid);
+
                     // перебираем все сетки
                     for(int i =1; i <= count; i++ )
                     {
                         // Создаем новый элемент
                         var newGrid = new TreeViewItem();
 
+                        command.Parameters.AddWithValue("$item", i);
+                        command.Parameters.AddWithValue("$reportSymbol", firstSelected.Symbol);
+
                         #region  Получим информацию о сетке
-                        command.CommandText = "SELECT " +
-                                                "grid_number, " +
-                                                "symbol_name, " +
-                                                "type " +
-                                            "FROM grid " +
-                                            "JOIN  symbol ON symbol.id  = symbol_id " +
-                                            "JOIN buy_sell ON buy_sell.id = grid_type_id " +
-                                            $"WHERE grid_number = {i};";
+                        command.CommandText = @$"SELECT
+                                                grid_number,
+                                                symbol_name,
+                                                type
+                                            FROM grid
+                                            JOIN  symbol ON symbol.id  = symbol_id
+                                            JOIN buy_sell ON buy_sell.id = grid_type_id
+                                            WHERE grid_number = $item;";
                         string symbol = "";
                         string gridType = "";
                         using(SQLiteDataReader reader = command.ExecuteReader())
@@ -167,17 +173,21 @@ namespace WPF_NET6
                         #endregion
 
                         #region  Получим все сделки входящие в эту сетку
-                        command.CommandText = "SELECT    open_date, " +
-                                                        "close_date, " +
-                                                        "lot, " +
-                                                        "profit " +
-                                                "FROM deal " +
-                                                "JOIN grid ON grid.id = grid_id " +
-                                                "JOIN symbol ON symbol.id = deal.symbol_id " +
-                                                $"WHERE grid_number = {i} " +
-                                                $"AND symbol.symbol_name = \"{firstSelected.Symbol}\";";
+                        command.CommandText = @$"SELECT open_date,
+                                                        close_date,
+                                                        open_price,
+                                                        close_price,
+                                                        lot,
+                                                        profit
+                                                FROM deal
+                                                JOIN grid ON grid.id = grid_id
+                                                JOIN symbol ON symbol.id = deal.symbol_id
+                                                WHERE grid_number = $item
+                                                AND symbol.symbol_name = $reportSymbol;";
                         string openDate = "";
                         string closeDate = "";
+                        double openPrice = 0;
+                        double closePrice = 0;
                         double lot = 0;
                         double profit = 0;
                         using(SQLiteDataReader reader = command.ExecuteReader())
@@ -188,46 +198,76 @@ namespace WPF_NET6
                                 {
                                     openDate = Convert.ToString(reader["open_date"]) ?? "";
                                     closeDate = Convert.ToString(reader["close_date"]) ?? "";
+                                    openPrice = Convert.ToDouble(reader["open_price"]);
+                                    closePrice = Convert.ToDouble(reader["close_price"]);
                                     lot = Convert.ToDouble(reader["lot"]);
                                     profit = Convert.ToDouble(reader["profit"]);
-                                    newGrid.Items.Add($"Дата открытия = {openDate} | Дата закрытия = {closeDate} | Лот = {lot} | Прибыль = {profit}");
+
+                                    newGrid.Items.Add(@$"Дата открытия = {openDate} | Дата закрытия = {closeDate} | Цена открытия = {openPrice} | Цена закрытия = {closePrice} | Лот = {lot} | Прибыль = {profit}");
                                 }
                             }
                         }
                         #endregion
 
                         #region  Получим колличество колен в сетке
-                        command.CommandText = "SELECT   COUNT(lot) " +
-                                                "FROM deal " +
-                                                "JOIN grid ON grid.id = grid_id " +
-                                                "JOIN symbol ON symbol.id = deal.symbol_id " +
-                                                $"WHERE grid_number = {i} " +
-                                                $"AND symbol.symbol_name = \"{firstSelected.Symbol}\";"; 
+                        command.CommandText = @$"SELECT   COUNT(lot)
+                                                FROM deal
+                                                JOIN grid ON grid.id = grid_id
+                                                JOIN symbol ON symbol.id = deal.symbol_id
+                                                WHERE grid_number = $item
+                                                AND symbol.symbol_name = $reportSymbol;"; 
                         int countColen = Convert.ToInt32(command.ExecuteScalar());
                         #endregion
                         
                         #region  Получим сумарную лотность
-                        command.CommandText = "SELECT   SUM(lot) " +
-                                                "FROM deal " +
-                                                "JOIN grid ON grid.id = grid_id " +
-                                                "JOIN symbol ON symbol.id = deal.symbol_id " +
-                                                $"WHERE grid_number = {i} " +
-                                                $"AND symbol.symbol_name = \"{firstSelected.Symbol}\";"; 
+                        command.CommandText = @$"SELECT   SUM(lot)
+                                                FROM deal
+                                                JOIN grid ON grid.id = grid_id
+                                                JOIN symbol ON symbol.id = deal.symbol_id
+                                                WHERE grid_number = $item
+                                                AND symbol.symbol_name = $reportSymbol;"; 
                         double sumLot = Math.Round(Convert.ToDouble(command.ExecuteScalar()), 2);
                         #endregion
 
                         #region  Получим сумарную прибыль
-                        command.CommandText = "SELECT   SUM(profit) " +
-                                                "FROM deal " +
-                                                "JOIN grid ON grid.id = grid_id " +
-                                                "JOIN symbol ON symbol.id = deal.symbol_id " +
-                                                $"WHERE grid_number = {i} " +
-                                                $"AND symbol.symbol_name = \"{firstSelected.Symbol}\";"; 
+                        
+                        command.CommandText = @$"SELECT   SUM(profit)
+                                                FROM deal
+                                                JOIN grid ON grid.id = grid_id
+                                                JOIN symbol ON symbol.id = deal.symbol_id
+                                                WHERE grid_number = $item
+                                                AND symbol.symbol_name = $reportSymbol;"; 
                         double sumProfit = Math.Round(Convert.ToDouble(command.ExecuteScalar()), 2);
                         #endregion
 
+                        #region определим размер сетки
+                        command.CommandText = @$"SELECT 
+                                            MAX(deal.open_price)
+                                        FROM deal
+                                        JOIN grid ON grid.id = grid_id
+                                        JOIN symbol ON symbol.id = deal.symbol_id
+                                        JOIN buy_sell ON buy_sell.id = buy_sell_id
+                                        WHERE grid_number = $item;";
+                        double maxPrice = Convert.ToDouble(command.ExecuteScalar());
+                        
+                        command.CommandText = @$"SELECT 
+                                            MIN(deal.open_price)
+                                        FROM deal
+                                        JOIN grid ON grid.id = grid_id
+                                        JOIN symbol ON symbol.id = deal.symbol_id
+                                        JOIN buy_sell ON buy_sell.id = buy_sell_id
+                                        WHERE grid_number = $item;";
+                        double mixPrice = Convert.ToDouble(command.ExecuteScalar());
+
+                        int digit = 100000;
+                        if(firstSelected.Digits == 3)
+                            digit = 1000;
+
+                        int gridLenght = Convert.ToInt32((maxPrice - mixPrice)*digit);
+                        #endregion
+
                         // Добавим основную информацию о сетке - голова дерева
-                        newGrid.Header = $"Сетка {i} | Колен = {countColen} | Символ = {symbol} | Тип = {gridType} | Суммарный лот = {sumLot} | Прибыль = {sumProfit}";
+                        newGrid.Header = $"Сетка {i} | Колен = {countColen} | Символ = {symbol} | Тип = {gridType} | Суммарный лот = {sumLot} | Прибыль = {sumProfit} | Дина сетки = {gridLenght}";
                         TreeGrid.Items.Add(newGrid);
 
                     }
