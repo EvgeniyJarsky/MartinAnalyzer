@@ -233,7 +233,7 @@ namespace Report_BL.SQL_Work
             #region Сохраняем БД
             if (!Directory.Exists("database"))
             { Directory.CreateDirectory("database"); }
-            string pathToBD = $"database/{report.FileName.Split('.')[0] + ".db"}";
+            string pathToBD = $"database/{Path.GetFileNameWithoutExtension(report.FileName) + ".db"}";
 
             //const string databaseName = @"F:\!Coding\C#\MartinAnalyzer\database\daptabase111.db";
             using (var destination = new SQLiteConnection(string.Format("Data Source={0};", pathToBD)))

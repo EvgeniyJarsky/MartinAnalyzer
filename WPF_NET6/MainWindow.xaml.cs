@@ -3,6 +3,7 @@ using System.Windows;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using System.IO;
 
 using WorkWithFiles.LoadFile;
 
@@ -95,7 +96,7 @@ namespace WPF_NET6
 
         private void DeleteItem(object sender, EventArgs e)
         {
-            Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
+            
             // получим список выбранных отчетов
             var selectedList = listBox_.SelectedItems;
 
@@ -103,14 +104,17 @@ namespace WPF_NET6
             //! todo надо убрать ввозможность выбирать несколько отчетов
             if (selectedList.Count != 0)
             {
-                var firstSelected = ((Report)selectedList[0]);
-                report.Remove(firstSelected);
+                var firstSelected = ((NewReport)selectedList[0]);
+                newReport.Remove(firstSelected);
             }
+            TreeGrid.Items.Clear();
+            Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
 
         }
 
         private void DeleteAll(object sender, EventArgs e)
         {
+            TreeGrid.Items.Clear();
             Report_BL.DataCollection.ClearAllData.ClearAll();
         }
 
@@ -130,7 +134,7 @@ namespace WPF_NET6
 
                 //******************************************************
                 // Читаем БД и формируем дерево во второй вкладке
-                string pathToBD = $"database/{firstSelected.FileName.Split('.')[0] + ".db"}";
+                string pathToBD = $"database/{Path.GetFileNameWithoutExtension(firstSelected.FileName) + ".db"}";
                 using (var connection = new SQLiteConnection(string.Format("Data Source={0};", pathToBD)))
                 {
                     connection.Open();
@@ -269,11 +273,8 @@ namespace WPF_NET6
                         // Добавим основную информацию о сетке - голова дерева
                         newGrid.Header = $"Сетка {i} | Колен = {countColen} | Символ = {symbol} | Тип = {gridType} | Суммарный лот = {sumLot} | Прибыль = {sumProfit} | Дина сетки = {gridLenght}";
                         TreeGrid.Items.Add(newGrid);
-
                     }
-
                     connection.Close();
-
                 }
 
                 //*********************************************************
