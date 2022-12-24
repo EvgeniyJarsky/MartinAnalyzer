@@ -33,6 +33,20 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                         string[] parseResult =
                             Report_BL.Controller.GetDeals.TesterMT4.ParseMT4Tester.ParseDealsMT4Tester(line, report.Symbol);
                         // Number|Symbol|Date|Buy_Sell|Direct|Lot|Price|Profit|Balance
+
+                        //! Один раз встретилось тип сделки "close" - не знаю что это
+                        // Если sell/buy = close - надо найти этот ордер и определить sell это или buy
+                        if(parseResult[3] == "close")
+                        {
+                            foreach(var item in Report_BL.DataCollection.DealsCollection.dealsCollection)
+                            {
+                                if(item.Number == Convert.ToInt32(parseResult[0]))
+                                {
+                                    parseResult[3] = item.Buy_Sell;
+                                    break;
+                                }
+                            }
+                        }
                         
                         // определяем максимальное количество знаков после запятой
                         int currentDigit = Report_BL.Controller.GetDeals.CountDigits.Count(parseResult[6]);

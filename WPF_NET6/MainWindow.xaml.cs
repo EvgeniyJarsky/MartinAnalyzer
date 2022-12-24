@@ -194,18 +194,30 @@ namespace WPF_NET6
                         double closePrice = 0;
                         double lot = 0;
                         double profit = 0;
+
+                        DateTime startDate = DateTime.MinValue;
+                        DateTime endDate = DateTime.MaxValue;
+
                         using(SQLiteDataReader reader = command.ExecuteReader())
                         {
+                            
+                            
                             if(reader.HasRows)
                             {
                                 while(reader.Read())
                                 {
+                                    
+                                    
                                     openDate = Convert.ToString(reader["open_date"]) ?? "";
                                     closeDate = Convert.ToString(reader["close_date"]) ?? "";
                                     openPrice = Convert.ToDouble(reader["open_price"]);
                                     closePrice = Convert.ToDouble(reader["close_price"]);
                                     lot = Convert.ToDouble(reader["lot"]);
                                     profit = Convert.ToDouble(reader["profit"]);
+
+                                    if(startDate == DateTime.MinValue)
+                                        startDate = DateTime.Parse(openDate);
+                                    endDate = DateTime.Parse(closeDate);
 
                                     newGrid.Items.Add(@$"Дата открытия = {openDate} | Дата закрытия = {closeDate} | Цена открытия = {openPrice} | Цена закрытия = {closePrice} | Лот = {lot} | Прибыль = {profit}");
                                 }
@@ -271,8 +283,11 @@ namespace WPF_NET6
                         #endregion
 
                         // Добавим основную информацию о сетке - голова дерева
-                        newGrid.Header = $"Сетка {i} | Колен = {countColen} | Символ = {symbol} | Тип = {gridType} | Суммарный лот = {sumLot} | Прибыль = {sumProfit} | Дина сетки = {gridLenght}";
+                        string f = Report_BL.Controller.Func.Dates.HowManyTimesBetween(startDate.ToString(), endDate.ToString());
+
+                        newGrid.Header = $"Сетка {i} | Колен = {countColen} | Символ = {symbol} | Тип = {gridType} | Суммарный лот = {sumLot} | Прибыль = {sumProfit} | Дина сетки = {gridLenght} | Время = {f}";
                         TreeGrid.Items.Add(newGrid);
+
                     }
                     connection.Close();
                 }

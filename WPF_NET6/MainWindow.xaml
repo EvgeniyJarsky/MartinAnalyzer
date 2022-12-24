@@ -77,6 +77,17 @@
                 <!-- Строится в коде -->
                 </TreeView>
             </TabItem>
+
+            <TabItem Header="Таблица">
+                <ListView Name="table">
+                    <ListView.View>
+                        <GridView>
+                            <!-- <GridViewColumn> <StackPanel> vvdf </StackPanel>    </GridViewColumn> -->
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
         </TabControl>
     </Grid>
 </Window>
