@@ -30,6 +30,7 @@ namespace WPF_NET6
         {
             InitializeComponent();
 
+
             this.firstInfo1 = firstInfo;
 
             #region Добовляем все символы

@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPF_NET6"
+        xmlns:local="clr-namespace:WPF_NET6.UsersControl"
         mc:Ignorable="d"
-        Title="MartinAnalyzer" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="ThinkingMartin" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -18,11 +18,9 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal">
-            <Button Click="Btn_LoadFile" Margin="10" Content="Load" MaxWidth = "100" MaxHeight = "40" />
-            <Button Click="DeleteItem" Margin="10" Content="Delete" MaxWidth = "100" MaxHeight = "40" />
-            <Button Click="DeleteAll" Margin="10" Content="DeleteAll" MaxWidth = "100" MaxHeight = "40" />
-        </StackPanel>
+        
+        <local:TopButtons x:Name="switcher" LoadFileEvent="Btn_LoadFile" DeleteItemEvent="DeleteItem" DeleteAllEvent="DeleteAll"/>
+        
         <GridSplitter Grid.ColumnSpan="3" Grid.Row="2" ShowsPreview="False" Height="3"
         HorizontalAlignment="Stretch" VerticalAlignment="Center" />
         <GridSplitter Grid.Column="1" Grid.Row="1" ShowsPreview="False" Width="2"
@@ -54,40 +52,46 @@
             </ListView.View>
         </ListView>
 
-        <TabControl Grid.Row="3" Grid.ColumnSpan="3">
-            <TabItem Header="Deals">
-                <ListView  Name="deals">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Number}" Width="Auto">№</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Symbol}" Width="Auto">Symbol</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Date}" Width="Auto">Date</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Buy_Sell}" Width="Auto">buy/sell</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Direct}" Width="Auto">Direct</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Lot}" Width="Auto">Lot</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Price}" Width="Auto">Price</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Profit}" Width="Auto">Profit</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Balance}" Width="Auto">Balance</GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+        <TabControl x:Name="TabContrl" Grid.Row="3" Grid.ColumnSpan="3" SelectionChanged="TabControl_SelectionChanged">
+
+            <TabItem x:Name="tabbb" Header="Deals">
+                <local:UC_DealsTab/>
             </TabItem>
+
             <TabItem Header="Сетки">
                 <TreeView x:Name="TreeGrid">
                 <!-- Строится в коде -->
                 </TreeView>
             </TabItem>
 
-            <TabItem Header="Таблица">
+            <TabItem Header="Таблица" x:Name = "TableTab" HorizontalAlignment="Right" Width="58">
                 <ListView Name="table">
                     <ListView.View>
                         <GridView>
-                            <!-- <GridViewColumn> <StackPanel> vvdf </StackPanel>    </GridViewColumn> -->
+                            
+                            <GridViewColumn>
+                                <TextBlock>№</TextBlock>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <TextBlock>sell</TextBlock>
+                            </GridViewColumn>
+                            <GridViewColumn>
+                                <TextBlock>buy</TextBlock>
+                            </GridViewColumn>
+                            <GridViewColumn Width="Auto">
+                                <TextBlock>all</TextBlock>
+                            </GridViewColumn>
+                            
+                            <!-- <GridViewColumn Width="Auto">
+                                <local:UserControl1/>
+                            </GridViewColumn> -->
+                            
                         </GridView>
                     </ListView.View>
                 </ListView>
             </TabItem>
 
         </TabControl>
+
     </Grid>
 </Window>

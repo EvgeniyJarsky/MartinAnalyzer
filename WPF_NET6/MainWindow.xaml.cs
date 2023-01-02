@@ -41,9 +41,8 @@ namespace WPF_NET6
         {
             InitializeComponent();
             listBox_.ItemsSource = newReport;
-
             info.ItemsSource = param;
-            deals.ItemsSource = dealsCollection;
+            //deals.ItemsSource = dealsCollection;
         }
         
         /// <summary>
@@ -94,7 +93,7 @@ namespace WPF_NET6
             Report_BL.Controller.MainInfo.MainInfo.GetMainInfo(filePath);
         }
 
-        private void DeleteItem(object sender, EventArgs e)
+        private void DeleteItem(object sender, RoutedEventArgs e)
         {
             
             // получим список выбранных отчетов
@@ -112,10 +111,11 @@ namespace WPF_NET6
 
         }
 
-        private void DeleteAll(object sender, EventArgs e)
+        private void DeleteAll(object sender, RoutedEventArgs e)
         {
             TreeGrid.Items.Clear();
             Report_BL.DataCollection.ClearAllData.ClearAll();
+            listBox_.Items.Clear();
         }
 
         // При изменении выбранного отчета
@@ -198,10 +198,10 @@ namespace WPF_NET6
                         DateTime startDate = DateTime.MinValue;
                         DateTime endDate = DateTime.MaxValue;
 
+                        // подключаемся к БД
                         using(SQLiteDataReader reader = command.ExecuteReader())
                         {
-                            
-                            
+                            // перебираем БД пока есть строки в БД 
                             if(reader.HasRows)
                             {
                                 while(reader.Read())
@@ -287,7 +287,7 @@ namespace WPF_NET6
 
                         newGrid.Header = $"Сетка {i} | Колен = {countColen} | Символ = {symbol} | Тип = {gridType} | Суммарный лот = {sumLot} | Прибыль = {sumProfit} | Дина сетки = {gridLenght} | Время = {f}";
                         TreeGrid.Items.Add(newGrid);
-
+                        
                     }
                     connection.Close();
                 }
@@ -295,5 +295,11 @@ namespace WPF_NET6
                 //*********************************************************
             }
         }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
     }
 }

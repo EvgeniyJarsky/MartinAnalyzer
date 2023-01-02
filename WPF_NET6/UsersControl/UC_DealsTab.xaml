@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="WPF_NET6.UsersControl.UC_DealsTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_NET6.UsersControl"
+             mc:Ignorable="d" >
+
+            <ListView x:Name="deals">
+                <ListView.View>
+                    <GridView>
+                <GridViewColumn DisplayMemberBinding="{Binding Number}" Width="Auto">№</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Symbol}" Width="Auto">Symbol</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Date}" Width="Auto">Date</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Buy_Sell}" Width="Auto">buy/sell</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Direct}" Width="Auto">Direct</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Lot}" Width="Auto">Lot</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Price}" Width="Auto">Price</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Profit}" Width="Auto">Profit</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Balance}" Width="Auto">Balance</GridViewColumn>
+            </GridView>
+                </ListView.View>
+            </ListView>
+
+</UserControl>
