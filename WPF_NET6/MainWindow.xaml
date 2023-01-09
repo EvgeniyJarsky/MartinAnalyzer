@@ -54,18 +54,12 @@
 
         <TabControl x:Name="TabContrl" Grid.Row="3" Grid.ColumnSpan="3" SelectionChanged="TabControl_SelectionChanged">
 
-            <TabItem x:Name="Tree" Header="Сетки2">
+            <TabItem x:Name="Tree" Header="Сетки">
                 <local:UC_TreeTab/>
             </TabItem>
             
             <TabItem x:Name="Deals" Header="Deals">
                 <local:UC_DealsTab/>
-            </TabItem>
-
-            <TabItem Header="Сетки">
-                <TreeView x:Name="TreeGrid">
-                <!-- Строится в коде -->
-                </TreeView>
             </TabItem>
 
             <TabItem Header="Таблица" x:Name = "TableTab" HorizontalAlignment="Right" Width="58">

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 
 
 namespace Report_BL.ReportModel
 {
+    //<summary>
+    // Класс для биндинга девера сеток
+    //</summary>
     public class TreeViewClass
     {
         #region Свойства
@@ -19,6 +17,10 @@ namespace Report_BL.ReportModel
         public string Symbol {get; set;}
         // Тип сетки Sell/Buy
         public string Sell_Buy {get; set;}
+        //Дата начала сетки
+        public DateTime StartDate = DateTime.MinValue;
+        // Дата конца сетки
+        public DateTime EndDate = DateTime.MaxValue;
         // Суммарный лот
         public double Lot {get; set;}
         // Profit
@@ -26,7 +28,14 @@ namespace Report_BL.ReportModel
         // Длина сетки
         public int GridLenght {set; get;}
         // Продолжительность сетки
-        public string GridPeriod {set; get;}
+        public string GridPeriod
+        {
+            private set{}
+            get
+            {
+                return Report_BL.Controller.Func.Dates.HowManyTimesBetween(this.StartDate.ToString(), this.EndDate.ToString());
+            }
+        }
         #endregion
 
         public ObservableCollection<Order> Orders {set; get;}

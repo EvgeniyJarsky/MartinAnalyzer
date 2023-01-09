@@ -12,7 +12,7 @@
                 <TextBlock Text="{Binding GridInfo}"></TextBlock>
                 <HierarchicalDataTemplate.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="2222"></TextBlock>
+                        <TextBlock Text="{Binding OrderInfo}"></TextBlock>
                     </DataTemplate>
                 </HierarchicalDataTemplate.ItemTemplate>
             </HierarchicalDataTemplate>
