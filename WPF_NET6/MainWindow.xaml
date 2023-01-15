@@ -25,7 +25,7 @@
         HorizontalAlignment="Stretch" VerticalAlignment="Center" />
         <GridSplitter Grid.Column="1" Grid.Row="1" ShowsPreview="False" Width="2"
         HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-        <ListView x:Name="listBox_" SelectionChanged="ChangeSelectedListBox" Grid.Column="0" Grid.Row="1">
+        <ListView  x:Name="listBox_" SelectionChanged="ChangeSelectedListBox" Grid.Column="0" Grid.Row="1">
             <ListView.ContextMenu>
                 <ContextMenu>
                     <!-- <MenuItem Header="Delete" Click="MenuItemDelete_Click"/> -->
@@ -35,7 +35,7 @@
             </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Report" DisplayMemberBinding="{Binding FileName}"/>
+                    <GridViewColumn  Header="Report" DisplayMemberBinding="{Binding FileName}"/>
                     <GridViewColumn Header="Symbol" DisplayMemberBinding="{Binding Symbol}"/>
                     <GridViewColumn Header="Magic" DisplayMemberBinding="{Binding Magic}"/>
                     <GridViewColumn Header="Type" DisplayMemberBinding="{Binding ReportType}"/>
@@ -63,30 +63,7 @@
             </TabItem>
 
             <TabItem Header="Таблица" x:Name = "TableTab" HorizontalAlignment="Right" Width="58">
-                <ListView Name="table">
-                    <ListView.View>
-                        <GridView>
-                            
-                            <GridViewColumn>
-                                <TextBlock>№</TextBlock>
-                            </GridViewColumn>
-                            <GridViewColumn>
-                                <TextBlock>sell</TextBlock>
-                            </GridViewColumn>
-                            <GridViewColumn>
-                                <TextBlock>buy</TextBlock>
-                            </GridViewColumn>
-                            <GridViewColumn Width="Auto">
-                                <TextBlock>all</TextBlock>
-                            </GridViewColumn>
-                            
-                            <!-- <GridViewColumn Width="Auto">
-                                <local:UserControl1/>
-                            </GridViewColumn> -->
-                            
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <local:Tables/>
             </TabItem>
 
         </TabControl>

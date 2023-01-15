@@ -115,7 +115,7 @@ namespace WPF_NET6
         {
             Report_BL.DataCollection.TreeCollection.grid.Clear();
             Report_BL.DataCollection.ClearAllData.ClearAll();
-            listBox_.Items.Clear();
+            listBox_.Items.Clear(); //! TODO когда не выбрано ни одного отчета - ошибка
         }
 
         // При изменении выбранного отчета
@@ -135,6 +135,14 @@ namespace WPF_NET6
 
                 // Создаем коллекцию которая биндится с TreeView WPF
                 Report_BL.Controller.TreeViewer.TreeViewer.CreteTreeView(firstSelected);
+
+                //Формируем таблицу прибыли по месяцам
+                Report_BL.Controller.Tables.Table.CreateMainTables();
+                foreach(var table in Report_BL.DataCollection.ProfitTableCollection.profitTable)
+                {
+                    //WPF_NET6.UsersControl.Tables.
+                }
+                
             }
         }
 
