@@ -12,23 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace WPF_NET6.UsersControl
 {
     /// <summary>
-    /// Логика взаимодействия для Tables.xaml
+    /// Логика взаимодействия для GridCountOrdersTable.xaml
     /// </summary>
-    public partial class Tables : UserControl
+    public partial class GridCountOrdersTable : UserControl
     {
-        public Tables()
+        public GridCountOrdersTable()
         {
             InitializeComponent();
-        }
-
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

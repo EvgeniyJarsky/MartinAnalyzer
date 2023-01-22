@@ -14,7 +14,7 @@ namespace Report_BL.ReportModel
         /// <summary>
         /// Номер года
         /// </summary>
-        public int YearVal { get; set; }
+        public string YearVal { get; set; }
         /// <summary>
         /// Прибыль за январь
         /// </summary>
@@ -23,66 +23,131 @@ namespace Report_BL.ReportModel
         /// <summary>
         /// Прибыль за Февраль
         /// </summary>
-        double february = 0;
-        public double FebruaryProfit { get { return Math.Round(february, 2, MidpointRounding.AwayFromZero); } set { february = value; } }
+        double februaryProfit = 0;
+        public double FebruaryProfit { get { return Math.Round(februaryProfit, 2, MidpointRounding.AwayFromZero); } set { februaryProfit = value; } }
         /// <summary>
         /// Прибыль за Март
         /// </summary>
-        double march = 0;
-        public double MarchProfit { get { return Math.Round(march, 2, MidpointRounding.AwayFromZero); } set { march = value; } }
+        double marchProfit = 0;
+        public double MarchProfit { get { return Math.Round(marchProfit, 2, MidpointRounding.AwayFromZero); } set { marchProfit = value; } }
         /// <summary>
         /// Прибыль за Апрель
         /// </summary>
-        double april = 0;
-        public double AprilProfit { get { return Math.Round(april, 2, MidpointRounding.AwayFromZero); } set { april = value; } }
+        double aprilProfit = 0;
+        public double AprilProfit { get { return Math.Round(aprilProfit, 2, MidpointRounding.AwayFromZero); } set { aprilProfit = value; } }
         /// <summary>
         /// Прибыль за Май
         /// </summary>
-        double may = 0;
-        public double MayProfit { get { return Math.Round(may, 2, MidpointRounding.AwayFromZero); } set { may = value; } }
+        double mayProfit = 0;
+        public double MayProfit { get { return Math.Round(mayProfit, 2, MidpointRounding.AwayFromZero); } set { mayProfit = value; } }
         /// <summary>
         /// Прибыль за Июнь
         /// </summary>
-        double june = 0;
-        public double JuneProfit { get { return Math.Round(june, 2, MidpointRounding.AwayFromZero); } set { june = value; } }
+        double juneProfit = 0;
+        public double JuneProfit { get { return Math.Round(juneProfit, 2, MidpointRounding.AwayFromZero); } set { juneProfit = value; } }
         /// <summary>
         /// Прибыль за Июль
         /// </summary>
-        double july = 0;
-        public double JulyProfit { get { return Math.Round(july, 2, MidpointRounding.AwayFromZero); } set { july = value; } }
+        double julyProfit = 0;
+        public double JulyProfit { get { return Math.Round(julyProfit, 2, MidpointRounding.AwayFromZero); } set { julyProfit = value; } }
         /// <summary>
         /// Прибыль за Август
         /// </summary>
-        double august = 0;
-        public double AugustProfit { get { return Math.Round(august, 2, MidpointRounding.AwayFromZero); } set { august = value; } }
+        double augustProfit = 0;
+        public double AugustProfit { get { return Math.Round(augustProfit, 2, MidpointRounding.AwayFromZero); } set { augustProfit = value; } }
         /// <summary>
         /// Прибыль за Сентябрь
         /// </summary>
-        double september = 0;
-        public double SeptemberProfit { get { return Math.Round(september, 2, MidpointRounding.AwayFromZero); } set { september = value; } }
+        double septemberProfit = 0;
+        public double SeptemberProfit { get { return Math.Round(septemberProfit, 2, MidpointRounding.AwayFromZero); } set { septemberProfit = value; } }
         /// <summary>
         /// Прибыль за Октябрь
         /// </summary>
-        double october = 0;
-        public double OctoberProfit { get { return Math.Round(october, 2, MidpointRounding.AwayFromZero); } set { october = value; } }
+        double octoberProfit = 0;
+        public double OctoberProfit { get { return Math.Round(octoberProfit, 2, MidpointRounding.AwayFromZero); } set { octoberProfit = value; } }
         /// <summary>
         /// Прибыль за Ноябрь
         /// </summary>
-        double november = 0;
-        public double NovemberProfit { get { return Math.Round(november, 2, MidpointRounding.AwayFromZero); } set { november = value; } }
+        double novemberProfit = 0;
+        public double NovemberProfit { get { return Math.Round(novemberProfit, 2, MidpointRounding.AwayFromZero); } set { novemberProfit = value; } }
         /// <summary>
         /// Декабрь
         /// </summary>
-        double december = 0;
-        public double DecemberProfit { get { return Math.Round(december, 2, MidpointRounding.AwayFromZero); } set { december = value; } }
-        //! TODO посчитать прямо в классе
-        /// <summary>
-        /// Средняя прибыль за месяц
-        /// </summary>
-        public double AverageProfit { get; set; }
+        double decemberProfit = 0;
+        public double DecemberProfit { get { return Math.Round(decemberProfit, 2, MidpointRounding.AwayFromZero); } set { decemberProfit = value; } }
+        
         /// <summary>
         /// Сумарная прибыль за год
         /// </summary>
-        public double SumProfit { get; set; }
+        double sumProfit = 0;
+        public double SumProfit
+        {
+            get {return sumProfit;}
+            set {sumProfit = value;}
+        }
+
+        /// <summary>
+        /// Средняя прибыль за месяц
+        /// </summary>
+        double averageProfit = 0;
+        public double AverageProfit
+        {
+            get {return averageProfit;}
+            set {averageProfit = value;}
+        }
+
+        public double GetSum()
+        {
+            double rez = 
+                    januaryProfit+
+                    februaryProfit+
+                    marchProfit+
+                    aprilProfit+
+                    mayProfit+
+                    juneProfit+
+                    julyProfit+
+                    augustProfit+
+                    septemberProfit+
+                    octoberProfit+
+                    novemberProfit+
+                    decemberProfit;
+
+                return Math.Round(rez, 2, MidpointRounding.AwayFromZero);
+        }
+
+        public double GetAverageValue()
+        {
+            int countMonths = 0;
+                double rez = 0;
+                #region Подсчет месяцев в которых были торги - не нулевая прибыль
+                if(this.januaryProfit != 0)
+                    countMonths++;
+                if(this.februaryProfit != 0)
+                    countMonths++;
+                if(this.marchProfit != 0)
+                    countMonths++;
+                if(this.aprilProfit != 0)
+                    countMonths++;
+                if(this.mayProfit != 0)
+                    countMonths++;
+                if(this.juneProfit != 0)
+                    countMonths++;
+                if(this.julyProfit != 0)
+                    countMonths++;
+                if(this.augustProfit != 0)
+                    countMonths++;
+                if(this.septemberProfit != 0)
+                    countMonths++;
+                if(this.octoberProfit != 0)
+                    countMonths++;
+                if(this.novemberProfit != 0)
+                    countMonths++;
+                if(this.decemberProfit != 0)
+                    countMonths++;
+                #endregion
+                if(countMonths != 0)
+                    rez = Math.Round(this.GetSum()/countMonths, 2, MidpointRounding.AwayFromZero);
+                return rez;
+        }
     }
 }

@@ -19,40 +19,53 @@ namespace Report_BL.Controller.Tables
                 int year = tree.EndDate.Year;
                 int month = tree.EndDate.Month;
 
-                #region Проверим если уже этот год в коллекции
-                bool isYearCreated = false;
-                foreach(var item in ProfitTableCollection.profitTable)
-                {
-                    if(item.YearVal == year)
-                    {
-                        isYearCreated = true;
-                        break;
-                    }
-                }
-                #endregion
+                //Проверим если уже этот год в коллекции
+                bool isYearCreated = IsYearCreated.Get(year);
 
                 if(isYearCreated) // Если год уже есть в коллекции
                 {
                     foreach (var item in ProfitTableCollection.profitTable)
                     {
-                        if (item.YearVal == year)
-                        {
+                        if (Int32.Parse(item.YearVal) == year)
                             AddProfit(month, item, tree);
-                        }
                     }
                 }
                 else // Если года нет в коллекции
                 {
-                    // TODO может надо обнулить все переметры?
-                    var newYear = new ProfitTable { YearVal = year };
+                    var newYear = new ProfitTable { YearVal = year.ToString() };
                     
                     AddProfit(month, newYear, tree);
 
                     ProfitTableCollection.profitTable.Add(newYear);
                 }
             }
-        }
 
+            #region  После формирования таблицы Прибыли, нужно добавить последнюю строку со средними значениями
+            double[] averageMonthProfit = new double[12];
+            averageMonthProfit = AverageMonthProfit.Get();
+
+            var endRowProfit = new ProfitTable
+            {
+                YearVal = "Среднее",
+                JanuaryProfit = averageMonthProfit[0],
+                FebruaryProfit = averageMonthProfit[1],
+                MarchProfit = averageMonthProfit[2],
+                AprilProfit = averageMonthProfit[3],
+                MayProfit = averageMonthProfit[4],
+                JuneProfit = averageMonthProfit[5],
+                JulyProfit = averageMonthProfit[6],
+                AugustProfit = averageMonthProfit[7],
+                SeptemberProfit = averageMonthProfit[8],
+                OctoberProfit = averageMonthProfit[9],
+                NovemberProfit = averageMonthProfit[10],
+                DecemberProfit = averageMonthProfit[11]
+            };
+            endRowProfit.AverageProfit = endRowProfit.GetAverageValue();
+            endRowProfit.SumProfit = GetSumProfit();
+            ProfitTableCollection.profitTable.Add(endRowProfit);
+            #endregion
+        }
+        // Создаем новую строку прибылей по месяцам
         private static void AddProfit(int month, ProfitTable currenTable, TreeViewClass tree)
         {
             if (month == 1)
@@ -79,6 +92,18 @@ namespace Report_BL.Controller.Tables
                 currenTable.NovemberProfit += tree.Profit;
             if (month == 12)
                 currenTable.DecemberProfit += tree.Profit;
+            currenTable.SumProfit = currenTable.GetSum();
+            currenTable.AverageProfit = currenTable.GetAverageValue();
+        }
+
+        // Суммарная прибыль за все время
+        private static double GetSumProfit()
+        {
+            double totalProfit = 0;
+            foreach(var grid in TreeCollection.grid)
+                totalProfit += grid.Profit;
+            return Math.Round(totalProfit, 2, MidpointRounding.AwayFromZero);
+
         }
     }
 }

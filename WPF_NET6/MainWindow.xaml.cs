@@ -138,10 +138,7 @@ namespace WPF_NET6
 
                 //Формируем таблицу прибыли по месяцам
                 Report_BL.Controller.Tables.Table.CreateMainTables();
-                foreach(var table in Report_BL.DataCollection.ProfitTableCollection.profitTable)
-                {
-                    //WPF_NET6.UsersControl.Tables.
-                }
+                
                 
             }
         }
