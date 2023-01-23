@@ -11,7 +11,7 @@ namespace Report_BL.Controller.Tables
 {
     public static class Table
     {
-        public static void CreateMainTables()
+        public static void CreateProfiTable()
         {
             // Перебираем всю коллекцию сеток
             foreach(var tree in TreeCollection.grid)
@@ -20,7 +20,7 @@ namespace Report_BL.Controller.Tables
                 int month = tree.EndDate.Month;
 
                 //Проверим если уже этот год в коллекции
-                bool isYearCreated = IsYearCreated.Get(year);
+                bool isYearCreated = IsYearCreated.CheckProfitTable(year);
 
                 if(isYearCreated) // Если год уже есть в коллекции
                 {
@@ -65,6 +65,135 @@ namespace Report_BL.Controller.Tables
             ProfitTableCollection.profitTable.Add(endRowProfit);
             #endregion
         }
+
+        public static void CreateMaxOrdersGridTable()
+        {
+            // Перебираем всю коллекцию сеток
+            foreach(var tree in TreeCollection.grid)
+            {
+                int year = tree.EndDate.Year;
+                int month = tree.EndDate.Month;
+
+                //Проверим если уже этот год в коллекции
+                bool isYearCreated = IsYearCreated.CheckMaxOrdersTable(year);
+
+                if(isYearCreated) // Если год уже есть в коллекции
+                {
+                    // Ищем строку с нужным годом
+                    foreach (var item in GridOrdersCountTableCollection.MaxOrdersTable)
+                    {
+                        if (Int32.Parse(item.YearVal) == year)
+                        {
+                            switch (month)
+                            {
+                                case 1:
+                                    if(tree.Orders.Count() > item.JanuaryMaxGridOrdersCount)
+                                        item.JanuaryMaxGridOrdersCount = tree.CountOrders;
+                                    break;
+                                case 2:
+                                    if(tree.Orders.Count() > item.FebruaryMaxGridOrdersCount)
+                                        item.FebruaryMaxGridOrdersCount = tree.CountOrders;
+                                    break;
+                                case 3:
+                                    if(tree.Orders.Count() > item.MarchMaxGridOrdersCount)
+                                        item.MarchMaxGridOrdersCount = tree.CountOrders;
+                                    break;
+                                case 4:
+                                    if(tree.Orders.Count() > item.AprilMaxGridOrdersCount)
+                                        item.AprilMaxGridOrdersCount = tree.CountOrders;
+                                    break;
+                                case 5:
+                                    if(tree.Orders.Count() > item.MayMaxGridOrdersCount)
+                                        item.MayMaxGridOrdersCount = tree.CountOrders;
+                                    break;
+                                case 6:
+                                    if(tree.Orders.Count() > item.JuneMaxGridOrdersCount)
+                                        item.JuneMaxGridOrdersCount = tree.CountOrders;
+                                    break;
+                                case 7:
+                                    if(tree.Orders.Count() > item.JulyMaxGridOrdersCount)
+                                        item.JulyMaxGridOrdersCount = tree.CountOrders;
+                                    break;
+                                case 8:
+                                    if(tree.Orders.Count() > item.AugustMaxGridOrdersCount)
+                                        item.AugustMaxGridOrdersCount = tree.CountOrders;
+                                    break;
+                                case 9:
+                                    if(tree.Orders.Count() > item.SeptemberMaxGridOrdersCount)
+                                        item.SeptemberMaxGridOrdersCount = tree.CountOrders;
+                                    break;
+                                case 10:
+                                    if(tree.Orders.Count() > item.OctoberMaxGridOrdersCount)
+                                        item.OctoberMaxGridOrdersCount = tree.CountOrders;
+                                    break;
+                                case 11:
+                                    if(tree.Orders.Count() > item.NovemberMaxGridOrdersCount)
+                                        item.NovemberMaxGridOrdersCount = tree.CountOrders;
+                                    break;
+                                case 12:
+                                    if(tree.Orders.Count() > item.DecemberMaxGridOrdersCount)
+                                        item.DecemberMaxGridOrdersCount = tree.CountOrders;
+                                    break;
+                            }
+                        }
+                        
+                    }
+                }
+                else // Если года нет в коллекции
+                {
+                    var newRow = new GridOrdersCountTable{};
+                    newRow.YearVal = year.ToString();
+                    switch (month)
+                    {
+                        case 1:
+                            newRow.JanuaryMaxGridOrdersCount = tree.CountOrders;
+                            break;
+                        case 2:
+                            newRow.FebruaryMaxGridOrdersCount = tree.CountOrders;
+                            break;
+                        case 3:
+                            newRow.MarchMaxGridOrdersCount = tree.CountOrders;
+                            break;
+                        case 4:
+                            newRow.AprilMaxGridOrdersCount = tree.CountOrders;
+                            break;
+                        case 5:
+                            newRow.MayMaxGridOrdersCount = tree.CountOrders;
+                            break;
+                        case 6:
+                            newRow.JuneMaxGridOrdersCount = tree.CountOrders;
+                            break;
+                        case 7:
+                            newRow.JulyMaxGridOrdersCount = tree.CountOrders;
+                            break;
+                        case 8:
+                            newRow.AugustMaxGridOrdersCount = tree.CountOrders;
+                            break;
+                        case 9:
+                            newRow.SeptemberMaxGridOrdersCount = tree.CountOrders;
+                            break;
+                        case 10:
+                            newRow.OctoberMaxGridOrdersCount = tree.CountOrders;
+                            break;
+                        case 11:
+                            newRow.NovemberMaxGridOrdersCount = tree.CountOrders;
+                            break;
+                        case 12:
+                            newRow.DecemberMaxGridOrdersCount = tree.CountOrders;
+                            break;
+                    }
+
+                    GridOrdersCountTableCollection.MaxOrdersTable.Add(newRow);
+                }
+            }
+
+            // После как сформированли таблицу надо заполнить нижнюю строку средних значени 
+            // и средних значений за год
+            var LastRow = new GridOrdersCountTable{YearVal = "Среднее"};
+
+            GridOrdersCountTableCollection.MaxOrdersTable.Add(LastRow);
+        }
+
         // Создаем новую строку прибылей по месяцам
         private static void AddProfit(int month, ProfitTable currenTable, TreeViewClass tree)
         {

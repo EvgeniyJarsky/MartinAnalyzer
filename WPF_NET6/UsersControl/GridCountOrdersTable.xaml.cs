@@ -23,6 +23,21 @@ namespace WPF_NET6.UsersControl
         public GridCountOrdersTable()
         {
             InitializeComponent();
+
+            year_.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
+            january.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
+            february.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
+            march.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
+            april.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
+            may.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
+            june.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
+            july.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
+            august.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
+            september.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
+            october.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
+            november.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
+            december.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
+            averageCountOrders.ItemsSource = Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable;
         }
     }
 }

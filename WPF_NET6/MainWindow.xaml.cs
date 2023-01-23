@@ -137,7 +137,10 @@ namespace WPF_NET6
                 Report_BL.Controller.TreeViewer.TreeViewer.CreteTreeView(firstSelected);
 
                 //Формируем таблицу прибыли по месяцам
-                Report_BL.Controller.Tables.Table.CreateMainTables();
+                Report_BL.Controller.Tables.Table.CreateProfiTable();
+
+                // Формируем таблицу максимального кол-ва колен за месяц
+                Report_BL.Controller.Tables.Table.CreateMaxOrdersGridTable();
                 
                 
             }

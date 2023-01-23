@@ -54,6 +54,7 @@
                 </StackPanel>
             </Label>
         </Border>
+        
         <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3">
             <Label HorizontalAlignment="Center" >Количество сеток</Label>
         </Border>
@@ -64,37 +65,158 @@
             <Label Margin="2,0,2,0">Buy</Label>
         </Border>
         <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="3">
-            <Label Margin="2,0,2,0">Sell+Buy</Label>
+            <Label Margin="2,0,2,0">All</Label>
+        </Border>
+        
+        <Border BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="3">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">Сумма лотов</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">ордеров сеток</TextBlock>
+            </StackPanel>
         </Border>
         <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="4">
-            <Label Margin="2,0,2,0">Апрель</Label>
+            <Label Margin="2,0,2,0">Sell</Label>
         </Border>
         <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="5">
-            <Label Margin="2,0,2,0">Май</Label>
+            <Label Margin="2,0,2,0">Buy</Label>
         </Border>
         <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="6">
-            <Label Margin="2,0,2,0">Июнь</Label>
+            <Label Margin="2,0,2,0">All</Label>
+        </Border>
+
+        <Border BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="7" Grid.ColumnSpan="3">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">Общая прибыль</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">$</TextBlock>
+            </StackPanel>
         </Border>
         <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="7">
-            <Label Margin="2,0,2,0">Июль</Label>
+            <Label Margin="2,0,2,0">Sell</Label>
         </Border>
         <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="8">
-            <Label Margin="2,0,2,0">Август</Label>
+            <Label Margin="2,0,2,0">Buy</Label>
         </Border>
         <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="9">
-            <Label Margin="2,0,2,0">Сентябрь</Label>
+            <Label Margin="2,0,2,0">All</Label>
+        </Border>
+
+        <Border BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="10" Grid.ColumnSpan="3">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">Средняя прибыль</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">сетки, $</TextBlock>
+            </StackPanel>
         </Border>
         <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="10">
-            <Label Margin="2,0,2,0">Октябрь</Label>
+            <Label Margin="2,0,2,0">Sell</Label>
         </Border>
         <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="11">
-            <Label Margin="2,0,2,0">Ноябрь</Label>
+            <Label Margin="2,0,2,0">Buy</Label>
         </Border>
         <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="12">
-            <Label Margin="2,0,2,0">Декабрь</Label>
+            <Label Margin="2,0,2,0">All</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="0" Grid.Column="13" Grid.RowSpan="2">
-            <Label VerticalAlignment="Center" Margin="2,0,2,0">Средняя</Label>
+
+        <Border BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="13" Grid.ColumnSpan="3">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">% от общей</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">прибыли</TextBlock>
+            </StackPanel>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="13">
+            <Label Margin="2,0,2,0">Sell</Label>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="14">
+            <Label Margin="2,0,2,0">Buy</Label>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="15">
+            <Label Margin="2,0,2,0">All</Label>
+        </Border>
+
+        <Border BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="16" Grid.ColumnSpan="2">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">Макс. размер</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">сетки в пунктах</TextBlock>
+            </StackPanel>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="16">
+            <Label Margin="2,0,2,0">Sell</Label>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="17">
+            <Label Margin="2,0,2,0">Buy</Label>
+        </Border>
+
+        <Border BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="18" Grid.ColumnSpan="3">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">Средний размер</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">сетки в пунктах</TextBlock>
+            </StackPanel>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="18">
+            <Label Margin="2,0,2,0">Sell</Label>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="19">
+            <Label Margin="2,0,2,0">Buy</Label>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="20">
+            <Label Margin="2,0,2,0">All</Label>
+        </Border>
+
+        <Border BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="21" Grid.ColumnSpan="2">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">Макс. кол-во </TextBlock>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">пунктов до ТП</TextBlock>
+            </StackPanel>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="21">
+            <Label Margin="2,0,2,0">Sell</Label>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="22">
+            <Label Margin="2,0,2,0">Buy</Label>
+        </Border>
+
+        <Border BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="23" Grid.ColumnSpan="3">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">Среднее кол-во</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">пунктов до ТП</TextBlock>
+            </StackPanel>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="23">
+            <Label Margin="2,0,2,0">Sell</Label>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="24">
+            <Label Margin="2,0,2,0">Buy</Label>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="25">
+            <Label Margin="2,0,2,0">All</Label>
+        </Border>
+
+        <Border BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="26" Grid.ColumnSpan="2">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">Макс. время</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">жизни сетки</TextBlock>
+            </StackPanel>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="26">
+            <Label Margin="2,0,2,0">Sell</Label>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="27">
+            <Label Margin="2,0,2,0">Buy</Label>
+        </Border>
+
+        <Border BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="28" Grid.ColumnSpan="3">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">Среднее время</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Margin="2,0,2,0">жизни сетки</TextBlock>
+            </StackPanel>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="28">
+            <Label Margin="2,0,2,0">Sell</Label>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="29">
+            <Label Margin="2,0,2,0">Buy</Label>
+        </Border>
+        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="30">
+            <Label Margin="2,0,2,0">All</Label>
         </Border>
 
     </Grid>
