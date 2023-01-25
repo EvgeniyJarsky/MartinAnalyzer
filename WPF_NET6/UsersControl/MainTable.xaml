@@ -219,5 +219,36 @@
             <Label Margin="2,0,2,0">All</Label>
         </Border>
 
+
+        <!-- <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="0" Grid.Row="2">
+            <ItemsControl x:Name="number_">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding countOrders}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="1" Grid.Row="2">
+            <ItemsControl x:Name="GridCountSell">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding countGridSell"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border> -->
+
     </Grid>
 </UserControl>

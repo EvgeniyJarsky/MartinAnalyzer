@@ -141,6 +141,9 @@ namespace WPF_NET6
 
                 // Формируем таблицу максимального кол-ва колен за месяц
                 Report_BL.Controller.Tables.Table.CreateMaxOrdersGridTable();
+
+                // Формируем главную таблицу
+                Report_BL.Controller.Tables.Table.CreateMainTable();
                 
                 
             }

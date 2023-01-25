@@ -11,6 +11,7 @@ namespace Report_BL.Controller.Tables
 {
     public static class Table
     {
+        // Создаем таблицу прибылей по месяцам
         public static void CreateProfiTable()
         {
             // Перебираем всю коллекцию сеток
@@ -42,6 +43,7 @@ namespace Report_BL.Controller.Tables
 
             #region  После формирования таблицы Прибыли, нужно добавить последнюю строку со средними значениями
             double[] averageMonthProfit = new double[12];
+
             averageMonthProfit = AverageMonthProfit.Get();
 
             var endRowProfit = new ProfitTable
@@ -66,6 +68,8 @@ namespace Report_BL.Controller.Tables
             #endregion
         }
 
+        
+        // Создаем таблицу максимальное количество колен сетки по месяцам
         public static void CreateMaxOrdersGridTable()
         {
             // Перебираем всю коллекцию сеток
@@ -190,9 +194,59 @@ namespace Report_BL.Controller.Tables
             // После как сформированли таблицу надо заполнить нижнюю строку средних значени 
             // и средних значений за год
             var LastRow = new GridOrdersCountTable{YearVal = "Среднее"};
+            
+            // Получим средние значения ордеров в сетке за месяц всех годов
+            int[] averageOrders = AverageOrders.Get();
+            
+            LastRow.JanuaryMaxGridOrdersCount = averageOrders[0];
+            LastRow.FebruaryMaxGridOrdersCount = averageOrders[1];
+            LastRow.MarchMaxGridOrdersCount = averageOrders[2];
+            LastRow.AprilMaxGridOrdersCount = averageOrders[3];
+            LastRow.MayMaxGridOrdersCount = averageOrders[4];
+            LastRow.JuneMaxGridOrdersCount = averageOrders[5];
+            LastRow.JulyMaxGridOrdersCount = averageOrders[6];
+            LastRow.AugustMaxGridOrdersCount = averageOrders[7];
+            LastRow.SeptemberMaxGridOrdersCount = averageOrders[8];
+            LastRow.OctoberMaxGridOrdersCount = averageOrders[9];
+            LastRow.NovemberMaxGridOrdersCount = averageOrders[10];
+            LastRow.DecemberMaxGridOrdersCount = averageOrders[11];
 
             GridOrdersCountTableCollection.MaxOrdersTable.Add(LastRow);
+
+            // Заполняем последнюю колонку таблицы ордеров
+            foreach(var row in GridOrdersCountTableCollection.MaxOrdersTable)
+            {
+                row.AverageMaxGridOrdersCount = row.GetAverageValue();
+            }
         }
+
+        // Создаем главную таблицу
+        public static void CreateMainTable()
+        {
+            foreach(var tree in TreeCollection.grid)
+            {
+                var newRow = Report_BL.DataCollection.MainTable.GetRow(tree.CountOrders);
+
+                switch (tree.Sell_Buy)
+                {
+                    case "sell":
+                        var sellCount = newRow.countGrid;
+                        sellCount.sell++;
+                        break;
+                    case "buy":
+                        var buyCount = newRow.countGrid;
+                        buyCount.buy++;
+                        break;
+                }
+            }
+
+            var dfgdfg = Report_BL.DataCollection.MainTable.mainTable;
+        }
+
+
+
+
+
 
         // Создаем новую строку прибылей по месяцам
         private static void AddProfit(int month, ProfitTable currenTable, TreeViewClass tree)
@@ -221,6 +275,7 @@ namespace Report_BL.Controller.Tables
                 currenTable.NovemberProfit += tree.Profit;
             if (month == 12)
                 currenTable.DecemberProfit += tree.Profit;
+                
             currenTable.SumProfit = currenTable.GetSum();
             currenTable.AverageProfit = currenTable.GetAverageValue();
         }

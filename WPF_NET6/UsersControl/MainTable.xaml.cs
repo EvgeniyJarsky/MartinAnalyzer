@@ -23,6 +23,9 @@ namespace WPF_NET6.UsersControl
         public MainTable()
         {
             InitializeComponent();
+
+            // number_.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            // GridCountSell.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
         }
     }
 }
