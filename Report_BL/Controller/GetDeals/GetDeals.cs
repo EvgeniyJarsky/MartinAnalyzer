@@ -30,7 +30,8 @@ namespace Report_BL.Controller.GetDeals
                 Report_BL.SQL_Work.CreateDB_MT4Tester.Create_DB(report);
 
 
-                
+                // Создаем коллекцию которая биндится с TreeView WPF
+                Report_BL.Controller.TreeViewer.TreeViewer.CreteTreeView(report);
 
                 
             }

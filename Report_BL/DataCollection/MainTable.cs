@@ -9,6 +9,7 @@ namespace Report_BL.DataCollection
             new ObservableCollection<Report_BL.ReportModel.MainTable>();
 
         // Возвращаем из коллекции Главной таблицы строку с заданным кол-вом колен в сетке
+        // Если такой строки нет - создаем новую и возвращаем ее
         public static Report_BL.ReportModel.MainTable GetRow(int gridCount)
         {
             foreach(var item in mainTable)

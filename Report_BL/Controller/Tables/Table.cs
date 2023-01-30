@@ -1,5 +1,6 @@
 ﻿using Report_BL.DataCollection;
 using Report_BL.ReportModel;
+using System.Linq;
 using Report_BL.SQL_Work;
 using System;
 using System.Collections.Generic;
@@ -221,8 +222,13 @@ namespace Report_BL.Controller.Tables
         }
 
         // Создаем главную таблицу
-        public static void CreateMainTable()
+        public static void CreateMainTable(Report_BL.ReportModel.NewReport report)
         {
+            /*
+                Проходим по всему списку сеток и начинаем их заполнять
+                При этом если сеток с таким количеством колен не было то
+                такая строка не создастся
+            */
             foreach(var tree in TreeCollection.grid)
             {
                 var newRow = Report_BL.DataCollection.MainTable.GetRow(tree.CountOrders);
@@ -230,21 +236,207 @@ namespace Report_BL.Controller.Tables
                 switch (tree.Sell_Buy)
                 {
                     case "sell":
-                        var sellCount = newRow.countGrid;
-                        sellCount.sell++;
+                        newRow.countGridSell++;
+                        newRow.SumLotSell += tree.Lot;
+                        newRow.TotalProfitSell += tree.Profit;
                         break;
                     case "buy":
-                        var buyCount = newRow.countGrid;
-                        buyCount.buy++;
+                        newRow.countGridBuy++;
+                        newRow.SumLotBuy += tree.Lot;
+                        newRow.TotalProfitBuy += tree.Profit;
                         break;
                 }
             }
 
-            var dfgdfg = Report_BL.DataCollection.MainTable.mainTable;
+            #region  Создадим строки с сетками с количеством колен которые в данном отчете отсутствуют
+            // что бы не было пропусков номеров в таблице
+            int countRows = Report_BL.DataCollection.MainTable.mainTable.Count();
+            bool[] countmass = new bool[countRows]; 
+            Array.Fill(countmass, false);
+
+            // Заполняем массив значениями true там где есть строки сеток
+            for(int i = countRows-1; i < countRows; i++)
+            {
+                countmass[Report_BL.DataCollection.MainTable.mainTable[i].countOrders-1] = true;
+            }
+            // Создадим пустые пропущенные строки в главной таблице
+            for(int i = 0; i < countmass.Length; i++)
+            {
+                if(countmass[i] == false)
+                {
+                    Report_BL.DataCollection.MainTable.GetRow(i+1);
+                }
+            }
+            #endregion
+
+            #region  Считаем столбец % от общей прибыли для сеток
+
+            // Найдем суммарную прибыль за все время из таблицы прибыли по месяцам - 
+            // это самый правый столбец и самое нижнее значение
+            int tableSize =  Report_BL.DataCollection.ProfitTableCollection.profitTable.Count();
+            double totalProfit =  Report_BL.DataCollection.ProfitTableCollection.profitTable[tableSize-1].SumProfit;
+
+            foreach(var item in Report_BL.DataCollection.MainTable.mainTable)
+            {
+                item.PersentOfTotalProfitSell = Math.Round(((item.TotalProfitSell/totalProfit)*100),2, MidpointRounding.AwayFromZero); 
+                item.PersentOfTotalProfitBuy = Math.Round(((item.TotalProfitBuy/totalProfit)*100),2, MidpointRounding.AwayFromZero); 
+                item.PersentOfTotalProfitAll = Math.Round(((item.TotalProfitAll/totalProfit)*100),2, MidpointRounding.AwayFromZero); 
+            }
+            #endregion
+
+            //! Вынести в отдельную функцию
+            #region  Сортировка
+            
+            // var temp_ = Report_BL.DataCollection.MainTable.mainTable.OrderBy(s => s.countOrders);
+
+            // Report_BL.DataCollection.MainTable.mainTable = new
+            // System.Collections.ObjectModel.ObservableCollection<ReportModel.MainTable>(Report_BL.DataCollection.MainTable.mainTable.OrderBy(s => s.countOrders));
+            
+            // Report_BL.DataCollection.MainTable.mainTable.Add(new ReportModel.MainTable{countOrders=100});
+            
+            // var newRow1 = Report_BL.DataCollection.MainTable.GetRow(100);
+
+            
+
+            for(int i=0; i<Report_BL.DataCollection.MainTable.mainTable.Count(); i++)
+            {
+                for(int j = i+1; j<Report_BL.DataCollection.MainTable.mainTable.Count(); j++)
+                {
+                if(Report_BL.DataCollection.MainTable.mainTable[i].countOrders > Report_BL.DataCollection.MainTable.mainTable[j].countOrders)
+                {
+                    var temp = Report_BL.DataCollection.MainTable.mainTable[i];
+                    Report_BL.DataCollection.MainTable.mainTable[i] = Report_BL.DataCollection.MainTable.mainTable[j];
+                    Report_BL.DataCollection.MainTable.mainTable[j] = temp;
+                }
+                }
+            }
+            #endregion
+
+            #region Считаем максимальный и средний размеры сетки
+            int tableSize_ =  Report_BL.DataCollection.MainTable.mainTable.Count();
+            int[] maxSizeGridSell     = new int[tableSize_+1];
+            int[] maxSizeGridBuy      = new int[tableSize_+1];
+            int[] averageSizeGridSell = new int[tableSize_+1];
+            int[] averageSizeGridBuy  = new int[tableSize_+1];
+            GridSize(out maxSizeGridSell, out maxSizeGridBuy, out averageSizeGridSell, out averageSizeGridBuy);
+
+            // Заполняем коллекцию главной таблицы, которая биндится
+            int count = 0;
+            foreach(var row in Report_BL.DataCollection.MainTable.mainTable)
+            {
+                row.MaxGridSizeSell = maxSizeGridSell[count];
+                row.MaxGridSizeBuy = maxSizeGridBuy[count];
+
+                row.AverageGridSizeSell = averageSizeGridSell[count];
+                row.AverageGridSizeBuy = averageSizeGridBuy[count];
+
+
+                count++;
+            }
+
+            #endregion
         }
 
 
+        // Максимальный размер сетки в пункта
+        // Средний размер сетки в пункта
+        private static void GridSize(out int[] maxSizeGridSell, out int[] maxSizeGridBuy, out int[] avegageSizeGridSell, out int[] averageSizeGridBuy)
+        {
+            // Определим кол-во строк в главной таблице
+            int tableSize =  Report_BL.DataCollection.MainTable.mainTable.Count();
 
+            List<int>[] gridSizeSell = new List<int>[tableSize+1];
+            List<int>[] gridSizeBuy  = new List<int>[tableSize+1];
+
+
+            int[] maxSizeGridSell_     = new int[tableSize+1];
+            int[] maxSizeGridBuy_      = new int[tableSize+1];
+            int[] avegageSizeGridSell_ = new int[tableSize+1];
+            int[] averageSizeGridBuy_  = new int[tableSize+1];
+
+            
+            
+
+            //  Перебираем дерево сеток
+            foreach(var item in Report_BL.DataCollection.TreeCollection.grid)
+            {
+                // // Размер сетки с одним ордером пропускаем - потому что равен 0 
+                // if(item.CountOrders ==1)
+                //     continue;
+                
+                // // Перебираем ордера сетки и находим цену первого ордера и цену самого дальнего ордера
+                // double startPrice = 0;
+                // double endPrice = 0;
+
+                // foreach(var order in item.Orders)
+                // {
+                //     switch (item.Sell_Buy)
+                //     {
+                //         case "sell":
+                //             if(startPrice == 0) 
+                //             {
+                //                 startPrice = order.OpenPrice;
+                //                 break;
+                //             }
+                //             if(endPrice < order.OpenPrice)
+                //             {
+                //                 endPrice = order.OpenPrice;
+                //             }
+                //             break;
+
+                //         case "buy":
+                //             endPrice = int.MaxValue; // Заведомо высокая несуществующая цена
+                //             if(startPrice == 0)
+                //             {
+                //                 startPrice = order.OpenPrice;
+                //                 break;
+                //             }
+                //             if(endPrice > order.OpenPrice)
+                //             {
+                //                 endPrice = order.OpenPrice;
+                //                 break;
+                //             }
+                //             break;
+                //     }
+                // }
+                // // Получим размер сетки
+                // int gridSize = Convert.ToInt32(Math.Abs(startPrice-endPrice))*report.Digits;
+
+                
+                // Заполняем массив
+                switch (item.Sell_Buy)
+                {
+                    case "sell":
+                        if(gridSizeSell[item.CountOrders-1] == null)
+                            gridSizeSell[item.CountOrders-1] = new List<int>(){item.GridLenght};
+                        else
+                            gridSizeSell[item.CountOrders-1].Add(item.GridLenght);
+                        break;
+                    case "buy":
+                        if(gridSizeBuy[item.CountOrders-1] == null)
+                            gridSizeBuy[item.CountOrders-1] = new List<int>(){item.GridLenght};
+                        else
+                            gridSizeBuy[item.CountOrders-1].Add(item.GridLenght);
+                        break;
+                }
+            }
+            // Ищем максимальный и средние размеры сеток для сеток с заданным кол-вом колен
+
+            // для SELL
+            for(int i = 1; i <= tableSize; i++)
+            {
+                maxSizeGridSell_[i] = gridSizeSell[i]?.Max() ?? 0;
+                maxSizeGridBuy_[i]  = gridSizeBuy[i]?.Max() ?? 0;
+
+                avegageSizeGridSell_[i] = Convert.ToInt32(gridSizeSell[i]?.Average() ?? 0);
+                averageSizeGridBuy_[i]  = Convert.ToInt32(gridSizeBuy[i]?.Average());
+            }
+            maxSizeGridSell = maxSizeGridSell_;
+            maxSizeGridBuy  = maxSizeGridBuy_;
+
+            avegageSizeGridSell = avegageSizeGridSell_;
+            averageSizeGridBuy  = averageSizeGridBuy_;
+        }
 
 
 

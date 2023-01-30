@@ -24,8 +24,27 @@ namespace WPF_NET6.UsersControl
         {
             InitializeComponent();
 
-            // number_.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
-            // GridCountSell.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            number_.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            GridCountSell.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            GridCountBuy.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            GridCountAll.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            SumLotSell.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            SumLotBuy.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            SumLotAll.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            TotalProfitSell.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            TotalProfitBuy.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            TotalProfitAll.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            AverageProfitSell.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            AverageProfitBuy.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            AverageProfitAll.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            PersentOfTotalProfitSell.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            PersentOfTotalProfitBuy.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            PersentOfTotalProfitAll.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            MaxGridSizeSell.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            MaxGridSizeBuy.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            AverageGridSizeSell.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            AverageGridSizeBuy.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            AverageGridSizeAll.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
         }
     }
 }

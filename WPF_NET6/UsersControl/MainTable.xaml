@@ -220,7 +220,7 @@
         </Border>
 
 
-        <!-- <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="0" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="0" Grid.Row="2">
             <ItemsControl x:Name="number_">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -244,11 +244,296 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding countGridSell"></Label>
+                        <Label Content="{Binding countGridSell}"></Label>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-        </Border> -->
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="2" Grid.Row="2">
+            <ItemsControl x:Name="GridCountBuy">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding countGridBuy}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="3" Grid.Row="2">
+            <ItemsControl x:Name="GridCountAll">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding countGridAll}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="4" Grid.Row="2">
+            <ItemsControl x:Name="SumLotSell">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding SumLotSell}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="5" Grid.Row="2">
+            <ItemsControl x:Name="SumLotBuy">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding SumLotBuy}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="6" Grid.Row="2">
+            <ItemsControl x:Name="SumLotAll">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding SumLotAll}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="7" Grid.Row="2">
+            <ItemsControl x:Name="TotalProfitSell">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding TotalProfitSell}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="8" Grid.Row="2">
+            <ItemsControl x:Name="TotalProfitBuy">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding TotalProfitBuy}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="9" Grid.Row="2">
+            <ItemsControl x:Name="TotalProfitAll">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding TotalProfitAll}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="10" Grid.Row="2">
+            <ItemsControl x:Name="AverageProfitSell">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding AverageProfitSell}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="11" Grid.Row="2">
+            <ItemsControl x:Name="AverageProfitBuy">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding AverageProfitBuy}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="12" Grid.Row="2">
+            <ItemsControl x:Name="AverageProfitAll">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding AverageProfitAll}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="13" Grid.Row="2">
+            <ItemsControl x:Name="PersentOfTotalProfitSell">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding PersentOfTotalProfitSell}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="14" Grid.Row="2">
+            <ItemsControl x:Name="PersentOfTotalProfitBuy">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding PersentOfTotalProfitBuy}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="15" Grid.Row="2">
+            <ItemsControl x:Name="PersentOfTotalProfitAll">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding PersentOfTotalProfitAll}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+       
+       <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="16" Grid.Row="2">
+            <ItemsControl x:Name="MaxGridSizeSell">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding MaxGridSizeSell}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="17" Grid.Row="2">
+            <ItemsControl x:Name="MaxGridSizeBuy">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding MaxGridSizeBuy}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="18" Grid.Row="2">
+            <ItemsControl x:Name="AverageGridSizeSell">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding AverageGridSizeSell}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="19" Grid.Row="2">
+            <ItemsControl x:Name="AverageGridSizeBuy">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding AverageGridSizeBuy}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="20" Grid.Row="2">
+            <ItemsControl x:Name="AverageGridSizeAll">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding AverageGridSizeAll}"></Label>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
 
     </Grid>
 </UserControl>

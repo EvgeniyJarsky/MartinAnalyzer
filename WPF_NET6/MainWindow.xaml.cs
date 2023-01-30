@@ -133,8 +133,7 @@ namespace WPF_NET6
 
                 Report_BL.Controller.GetDeals.GetDeals.Get(firstSelected);
 
-                // Создаем коллекцию которая биндится с TreeView WPF
-                Report_BL.Controller.TreeViewer.TreeViewer.CreteTreeView(firstSelected);
+                
 
                 //Формируем таблицу прибыли по месяцам
                 Report_BL.Controller.Tables.Table.CreateProfiTable();
@@ -143,7 +142,7 @@ namespace WPF_NET6
                 Report_BL.Controller.Tables.Table.CreateMaxOrdersGridTable();
 
                 // Формируем главную таблицу
-                Report_BL.Controller.Tables.Table.CreateMainTable();
+                Report_BL.Controller.Tables.Table.CreateMainTable(firstSelected);
                 
                 
             }
