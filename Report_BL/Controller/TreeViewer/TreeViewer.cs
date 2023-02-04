@@ -44,6 +44,8 @@ namespace Report_BL.Controller.TreeViewer
                     command.Parameters.AddWithValue("$item", i);
                     command.Parameters.AddWithValue("$reportSymbol", report.Symbol);
 
+                    
+
                     #region  Получим информацию о сетке
                         command.CommandText = @$"SELECT
                                                 grid_number,
@@ -154,13 +156,52 @@ namespace Report_BL.Controller.TreeViewer
                                     JOIN symbol ON symbol.id = deal.symbol_id
                                     JOIN buy_sell ON buy_sell.id = buy_sell_id
                                     WHERE grid_number = $item;";
-                    double mixPrice = Convert.ToDouble(command.ExecuteScalar());
+                    double minPrice = Convert.ToDouble(command.ExecuteScalar());
 
                     int digit = 100000;
                     if(report.Digits == 3)
                         digit = 1000;
 
-                    grid.GridLenght = Convert.ToInt32((maxPrice - mixPrice)*digit);
+                    grid.GridLenght = Convert.ToInt32((maxPrice - minPrice)*digit);
+                    #endregion
+
+                    #region Определяем кол-во пунктов до профита от крайнего колена
+                    // Получем среднее значение цены закрытия сетки
+                    command.CommandText = @$"SELECT 
+                                        close_price
+                                    FROM deal
+                                    JOIN grid ON grid.id = grid_id
+                                    JOIN symbol ON symbol.id = deal.symbol_id
+                                    JOIN buy_sell ON buy_sell.id = buy_sell_id
+                                    WHERE grid_number = $item;";
+                    int count1 = 0;
+                    double sum = 0;
+                    // подключаемся к БД
+                    using(SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        
+                        if(reader.HasRows)
+                        {
+                            while(reader.Read())
+                            {
+                                // reader["open_price"]
+                                sum += Convert.ToDouble(reader["close_price"]);
+                                count1++;
+                            }
+                        }
+                    }
+
+                    double averagePrice = sum/count1;
+                    
+                    if(grid.Sell_Buy == "sell")
+                    {
+                        grid.PointsToTP =Convert.ToInt32((maxPrice - averagePrice)*digit);
+                    }
+                    else
+                    {
+                        grid.PointsToTP = Convert.ToInt32((averagePrice - minPrice)*digit);
+                    }
+
                     #endregion
 
                     Report_BL.DataCollection.TreeCollection.grid.Add(grid);

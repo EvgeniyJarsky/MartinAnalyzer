@@ -36,6 +36,9 @@ namespace Report_BL.ReportModel
                 return Report_BL.Controller.Func.Dates.HowManyTimesBetween(this.StartDate.ToString(), this.EndDate.ToString());
             }
         }
+        
+        // кол-во пунктрв до ТР
+        public int PointsToTP {get; set;} = 0;
         #endregion
 
         public ObservableCollection<Order> Orders {set; get;}
@@ -50,7 +53,7 @@ namespace Report_BL.ReportModel
             private set{}
             get
             {
-                return @$"Сетка {NumberGrid} | Колен {CountOrders} | Символ {Symbol} | Тип {Sell_Buy} | Суммарный лот {Lot} | Прибыль {Profit} | Длина сетки {GridLenght} | Время жизни {GridPeriod}";
+                return @$"Сетка {NumberGrid} | Колен {CountOrders} | Символ {Symbol} | Тип {Sell_Buy} | Суммарный лот {Lot} | Прибыль {Profit} | Длина сетки {GridLenght} | Время жизни {GridPeriod} | Пунктов до ТП {PointsToTP}";
             }
         }
     }

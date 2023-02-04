@@ -70,6 +70,7 @@ namespace Report_BL.Controller.Tables
         }
 
         
+
         // Создаем таблицу максимальное количество колен сетки по месяцам
         public static void CreateMaxOrdersGridTable()
         {
@@ -222,6 +223,7 @@ namespace Report_BL.Controller.Tables
         }
 
         // Создаем главную таблицу
+        //! TODO CreateMainTable переделать - есть повторяющиеся циклы
         public static void CreateMainTable(Report_BL.ReportModel.NewReport report)
         {
             /*
@@ -270,7 +272,6 @@ namespace Report_BL.Controller.Tables
             #endregion
 
             #region  Считаем столбец % от общей прибыли для сеток
-
             // Найдем суммарную прибыль за все время из таблицы прибыли по месяцам - 
             // это самый правый столбец и самое нижнее значение
             int tableSize =  Report_BL.DataCollection.ProfitTableCollection.profitTable.Count();
@@ -318,6 +319,7 @@ namespace Report_BL.Controller.Tables
             int[] maxSizeGridBuy      = new int[tableSize_+1];
             int[] averageSizeGridSell = new int[tableSize_+1];
             int[] averageSizeGridBuy  = new int[tableSize_+1];
+
             GridSize(out maxSizeGridSell, out maxSizeGridBuy, out averageSizeGridSell, out averageSizeGridBuy);
 
             // Заполняем коллекцию главной таблицы, которая биндится
@@ -330,10 +332,8 @@ namespace Report_BL.Controller.Tables
                 row.AverageGridSizeSell = averageSizeGridSell[count];
                 row.AverageGridSizeBuy = averageSizeGridBuy[count];
 
-
                 count++;
             }
-
             #endregion
         }
 
@@ -360,49 +360,6 @@ namespace Report_BL.Controller.Tables
             //  Перебираем дерево сеток
             foreach(var item in Report_BL.DataCollection.TreeCollection.grid)
             {
-                // // Размер сетки с одним ордером пропускаем - потому что равен 0 
-                // if(item.CountOrders ==1)
-                //     continue;
-                
-                // // Перебираем ордера сетки и находим цену первого ордера и цену самого дальнего ордера
-                // double startPrice = 0;
-                // double endPrice = 0;
-
-                // foreach(var order in item.Orders)
-                // {
-                //     switch (item.Sell_Buy)
-                //     {
-                //         case "sell":
-                //             if(startPrice == 0) 
-                //             {
-                //                 startPrice = order.OpenPrice;
-                //                 break;
-                //             }
-                //             if(endPrice < order.OpenPrice)
-                //             {
-                //                 endPrice = order.OpenPrice;
-                //             }
-                //             break;
-
-                //         case "buy":
-                //             endPrice = int.MaxValue; // Заведомо высокая несуществующая цена
-                //             if(startPrice == 0)
-                //             {
-                //                 startPrice = order.OpenPrice;
-                //                 break;
-                //             }
-                //             if(endPrice > order.OpenPrice)
-                //             {
-                //                 endPrice = order.OpenPrice;
-                //                 break;
-                //             }
-                //             break;
-                //     }
-                // }
-                // // Получим размер сетки
-                // int gridSize = Convert.ToInt32(Math.Abs(startPrice-endPrice))*report.Digits;
-
-                
                 // Заполняем массив
                 switch (item.Sell_Buy)
                 {
@@ -481,5 +438,15 @@ namespace Report_BL.Controller.Tables
             return Math.Round(totalProfit, 2, MidpointRounding.AwayFromZero);
 
         }
+
+        // Создаем столбцы максимальное и среднее кол-во пунктов до Тр
+        public static void PiontsToTP()
+        {
+            foreach(var tree in Report_BL.DataCollection.TreeCollection.grid)
+            {
+                
+            }
+        }
     }
+
 }
