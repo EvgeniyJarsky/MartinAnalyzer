@@ -19,19 +19,22 @@ namespace Report_BL.DataCollection
         /// </summary>
         public static ObservableCollection<Deal> dealsCollection = new ObservableCollection<Deal>();
         
-        public static void AddNewItem(string[] param)
+        public static void AddNewItem(Report_BL.Controller.GetDeals.TesterMT4.ParseMT4Tester.Deal deal)
         {
             dealsCollection.Add(new Deal()
             {
-                Number = int.Parse(param[0]),
-                Symbol = param[1],
-                Date = DateTime.Parse(param[2]),
-                Buy_Sell = param[3],
-                Direct = param[4],
-                Lot = double.Parse(param[5].Replace(',', '.'), CultureInfo.InvariantCulture),
-                Price = double.Parse(param[6].Replace(',', '.'), CultureInfo.InvariantCulture),
-                Profit = param[7],
-                Balance = param[8]
+                Number = Convert.ToInt32(deal.orderNumber),
+                Symbol = deal.symbol,
+                Date = deal.dateAndTimeOfDeal,
+                Buy_Sell = deal.sell_buy,
+                Direct = deal.direct,
+                Lot = deal.lot,
+                Price = deal.price,
+                // Lot = double.Parse(param[5].Replace(',', '.'), CultureInfo.InvariantCulture),
+                // Price = double.Parse(param[6].Replace(',', '.'), CultureInfo.InvariantCulture),
+                //! убрать преобразование в стринг
+                Profit = deal.profit.ToString(),
+                Balance = deal.balance.ToString()
             });
         }
     }

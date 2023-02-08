@@ -3,11 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace Report_BL.Controller.GetDeals.TesterMT4
 {
     public static class ParseMT4Tester
     {
+        public struct Deal
+        {
+            public int orderNumber;
+            public string symbol;
+            public DateTime dateAndTimeOfDeal;
+            public string sell_buy;
+            public string direct;
+            public float lot;
+            public float price;
+            public float profit;
+            public float balance;
+
+            public Deal
+                (int orderNumber,
+                string symbol,
+                 DateTime dateAndTimeOfDeal,
+                 string sell_buy,
+                 string direct,
+                 float lot,
+                 float price,
+                 float profit,
+                 float balance
+                 )
+            {
+                this.orderNumber = orderNumber;
+                this.symbol = symbol;
+                this.dateAndTimeOfDeal = dateAndTimeOfDeal;
+                this.sell_buy = sell_buy;
+                this.direct = direct;
+                this.lot = lot;
+                this.price = price;
+                this.profit = profit;
+                this.balance = balance;
+
+            }
+        }
+        
         /// <summary>
         /// Парсим строку с информацияей по сделке
         /// </summary>
@@ -15,36 +53,50 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
         /// <param name="symbol">Символ</param>
         /// <returns>массив string[Number|Symbol|Date|Buy_Sell|Direct|Lot|Price|Profit|Balance]
         /// </returns>
-        public static string[] ParseDealsMT4Tester(string line, string symbol)
+        public static Deal ParseDealsMT4Tester(string line, string symbol)
         {
-            string[] result = new string[9];
+            string dateTime_str     = line.Split('>')[4].Split('<')[0]; // open date
+            string sell_buy_str     = line.Split('>')[6].Split('<')[0]; // sell/buy
+            string orderNumber_str = line.Split('>')[8].Split('<')[0];// order number
+            string lot_str          = line.Split('>')[10].Split('<')[0]; // lot
+            string price_str       = line.Split('>')[12].Split('<')[0]; // open/close price
+            string sL_str           = line.Split('>')[14].Split('<')[0]; // s/l
+            string tP_str           = line.Split('>')[16].Split('<')[0]; // t/p
+            string profit_str       = line.Split('>')[18].Split('<')[0]; // profit
+            string balance_str      = line.Split('>')[20].Split('<')[0]; // balance
 
-            string openDate = line.Split('>')[4].Split('<')[0]; // open date
-            string sell_buy = line.Split('>')[6].Split('<')[0]; // sell/buy
-            string orderNumber = line.Split('>')[8].Split('<')[0];// order number
-            string lot = line.Split('>')[10].Split('<')[0]; // lot
-            string price = line.Split('>')[12].Split('<')[0]; // open/close price
-            string sL = line.Split('>')[14].Split('<')[0]; // s/l
-            string tP = line.Split('>')[16].Split('<')[0]; // t/p
-            string profit = line.Split('>')[18].Split('<')[0]; // profit
-            string balance = line.Split('>')[20].Split('<')[0]; // balance
-
-            string direct = "close";
-            if (sell_buy == "sell" || sell_buy == "buy")
+            string direct_str = "close";
+            if (sell_buy_str == "sell" || sell_buy_str == "buy")
             {
-                direct = "open";
+                direct_str = "open";
             }
-            result[0] = orderNumber;
-            result[1] = symbol;
-            result[2] = openDate;
-            result[3] = sell_buy;
-            result[4] = direct;
-            result[5] = lot;
-            result[6] = price;
-            result[7] = profit;
-            result[8] = balance;
 
-            return result;
+            int number     = int.Parse(orderNumber_str);
+            string sym     = symbol;
+            DateTime dt    = DateTime.Parse(dateTime_str);
+            string sell_buy     = sell_buy_str;
+            //
+            float lot     = float.Parse(lot_str.Replace(',','.'), CultureInfo.InvariantCulture);
+            float price   = float.Parse(price_str.Replace(',','.'), CultureInfo.InvariantCulture);
+            
+            if(profit_str == "") profit_str = "0";
+                float profit  = float.Parse(profit_str.Replace(',','.'), CultureInfo.InvariantCulture);
+            if(balance_str == "") balance_str = "0";
+                float balance = float.Parse(balance_str.Replace(',','.'), CultureInfo.InvariantCulture);
+
+            Deal newDeal = new Deal{
+                orderNumber       = number,
+                symbol            = symbol,
+                dateAndTimeOfDeal = DateTime.Parse(dateTime_str),
+                sell_buy          = sell_buy,
+                direct            = direct_str,
+                lot               = lot,
+                price             = price,
+                profit            = profit,
+                balance           = balance
+            };
+
+            return newDeal;
         }
     }
 }

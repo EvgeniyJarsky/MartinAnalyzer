@@ -27,11 +27,11 @@ namespace Report_BL.Controller.GetDeals
                 //Report_BL.SQL_Work.ReadDB.ReadDBExampl(report);
 
                 // Создаем базу данных
-                Report_BL.SQL_Work.CreateDB_MT4Tester.Create_DB(report);
+                //Report_BL.SQL_Work.CreateDB_MT4Tester.Create_DB(report);
 
 
                 // Создаем коллекцию которая биндится с TreeView WPF
-                Report_BL.Controller.TreeViewer.TreeViewer.CreteTreeView(report);
+                //Report_BL.Controller.TreeViewer.TreeViewer.CreteTreeView(report);
 
                 
             }

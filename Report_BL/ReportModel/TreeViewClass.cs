@@ -22,9 +22,20 @@ namespace Report_BL.ReportModel
         // Дата конца сетки
         public DateTime EndDate = DateTime.MaxValue;
         // Суммарный лот
-        public double Lot {get; set;}
+        private double lot = 0;
+        public double Lot
+        {
+            get {return Math.Round(lot, 2, MidpointRounding.AwayFromZero);}
+            set {lot = value;}
+        }
+        
         // Profit
-        public double Profit {get; set;}
+        private double profit = 0;
+        public double Profit
+        {
+            get {return Math.Round(profit, 2, MidpointRounding.AwayFromZero);}
+            set {profit = value;}
+        }
         // Длина сетки
         public int GridLenght {set; get;}
         // Продолжительность сетки
@@ -61,6 +72,8 @@ namespace Report_BL.ReportModel
     public class Order
     {
         #region Свойства
+        // Номер ордера
+        public int orderNumber = 0;
         // Время открытия ордера
         public DateTime OpenDate {set; get;}
         // Время закрытия ордера
@@ -70,9 +83,19 @@ namespace Report_BL.ReportModel
         // Цена закрытия
         public double ClosePrice {set; get;}
         // Лот
-        public double Lot {set; get;}
+        private double lot = 0;
+        public double Lot
+        {
+            get {return Math.Round(lot, 2, MidpointRounding.AwayFromZero);}
+            set {lot = value;}
+        }
         // Прибыль
-        public double Profit {set; get;}
+        private double profit = 0;
+        public double Profit
+        {
+            get {return Math.Round(profit, 2, MidpointRounding.AwayFromZero);}
+            set {profit = value;}
+        }
         #endregion
 
         public string OrderInfo
