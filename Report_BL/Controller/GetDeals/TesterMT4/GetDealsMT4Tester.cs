@@ -1,4 +1,6 @@
 ﻿using Report_BL.ReportModel;
+using System.Collections.ObjectModel;
+
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -26,9 +28,10 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
 
 
             int countGrid = 0;
-                        
             Report_BL.ReportModel.TreeViewClass sellGrid = new Report_BL.ReportModel.TreeViewClass();
             Report_BL.ReportModel.TreeViewClass buyGrid = new Report_BL.ReportModel.TreeViewClass();
+
+            List<int> exeptNumberOrder = new List<int>();
 
             foreach (string line in File.ReadLines(report.FilePath))//перебираем все строки в файле отчета
             {
@@ -65,6 +68,11 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                             buy.Add(parseResult.orderNumber);
                         if (parseResult.sell_buy == "sell")
                             sell.Add(parseResult.orderNumber);
+
+                        // Запомним номера ордеров которые закрыты по причине окончания теста
+                        // что бы потом выкинуть их из дерева
+                        if(parseResult.sell_buy == "close at stop")
+                            exeptNumberOrder.Add(parseResult.orderNumber);
                         
                         #region Удалить сделки закрытые по причине окончания теста
                         // Если есть сделки закрыытые close at stop - их нужно удалить
@@ -165,9 +173,28 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                         */
                         report.Digits = digits;
                         //break;
-
                     }
             }
+
+            #region Удалим сетки ордера которых закрыты из-за окончания теста
+            var grid_ = new ObservableCollection<Report_BL.ReportModel.TreeViewClass>();
+
+            foreach(var grid in Report_BL.DataCollection.TreeCollection.grid)
+            {
+                foreach(var order in grid.Orders)
+                {
+                    if(exeptNumberOrder.Contains(order.orderNumber))
+                    {
+                        grid_.Add(grid);
+                        break;
+                    }
+                }
+            }
+            foreach(var grid in grid_)
+                Report_BL.DataCollection.TreeCollection.grid.Remove(grid);
+            #endregion
+            
+
 
             #region Сортировка пузырьком дерева сеток
             for(int i=0; i<Report_BL.DataCollection.TreeCollection.grid.Count(); i++)

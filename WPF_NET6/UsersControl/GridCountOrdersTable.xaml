@@ -28,62 +28,64 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
-            <Label VerticalAlignment="Center" Margin="2,0,2,0">Годы</Label>
+        <Border Background="#FF8DB4E2" BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+            <Label  HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Margin="2,0,2,0">Годы</Label>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="12">
-            <Label HorizontalAlignment="Center" >Максимальное колено в сетках, закрытых за месяц</Label>
+        <Border Background="#FF8DB4E2" BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="12">
+            <Label FontWeight="Bold" HorizontalAlignment="Center" >Максимальное колено в сетках, закрытых за месяц</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="1">
-            <Label Margin="2,0,2,0">Январь</Label>
+        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="1">
+            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Январь</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="2">
-            <Label Margin="2,0,2,0">Февраль</Label>
+        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="2">
+            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Февраль</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="3">
-            <Label Margin="2,0,2,0">Март</Label>
+        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="3">
+            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Март</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="4">
-            <Label Margin="2,0,2,0">Апрель</Label>
+        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="4">
+            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Апрель</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="5">
-            <Label Margin="2,0,2,0">Май</Label>
+        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="5">
+            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Май</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="6">
-            <Label Margin="2,0,2,0">Июнь</Label>
+        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="6">
+            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Июнь</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="7">
-            <Label Margin="2,0,2,0">Июль</Label>
+        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="7">
+            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Июль</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="8">
-            <Label Margin="2,0,2,0">Август</Label>
+        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="8">
+            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Август</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="9">
-            <Label Margin="2,0,2,0">Сентябрь</Label>
+        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="9">
+            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Сентябрь</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="10">
-            <Label Margin="2,0,2,0">Октябрь</Label>
+        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="10">
+            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Октябрь</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="11">
-            <Label Margin="2,0,2,0">Ноябрь</Label>
+        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="11">
+            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Ноябрь</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="12">
-            <Label Margin="2,0,2,0">Декабрь</Label>
+        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="12">
+            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Декабрь</Label>
         </Border>
-        <Border BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="0" Grid.Column="13" Grid.RowSpan="2">
-            <Label VerticalAlignment="Center" Margin="2,0,2,0">Средняя</Label>
+        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="0" Grid.Column="13" Grid.RowSpan="2">
+            <Label HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Margin="2,0,2,0">Средняя</Label>
         </Border>
 
         <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="0" Grid.Row="2">
             <ItemsControl x:Name="year_">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding YearVal}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding YearVal}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -92,12 +94,14 @@
             <ItemsControl x:Name="january">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding JanuaryMaxGridOrdersCount}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding JanuaryMaxGridOrdersCount}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -106,12 +110,14 @@
             <ItemsControl x:Name="february">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding FebruaryMaxGridOrdersCount}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding FebruaryMaxGridOrdersCount}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -120,12 +126,14 @@
             <ItemsControl x:Name="march">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding MarchMaxGridOrdersCount}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding MarchMaxGridOrdersCount}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -134,12 +142,14 @@
             <ItemsControl x:Name="april">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding AprilMaxGridOrdersCount}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding AprilMaxGridOrdersCount}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -148,12 +158,14 @@
             <ItemsControl x:Name="may">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding MayMaxGridOrdersCount}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding MayMaxGridOrdersCount}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -162,12 +174,14 @@
             <ItemsControl x:Name="june">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding JuneMaxGridOrdersCount}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding JuneMaxGridOrdersCount}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -176,12 +190,14 @@
             <ItemsControl x:Name="july">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding JulyMaxGridOrdersCount}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding JulyMaxGridOrdersCount}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -190,12 +206,14 @@
             <ItemsControl x:Name="august">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding AugustMaxGridOrdersCount}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding AugustMaxGridOrdersCount}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -204,12 +222,14 @@
             <ItemsControl x:Name="september">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding SeptemberMaxGridOrdersCount}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding SeptemberMaxGridOrdersCount}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -218,12 +238,14 @@
             <ItemsControl x:Name="october">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding OctoberMaxGridOrdersCount}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding OctoberMaxGridOrdersCount}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -232,12 +254,14 @@
             <ItemsControl x:Name="november">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding NovemberMaxGridOrdersCount}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding NovemberMaxGridOrdersCount}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -246,12 +270,14 @@
             <ItemsControl x:Name="december">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding DecemberMaxGridOrdersCount}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding DecemberMaxGridOrdersCount}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -261,12 +287,14 @@
             <ItemsControl x:Name="averageCountOrders">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical"/>
+                        <StackPanel Background="#FFD9D9D9" Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding AverageMaxGridOrdersCount}"></Label>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding AverageMaxGridOrdersCount}"></Label>
+                        </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

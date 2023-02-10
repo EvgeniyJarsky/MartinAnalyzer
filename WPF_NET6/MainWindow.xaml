@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_NET6.UsersControl"
         mc:Ignorable="d"
         Title="ThinkingMartin" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid  Background="#FFD9D9D9">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -25,7 +25,7 @@
         HorizontalAlignment="Stretch" VerticalAlignment="Center" />
         <GridSplitter Grid.Column="1" Grid.Row="1" ShowsPreview="False" Width="2"
         HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-        <ListView  x:Name="listBox_" SelectionChanged="ChangeSelectedListBox" Grid.Column="0" Grid.Row="1">
+        <ListView Background="#FFD9D9D9"  x:Name="listBox_" SelectionChanged="ChangeSelectedListBox" Grid.Column="0" Grid.Row="1">
             <ListView.ContextMenu>
                 <ContextMenu>
                     <!-- <MenuItem Header="Delete" Click="MenuItemDelete_Click"/> -->
@@ -34,16 +34,15 @@
                 </ContextMenu>
             </ListView.ContextMenu>
             <ListView.View>
-                <GridView>
-                    <GridViewColumn  Header="Report" DisplayMemberBinding="{Binding FileName}"/>
+                <GridView >
+                    <GridViewColumn Header="Report" DisplayMemberBinding="{Binding FileName}"/>
                     <GridViewColumn Header="Symbol" DisplayMemberBinding="{Binding Symbol}"/>
                     <GridViewColumn Header="Magic" DisplayMemberBinding="{Binding Magic}"/>
                     <GridViewColumn Header="Type" DisplayMemberBinding="{Binding ReportType}"/>
-                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding TradePeriod}"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView Grid.Row="1" Grid.Column="2" Name="info">
+        <ListView  Background="#FFD9D9D9" Grid.Row="1" Grid.Column="2" Name="info">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Parametrs" DisplayMemberBinding="{Binding Parametr}"/>
@@ -52,13 +51,13 @@
             </ListView.View>
         </ListView>
 
-        <TabControl x:Name="TabContrl" Grid.Row="3" Grid.ColumnSpan="3" SelectionChanged="TabControl_SelectionChanged">
+        <TabControl Background="#FFD9D9D9" x:Name="TabContrl" Grid.Row="3" Grid.ColumnSpan="3" SelectionChanged="TabControl_SelectionChanged">
 
-            <TabItem x:Name="Tree" Header="Сетки">
+            <TabItem  Background="#FFD9D9D9" x:Name="Tree" Header="Сетки">
                 <local:UC_TreeTab/>
             </TabItem>
-            
-            <TabItem x:Name="Deals" Header="Deals">
+
+            <TabItem  Background="#FFD9D9D9" x:Name="Deals" Header="Deals">
                 <local:UC_DealsTab/>
             </TabItem>
 
