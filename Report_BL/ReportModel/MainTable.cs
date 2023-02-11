@@ -119,10 +119,181 @@ namespace Report_BL.ReportModel
         }
 
         #endregion
-        public MaxPointsToTP maxPointsToTP;
-        public AveragePointsToTP averagePointsToTP;
-        public MaxTimeLifeGrid maxTimeLifeGrid;
-        public AverageTimeLifeGrid averageTimeLifeGrid;
+        #region Столбец "Максимальное кол-во пунктов до ТП"
+        private int _maxPointsToTP_Sell = 0;
+        public int MaxPointsToTP_Sell
+        {
+            get {return _maxPointsToTP_Sell;}
+            set {_maxPointsToTP_Sell = value;}
+        }
+        private int _maxPointsToTP_Buy = 0;
+        public int MaxPointsToTP_Buy
+        {
+            get {return _maxPointsToTP_Buy;}
+            set {_maxPointsToTP_Buy = value;}
+        }
+        #endregion
+        
+        #region Столбец "Среднне кол-во пунктов до ТП"
+        private int _averagePointsToTP_Sell = 0;
+        public int AveragePointsToTP_Sell
+        {
+            get {return _averagePointsToTP_Sell;}
+            set {_averagePointsToTP_Sell = value;}
+        }
+        private int _averagePointsToTP_Buy = 0;
+        public int AveragePointsToTP_Buy
+        {
+            get {return _averagePointsToTP_Buy;}
+            set {_averagePointsToTP_Buy = value;}
+        }
+        private int _averagePointsToTP_All = 0;
+        public int AveragePointsToTP_All
+        {
+            get
+            {
+                if(_averagePointsToTP_Sell == 0)
+                    return _averagePointsToTP_Buy;
+                if(_averagePointsToTP_Buy == 0)
+                    return _averagePointsToTP_Sell;
+                return Convert.ToInt32((_averagePointsToTP_Sell + _averagePointsToTP_Buy)/2);
+            }
+        }
+        #endregion
+        #region Столбец "Максимальное время жизни сетки"
+        private TimeSpan _maxTimeLifeGrid_Sell;
+        public TimeSpan MaxTimeLifeGrid_Sell
+        {
+            get {return _maxTimeLifeGrid_Sell;}
+            set {_maxTimeLifeGrid_Sell = value;}
+        }
+        private TimeSpan _maxTimeLifeGrid_Buy;
+        public TimeSpan MaxTimeLifeGrid_Buy
+        {
+            get {return _maxTimeLifeGrid_Buy;}
+            set {_maxTimeLifeGrid_Buy = value;}
+        }
+        
+        private string _maxTimeLifeGrid_Sell_str = "";
+        public string MaxTimeLifeGrid_Sell_str
+        {
+            get
+            {
+                switch(_maxTimeLifeGrid_Sell.Days)
+                {
+                    case 0:
+                    if(_maxTimeLifeGrid_Sell.Minutes < 10)
+                        return $"{_maxTimeLifeGrid_Sell.Hours}:0{_maxTimeLifeGrid_Sell.Minutes}";
+                    return $"{_maxTimeLifeGrid_Sell.Hours}:{_maxTimeLifeGrid_Sell.Minutes}";
+                    default:
+                    if(_maxTimeLifeGrid_Sell.Minutes < 10)
+                        return $"{_maxTimeLifeGrid_Sell.Days}d {_maxTimeLifeGrid_Sell.Hours}:0{_maxTimeLifeGrid_Sell.Minutes}";
+                    return $"{_maxTimeLifeGrid_Sell.Days}d {_maxTimeLifeGrid_Sell.Hours}:{_maxTimeLifeGrid_Sell.Minutes}";
+                }
+            }
+        }
+
+        private string _maxTimeLifeGrid_Buy_str = "";
+        public string MaxTimeLifeGrid_Buy_str
+        {
+            get
+            {
+                switch(_maxTimeLifeGrid_Buy.Days)
+                {
+                    case 0: // Если дней нет - не выводим их
+                    if(_maxTimeLifeGrid_Buy.Minutes < 10) // Если минут меньше 10 - добавим 0 спереди
+                        return $"{_maxTimeLifeGrid_Buy.Hours}:0{_maxTimeLifeGrid_Buy.Minutes}";
+                    return $"{_maxTimeLifeGrid_Buy.Hours}:{_maxTimeLifeGrid_Buy.Minutes}";
+                    default:
+                    if(_maxTimeLifeGrid_Buy.Minutes < 10)
+                        return $"{_maxTimeLifeGrid_Buy.Days}d {_maxTimeLifeGrid_Buy.Hours}:0{_maxTimeLifeGrid_Buy.Minutes}";
+                    return $"{_maxTimeLifeGrid_Buy.Days}d {_maxTimeLifeGrid_Buy.Hours}:{_maxTimeLifeGrid_Buy.Minutes}";
+                }
+            }
+        }
+        #endregion
+        
+        #region Столбец "Среднее время жизни сетки"
+        private TimeSpan _averageLifeGrid_Sell;
+        public TimeSpan AverageLifeGrid_Sell
+        {
+            get {return _averageLifeGrid_Sell;}
+            set {_averageLifeGrid_Sell = value;}
+        }
+        private TimeSpan _averageLifeGrid_Buy;
+        public TimeSpan AverageLifeGrid_Buy
+        {
+            get {return _averageLifeGrid_Buy;}
+            set {_averageLifeGrid_Buy = value;}
+        }
+        private string _averageLifeGrid_Sell_str = "";
+        public string AverageLifeGrid_Sell_str
+        {
+            get
+            {
+                switch(_averageLifeGrid_Sell.Days)
+                {
+                    case 0:
+                    if(_averageLifeGrid_Sell.Minutes < 10)
+                        return $"{_averageLifeGrid_Sell.Hours}:0{_averageLifeGrid_Sell.Minutes}";
+                    return $"{_averageLifeGrid_Sell.Hours}:{_averageLifeGrid_Sell.Minutes}";
+                    default:
+                    if(_averageLifeGrid_Sell.Minutes < 10)
+                        return $"{_averageLifeGrid_Sell.Days}d {_averageLifeGrid_Sell.Hours}:0{_averageLifeGrid_Sell.Minutes}";
+                    return $"{_averageLifeGrid_Sell.Days}d {_averageLifeGrid_Sell.Hours}:{_averageLifeGrid_Sell.Minutes}";
+                }
+            }
+        }
+
+        private string _averageLifeGrid_Buy_str = "";
+        public string AverageLifeGrid_Buy_str
+        {
+            get
+            {
+                switch(_averageLifeGrid_Buy.Days)
+                {
+                    case 0:
+                    if(_averageLifeGrid_Buy.Minutes < 10)
+                        return $"{_averageLifeGrid_Buy.Hours}:0{_averageLifeGrid_Buy.Minutes}";
+                    return $"{_averageLifeGrid_Buy.Hours}:{_averageLifeGrid_Buy.Minutes}";
+                    default:
+                    if(_averageLifeGrid_Buy.Minutes < 10)
+                        return $"{_averageLifeGrid_Buy.Days}d {_averageLifeGrid_Buy.Hours}:0{_averageLifeGrid_Buy.Minutes}";
+                    return $"{_averageLifeGrid_Buy.Days}d {_averageLifeGrid_Buy.Hours}:{_averageLifeGrid_Buy.Minutes}";
+                }
+            }
+        }
+        
+        private string _averageLifeGrid_All_str = "";
+        public string AverageLifeGrid_All_str
+        {
+            get
+            {
+                List <TimeSpan> av = new List<TimeSpan>();
+                if(_averageLifeGrid_Sell.TotalMinutes != 0)
+                    av.Add(_averageLifeGrid_Sell);
+                if(_averageLifeGrid_Buy.TotalMinutes != 0)
+                    av.Add(_averageLifeGrid_Buy);
+                if(av.Count() == 0)
+                    return "0";
+                double doubleAverageTicks = av?.Average(TimeSpan => TimeSpan.Ticks) ?? 0;
+                long longAverageTicks = Convert.ToInt64(doubleAverageTicks);
+                TimeSpan rez = new TimeSpan(longAverageTicks);
+
+                switch(rez.Days)
+                {
+                    case 0:
+                    if(rez.Minutes < 10)
+                        return $"{rez.Hours}:0{rez.Minutes}";
+                    return $"{rez.Hours}:{rez.Minutes}";
+                    default:
+                    if(rez.Minutes < 10)
+                        return $"{rez.Days}d {rez.Hours}:0{rez.Minutes}";
+                    return $"{rez.Days}d {rez.Hours}:{rez.Minutes}";
+                }
+            }
+        }
+        #endregion
     }
 
     

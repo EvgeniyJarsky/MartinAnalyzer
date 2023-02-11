@@ -577,5 +577,175 @@
             </ItemsControl>
         </Border>
 
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="21" Grid.Row="2">
+            <ItemsControl x:Name="MaxPointsToTP_Sell">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Background="#FFE6B8B7" Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding MaxPointsToTP_Sell}"></Label>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="22" Grid.Row="2">
+            <ItemsControl x:Name="MaxPointsToTP_Buy">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Background="#FFD8E4BC" Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding MaxPointsToTP_Buy}"></Label>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="23" Grid.Row="2">
+            <ItemsControl x:Name="AveragePointsToTP_Sell">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Background="#FFE6B8B7" Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding AveragePointsToTP_Sell}"></Label>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="24" Grid.Row="2">
+            <ItemsControl x:Name="AveragePointsToTP_Buy">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Background="#FFD8E4BC" Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding AveragePointsToTP_Buy}"></Label>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="25" Grid.Row="2">
+            <ItemsControl x:Name="AveragePointsToTP_All">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Background="#FFC5D9F1" Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding AveragePointsToTP_All}"></Label>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="26" Grid.Row="2">
+            <ItemsControl x:Name="MaxTimeLifeGrid_Sell_str">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Background="#FFE6B8B7" Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding MaxTimeLifeGrid_Sell_str}"></Label>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="27" Grid.Row="2">
+            <ItemsControl x:Name="MaxTimeLifeGrid_Buy_str">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Background="#FFD8E4BC" Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding MaxTimeLifeGrid_Buy_str}"></Label>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="28" Grid.Row="2">
+            <ItemsControl x:Name="AverageLifeGrid_Sell_str">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Background="#FFE6B8B7" Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding AverageLifeGrid_Sell_str}"></Label>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="29" Grid.Row="2">
+            <ItemsControl x:Name="AverageLifeGrid_Buy_str">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Background="#FFD8E4BC" Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding AverageLifeGrid_Buy_str}"></Label>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="30" Grid.Row="2">
+            <ItemsControl x:Name="AverageLifeGrid_All_str">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Background="#FFC5D9F1" Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                            <Label HorizontalAlignment="Center" Content="{Binding AverageLifeGrid_All_str}"></Label>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
     </Grid>
 </UserControl>

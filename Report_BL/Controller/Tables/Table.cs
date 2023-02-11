@@ -233,6 +233,8 @@ namespace Report_BL.Controller.Tables
             */
             foreach(var tree in TreeCollection.grid)
             {
+                // Находим строку в главной таблице с tree.CountOrders кол-вом колен
+                // если такой строки не то она создается пустой и добавляется в коллекцию
                 var newRow = Report_BL.DataCollection.MainTable.GetRow(tree.CountOrders);
 
                 switch (tree.Sell_Buy)
@@ -270,7 +272,124 @@ namespace Report_BL.Controller.Tables
                 }
             }
             #endregion
+            
+            // Размер таблицы
+            int tableSize_ =  Report_BL.DataCollection.MainTable.mainTable.Count();
 
+            #region Создаем колонки максимальное и среднее кол-во пунктов до ТП + последние колонки где время жизни
+            //! TODO Все это необходимо разбить на отдельные функции
+
+            TimeSpan[] maxLiveTime_Sell = new TimeSpan[tableSize_+1];
+            TimeSpan[] maxLiveTime_Buy  = new TimeSpan[tableSize_+1];
+            TimeSpan[] averageLiveTime_Sell = new TimeSpan[tableSize_+1];
+            TimeSpan[] averageLiveTime_Buy  = new TimeSpan[tableSize_+1];
+
+            List <DateTime> openDate  = new List<DateTime>();
+            List <DateTime> closeDate = new List<DateTime>();
+
+            List<TimeSpan>[] averageGridLiveTime_Sell_list = new List<TimeSpan>[tableSize_+1];
+            List<TimeSpan>[] averageGridLiveTime_Buy_list  = new List<TimeSpan>[tableSize_+1];
+
+
+            int[] maxPointsToTP_Sell     = new int[tableSize_+1];
+            int[] maxPointsToTP_Buy      = new int[tableSize_+1];
+            int[] averagePointsToTP_Sell = new int[tableSize_+1];
+            int[] averagePointsToTP_Buy  = new int[tableSize_+1];
+
+            List<double> openPrice  = new List<double>();
+            List<double> closePrice = new List<double>();
+
+            List<int>[] averagePointsToTP_Sell_list = new List<int>[tableSize_+1];
+            List<int>[] averagePointsToTP_Buy_list  = new List<int>[tableSize_+1];
+
+            int digits = 1000;
+            if(report.Digits != 3)
+                digits = 10000;
+
+            foreach(var tree in TreeCollection.grid)
+            {
+                // Собираем все не нулевые цены открытия и закрытия всех ордеров и даты открытия и закрытия ордеров
+                foreach(var order in tree.Orders)
+                {
+                    openDate.Add(order.OpenDate);
+                    closeDate.Add(order.CloseDate);
+                    
+                    if(order.OpenPrice != 0)
+                        openPrice.Add(order.OpenPrice);
+                    if(order.ClosePrice != 0)
+                        closePrice.Add(order.ClosePrice);
+                }
+                //! TODO надо исключить выходные!!!!!!!!!!
+                if(tree.CountOrders == 2)
+                {
+                    int t = 0;
+                }
+                // TimeSpan gridLife_ = closeDate.Max().Subtract(openDate.Min()); // время жизни сетки
+                TimeSpan gridLife = TimeSpanExeptWeekDays(openDate.Min(), closeDate.Max());
+                
+
+                openDate.Clear();
+                closeDate.Clear();
+
+                double averageClosePrice = closePrice.Average(); // Средняя цена закрытия
+
+                if(tree.Sell_Buy == "sell")
+                {
+                    if(averageGridLiveTime_Sell_list[tree.CountOrders-1] == null)
+                        averageGridLiveTime_Sell_list[tree.CountOrders-1] = new List <TimeSpan>();
+                    averageGridLiveTime_Sell_list[tree.CountOrders-1].Add(gridLife);
+                    
+                    if(maxLiveTime_Sell[tree.CountOrders-1] < gridLife)
+                        maxLiveTime_Sell[tree.CountOrders-1] = gridLife;
+
+                    int maxPoints = Convert.ToInt32((openPrice.Max() - averageClosePrice)*digits); 
+                    if(maxPoints > maxPointsToTP_Sell[tree.CountOrders-1])
+                        maxPointsToTP_Sell[tree.CountOrders-1] = maxPoints;
+                    
+                    if(averagePointsToTP_Sell_list[tree.CountOrders-1] == null)
+                        averagePointsToTP_Sell_list[tree.CountOrders-1] = new List<int>();
+                    averagePointsToTP_Sell_list[tree.CountOrders-1].Add(maxPoints);
+                }
+                else
+                {
+                    if(averageGridLiveTime_Buy_list[tree.CountOrders-1] == null)
+                        averageGridLiveTime_Buy_list[tree.CountOrders-1] = new List <TimeSpan>();
+                    averageGridLiveTime_Buy_list[tree.CountOrders-1].Add(gridLife);
+                    
+                    if(maxLiveTime_Buy[tree.CountOrders-1] < gridLife)
+                        maxLiveTime_Buy[tree.CountOrders-1] = gridLife;
+                    
+                    int maxPoints = Convert.ToInt32((averageClosePrice - openPrice.Min())*digits);
+                    if(maxPoints > maxPointsToTP_Buy[tree.CountOrders-1])
+                        maxPointsToTP_Buy[tree.CountOrders-1] = maxPoints;
+
+                    if(averagePointsToTP_Buy_list[tree.CountOrders-1] == null)
+                        averagePointsToTP_Buy_list[tree.CountOrders-1] = new List<int>();
+                    averagePointsToTP_Buy_list[tree.CountOrders-1].Add(maxPoints);
+                }
+
+                openPrice.Clear();
+                closePrice.Clear();
+
+            }
+            double doubleAverageTicks = 0;
+            long longAverageTicks = 0;
+            for(int i =0; i < tableSize_+1; i++)
+                {
+                    doubleAverageTicks = averageGridLiveTime_Sell_list[i]?.Average(TimeSpan => TimeSpan.Ticks) ?? 0;
+                    longAverageTicks = Convert.ToInt64(doubleAverageTicks);
+                    averageLiveTime_Sell[i] = new TimeSpan(longAverageTicks);
+
+                    doubleAverageTicks = averageGridLiveTime_Buy_list[i]?.Average(TimeSpan => TimeSpan.Ticks) ?? 0;
+                    longAverageTicks = Convert.ToInt64(doubleAverageTicks);
+                    averageLiveTime_Buy[i] = new TimeSpan(longAverageTicks);
+
+                    averagePointsToTP_Sell[i] = Convert.ToInt32(averagePointsToTP_Sell_list[i]?.Average() ?? 0);
+                    averagePointsToTP_Buy[i]  = Convert.ToInt32(averagePointsToTP_Buy_list[i]?.Average() ?? 0);
+                }
+
+            #endregion
+            
             #region  Считаем столбец % от общей прибыли для сеток
             // Найдем суммарную прибыль за все время из таблицы прибыли по месяцам - 
             // это самый правый столбец и самое нижнее значение
@@ -285,20 +404,8 @@ namespace Report_BL.Controller.Tables
             }
             #endregion
 
-            //! Вынести в отдельную функцию
+            //! TODO Вынести в отдельную функцию и изменить метод сортировки, пока пузырьковая
             #region  Сортировка
-            
-            // var temp_ = Report_BL.DataCollection.MainTable.mainTable.OrderBy(s => s.countOrders);
-
-            // Report_BL.DataCollection.MainTable.mainTable = new
-            // System.Collections.ObjectModel.ObservableCollection<ReportModel.MainTable>(Report_BL.DataCollection.MainTable.mainTable.OrderBy(s => s.countOrders));
-            
-            // Report_BL.DataCollection.MainTable.mainTable.Add(new ReportModel.MainTable{countOrders=100});
-            
-            // var newRow1 = Report_BL.DataCollection.MainTable.GetRow(100);
-
-            
-
             for(int i=0; i<Report_BL.DataCollection.MainTable.mainTable.Count(); i++)
             {
                 for(int j = i+1; j<Report_BL.DataCollection.MainTable.mainTable.Count(); j++)
@@ -314,29 +421,63 @@ namespace Report_BL.Controller.Tables
             #endregion
 
             #region Считаем максимальный и средний размеры сетки
-            int tableSize_ =  Report_BL.DataCollection.MainTable.mainTable.Count();
             int[] maxSizeGridSell     = new int[tableSize_+1];
             int[] maxSizeGridBuy      = new int[tableSize_+1];
             int[] averageSizeGridSell = new int[tableSize_+1];
             int[] averageSizeGridBuy  = new int[tableSize_+1];
 
             GridSize(out maxSizeGridSell, out maxSizeGridBuy, out averageSizeGridSell, out averageSizeGridBuy);
-
+            #endregion
+            
             // Заполняем коллекцию главной таблицы, которая биндится
             int count = 0;
             foreach(var row in Report_BL.DataCollection.MainTable.mainTable)
             {
                 row.MaxGridSizeSell = maxSizeGridSell[count];
-                row.MaxGridSizeBuy = maxSizeGridBuy[count];
+                row.MaxGridSizeBuy  = maxSizeGridBuy[count];
 
                 row.AverageGridSizeSell = averageSizeGridSell[count];
-                row.AverageGridSizeBuy = averageSizeGridBuy[count];
+                row.AverageGridSizeBuy  = averageSizeGridBuy[count];
+
+
+                row.MaxPointsToTP_Sell = maxPointsToTP_Sell[count];
+                row.MaxPointsToTP_Buy  = maxPointsToTP_Buy[count];
+
+                row.AveragePointsToTP_Sell = averagePointsToTP_Sell[count];
+                row.AveragePointsToTP_Buy  = averagePointsToTP_Buy[count];
+
+                row.MaxTimeLifeGrid_Sell = maxLiveTime_Sell[count];
+                row.MaxTimeLifeGrid_Buy  = maxLiveTime_Buy[count];
+
+                row.AverageLifeGrid_Sell = averageLiveTime_Sell[count];
+                row.AverageLifeGrid_Buy  = averageLiveTime_Buy[count];
+
+
+                
 
                 count++;
             }
-            #endregion
+            
         }
 
+        // Возвращает TimeSpan с учетом выходных(не считает их)
+        private static TimeSpan TimeSpanExeptWeekDays(DateTime start, DateTime end)
+            {
+                int count = 0;
+
+                if(end.Subtract(start).Days > 1)
+                    {
+                        for(int i = 1; i <= end.Subtract(start).Days; i++)
+                        {
+                            if((int)start.AddDays(i).DayOfWeek == 6)
+                                count += 2;
+                        }
+                    }
+                DateTime newEnd = end.AddDays(-count);
+
+                TimeSpan betWeen_ = newEnd.Subtract(start);
+                return betWeen_;
+            }
 
         // Максимальный размер сетки в пункта
         // Средний размер сетки в пункта

@@ -45,6 +45,16 @@ namespace WPF_NET6.UsersControl
             AverageGridSizeSell.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
             AverageGridSizeBuy.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
             AverageGridSizeAll.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            MaxPointsToTP_Sell.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            MaxPointsToTP_Buy.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            AveragePointsToTP_Sell.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            AveragePointsToTP_Buy.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            AveragePointsToTP_All.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            MaxTimeLifeGrid_Sell_str.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            MaxTimeLifeGrid_Buy_str.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            AverageLifeGrid_Sell_str.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            AverageLifeGrid_Buy_str.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
+            AverageLifeGrid_All_str.ItemsSource = Report_BL.DataCollection.MainTable.mainTable;
         }
     }
 }

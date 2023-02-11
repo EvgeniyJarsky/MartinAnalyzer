@@ -26,13 +26,13 @@
         <GridSplitter Grid.Column="1" Grid.Row="1" ShowsPreview="False" Width="2"
         HorizontalAlignment="Center" VerticalAlignment="Stretch" />
         <ListView Background="#FFD9D9D9"  x:Name="listBox_" SelectionChanged="ChangeSelectedListBox" Grid.Column="0" Grid.Row="1">
-            <ListView.ContextMenu>
+            <!-- <ListView.ContextMenu>
                 <ContextMenu>
-                    <!-- <MenuItem Header="Delete" Click="MenuItemDelete_Click"/> -->
+                    <MenuItem Header="Delete" Click="MenuItemDelete_Click"/>
                     <MenuItem Header="Delete"/>
                     <MenuItem Header="Rename"/>
                 </ContextMenu>
-            </ListView.ContextMenu>
+            </ListView.ContextMenu> -->
             <ListView.View>
                 <GridView >
                     <GridViewColumn Header="Report" DisplayMemberBinding="{Binding FileName}"/>
