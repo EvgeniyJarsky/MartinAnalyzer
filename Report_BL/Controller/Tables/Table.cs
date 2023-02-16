@@ -319,12 +319,7 @@ namespace Report_BL.Controller.Tables
                     if(order.ClosePrice != 0)
                         closePrice.Add(order.ClosePrice);
                 }
-                //! TODO надо исключить выходные!!!!!!!!!!
-                if(tree.CountOrders == 2)
-                {
-                    int t = 0;
-                }
-                // TimeSpan gridLife_ = closeDate.Max().Subtract(openDate.Min()); // время жизни сетки
+                
                 TimeSpan gridLife = TimeSpanExeptWeekDays(openDate.Min(), closeDate.Max());
                 
 

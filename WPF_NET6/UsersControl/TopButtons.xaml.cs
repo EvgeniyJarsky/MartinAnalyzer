@@ -28,6 +28,8 @@ namespace WPF_NET6.UsersControl
         public event RoutedEventHandler LoadFileEvent;
         public event RoutedEventHandler DeleteItemEvent;
         public event RoutedEventHandler DeleteAllEvent;
+        public event RoutedEventHandler FilterEvent;
+
 
         private void Btn_LoadFile(object sender, RoutedEventArgs e)
         {
@@ -42,6 +44,13 @@ namespace WPF_NET6.UsersControl
         private void DeleteAll(object sender, RoutedEventArgs e)
         {
             DeleteAllEvent?.Invoke(sender, e);
+        }
+        
+        private void Filter(object sender, RoutedEventArgs e)
+        {
+            FilterEvent?.Invoke(sender, e);
+            WPF_NET6.Filter filter = new();
+            filter.Show();
         }
     }
 }

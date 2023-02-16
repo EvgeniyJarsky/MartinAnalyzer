@@ -23,6 +23,12 @@
         <!-- Разметка шапки таблицы прибыли по месяцам -->
         <!-- Шапка таблицы прибыли по месяцам -->
         <StackPanel x:Name="Profit" Grid.Column="1" Grid.Row="0">
+
+            <Slider Width="200" Value="50" Orientation="Horizontal" HorizontalAlignment="Left" 
+IsSnapToTickEnabled="True" Maximum="5" TickPlacement="BottomRight" 
+AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" 
+Ticks="0, 1, 2, 3, 4, 5"/>
+
             <local:ProfitTable/>
         </StackPanel>
 

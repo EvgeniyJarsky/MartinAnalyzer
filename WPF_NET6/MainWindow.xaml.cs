@@ -40,8 +40,10 @@ namespace WPF_NET6
         public MainWindow()
         {
             InitializeComponent();
-            listBox_.ItemsSource = newReport;
-            info.ItemsSource = param;
+            // listBox_.ItemsSource = newReport;
+            listBox_.ItemsSource = Report_BL.DataCollection.ReportCollection.newReport;
+            // info.ItemsSource = param;
+            info.ItemsSource = Report_BL.DataCollection.ParamentrsCollection.param;
             //deals.ItemsSource = dealsCollection;
         }
         
@@ -52,21 +54,24 @@ namespace WPF_NET6
         {
             // Очишаем данные
             Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
+            Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable.Clear();
+            Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
+            Report_BL.DataCollection.MainTable.mainTable.Clear();
 
-            #region Словарь для первичной информации
-            var dicFirstInfo = new Dictionary<string, Func<string, Report_BL.ReportModel.FirstInfo>>();
+            // #region Словарь для первичной информации
+            // var dicFirstInfo = new Dictionary<string, Func<string, Report_BL.ReportModel.FirstInfo>>();
 
-            // MT4Tester
-            dicFirstInfo.Add(
-                    "MT4Tester",
-                    new Func<string, Report_BL.ReportModel.FirstInfo>
-                    (Report_BL.Controller.MainInfo.MT4Tester.GetFirstInfoMT4.GetSymbolDateMagic));
-            // MT4History
-            dicFirstInfo.Add(
-                "MT4History",
-                new Func<string, Report_BL.ReportModel.FirstInfo>
-                (Report_BL.Controller.MainInfo.MT4History.GetFirstInfoMT4History.GetSymbolDateMagic));
-            #endregion
+            // // MT4Tester
+            // dicFirstInfo.Add(
+            //         "MT4Tester",
+            //         new Func<string, Report_BL.ReportModel.FirstInfo>
+            //         (Report_BL.Controller.MainInfo.MT4Tester.GetFirstInfoMT4.GetSymbolDateMagic));
+            // // MT4History
+            // dicFirstInfo.Add(
+            //     "MT4History",
+            //     new Func<string, Report_BL.ReportModel.FirstInfo>
+            //     (Report_BL.Controller.MainInfo.MT4History.GetFirstInfoMT4History.GetSymbolDateMagic));
+            // #endregion
 
             // открываем диалог и выбираем файл
             string filePath = LoadFiles.LoadFile();
@@ -97,17 +102,21 @@ namespace WPF_NET6
         {
             
             // получим список выбранных отчетов
-            var selectedList = listBox_.SelectedItems;
+            var selectedReports = listBox_.SelectedItems;
 
             // если отчетов выбрано несколько то удалим первый
             //! todo надо убрать ввозможность выбирать несколько отчетов
-            if (selectedList.Count != 0)
+            if (selectedReports.Count != 0 && selectedReports != null)
             {
-                var firstSelected = ((NewReport)selectedList[0]);
-                newReport.Remove(firstSelected);
+                var selectedReport = ((NewReport)selectedReports[0]);
+                Report_BL.DataCollection.ReportCollection.newReport.Remove(selectedReport);
             }
             Report_BL.DataCollection.TreeCollection.grid.Clear();
             Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
+
+            Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable.Clear();
+            Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
+            Report_BL.DataCollection.MainTable.mainTable.Clear();
 
         }
 
@@ -115,7 +124,12 @@ namespace WPF_NET6
         {
             Report_BL.DataCollection.TreeCollection.grid.Clear();
             Report_BL.DataCollection.ClearAllData.ClearAll();
-            listBox_.Items.Clear(); //! TODO когда не выбрано ни одного отчета - ошибка
+
+            Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable.Clear();
+            Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
+            Report_BL.DataCollection.MainTable.mainTable.Clear();
+            
+            Report_BL.DataCollection.ReportCollection.newReport.Clear();
         }
 
         // При изменении выбранного отчета
@@ -123,6 +137,10 @@ namespace WPF_NET6
         {
             Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
             Report_BL.DataCollection.TreeCollection.grid.Clear();
+
+            Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable.Clear();
+            Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
+            Report_BL.DataCollection.MainTable.mainTable.Clear();
 
             var selectedList = listBox_.SelectedItems;// список выбранных отчетов
 
@@ -133,8 +151,6 @@ namespace WPF_NET6
 
                 Report_BL.Controller.GetDeals.GetDeals.Get(firstSelected);
 
-                
-
                 //Формируем таблицу прибыли по месяцам
                 Report_BL.Controller.Tables.Table.CreateProfiTable();
 
@@ -143,14 +159,38 @@ namespace WPF_NET6
 
                 // Формируем главную таблицу
                 Report_BL.Controller.Tables.Table.CreateMainTable(firstSelected);
-                
-                
             }
+        }
+        
+        private void Filter(object sender, RoutedEventArgs e)
+        {
+            Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable.Clear();
+            Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
+            Report_BL.DataCollection.MainTable.mainTable.Clear();
+
+            
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        public event EventHandler getSelectedReport;
+
+        private NewReport Button_Click()
+        {
+            if (getSelectedReport != null)
+            {
+                var selectedList = listBox_.SelectedItems;// список выбранных отчетов
+                if (selectedList.Count != 0) // проверка если удалили последний объект
+                {
+                    var f = selectedList[0];
+                    return (NewReport)f;
+                }
+                NewReport firstSelected = (NewReport)selectedList[0];
+            }
+            return new NewReport();
         }
 
     }

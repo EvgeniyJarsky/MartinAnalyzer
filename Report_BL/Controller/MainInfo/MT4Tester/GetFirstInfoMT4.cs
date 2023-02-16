@@ -21,8 +21,7 @@ namespace Report_BL.Controller.MainInfo.MT4Tester
         {
             string? line;
             string? symbol = String.Empty;
-            DateTime startDate;
-            DateTime endDate;
+            
 
             /// <summary>
             /// Ключеая строка которая должна содержаться в
@@ -36,7 +35,7 @@ namespace Report_BL.Controller.MainInfo.MT4Tester
                 new Report_BL.ReportModel.FirstInfo(
                     filePath,
                     "MT4Tester",
-                    new Dictionary<string, List<int>>(),
+                    new Dictionary<string, List<int>>(), // словарь символов - тут всего один символ
                     DateTime.MinValue,
                     DateTime.MinValue,
                     0);

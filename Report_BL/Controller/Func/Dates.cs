@@ -30,10 +30,7 @@ namespace Report_BL.Controller.Func
             DateTime dateWithOutHours = dateWithOutDays.AddHours(hours);
             double minutes = (endDate - dateWithOutHours).Minutes;
 
-            if(minutes < 0)
-            {
-                int fdgdf =1;
-            }
+            
 
             string rez = $"{days} Дней | {hours} Часов | {minutes} Минут";
 

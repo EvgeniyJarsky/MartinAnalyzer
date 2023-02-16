@@ -1,0 +1,92 @@
+﻿<Window x:Class="WPF_NET6.Filter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_NET6"
+        mc:Ignorable="d"
+        Title="Filter" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Border Margin="5,5,5,5" BorderThickness="2" Background="AliceBlue" BorderBrush="#FF292121">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <CheckBox x:Name="hour_1" IsChecked="True" Content="1 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_2" IsChecked="True" Content="2 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_3" IsChecked="True" Content="3 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_4" IsChecked="True" Content="4 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_5" IsChecked="True" Content="5 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_6" IsChecked="True" Content="6 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_7" IsChecked="True" Content="7 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_8" IsChecked="True" Content="8 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_9" IsChecked="True" Content="9 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_10" IsChecked="True" Content="10 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_11" IsChecked="True" Content="11 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_12" IsChecked="True" Content="12 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                        </StackPanel>
+                        <StackPanel>
+                            <CheckBox x:Name="hour_13" IsChecked="True" Content="13 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_14" IsChecked="True" Content="14 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_15" IsChecked="True" Content="15 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_16" IsChecked="True" Content="16 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_17" IsChecked="True" Content="17 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_18" IsChecked="True" Content="18 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_19" IsChecked="True" Content="19 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_20" IsChecked="True" Content="20 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_21" IsChecked="True" Content="21 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_22" IsChecked="True" Content="22 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_23" IsChecked="True" Content="23 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                            <CheckBox x:Name="hour_24" IsChecked="True" Content="24 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <Border Margin="5,5,5,5" BorderThickness="2" Background="AliceBlue" BorderBrush="#FF292121">
+                    <StackPanel>
+                        <CheckBox IsChecked="True" Content="Понедельник" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                        <CheckBox IsChecked="True" Content="Вторник" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                        <CheckBox IsChecked="True" Content="Среда" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                        <CheckBox IsChecked="True" Content="Четверг" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                        <CheckBox IsChecked="True" Content="Пятница" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                    </StackPanel>
+                </Border>
+
+
+
+                <StackPanel>
+                    <Border Margin="5,5,5,5" BorderThickness="2" Background="AliceBlue" BorderBrush="#FF292121">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5,5,5,5" Text="Длина сетки"></TextBlock>
+                            <ComboBox Margin="5,5,5,5" IsReadOnly="True">
+                                <ComboBoxItem Content="не важно"></ComboBoxItem>
+                                <ComboBoxItem Content="равно"></ComboBoxItem>
+                                <ComboBoxItem Content="больше"></ComboBoxItem>
+                                <ComboBoxItem Content="меньше"></ComboBoxItem>
+                            </ComboBox>
+                            <TextBox Margin="5,5,5,5">0</TextBox>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Margin="5,5,5,5" BorderThickness="2" Background="AliceBlue" BorderBrush="#FF292121">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Margin="5,5,5,5" Text="Колен сетки"></TextBlock>
+                            <ComboBox Margin="5,5,5,5">
+                                <ComboBoxItem  Content="не важно"></ComboBoxItem>
+                                <ComboBoxItem Content="равно"></ComboBoxItem>
+                                <ComboBoxItem Content="больше"></ComboBoxItem>
+                                <ComboBoxItem Content="меньше"></ComboBoxItem>
+                            </ComboBox>
+                            <TextBox Margin="5,5,5,5">0</TextBox>
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel Margin="5,5,5,5">
+                        <Button Click="CountFilter">Расчитать</Button>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>
