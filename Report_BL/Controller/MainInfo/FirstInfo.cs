@@ -11,7 +11,7 @@ namespace Report_BL.Controller.MainInfo
     public static class FirstInfo
     {
         
-        public static Report_BL.ReportModel.FirstInfo Get(string reportType, string filePath)
+        public static Report_BL.ReportModel.FirstInfo? Get(string reportType, string filePath)
         {
             #region Словарь для первичной информации
             var dicFirstInfo = new Dictionary<string, Func<string, Report_BL.ReportModel.FirstInfo>>();

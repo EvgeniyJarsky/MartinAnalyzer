@@ -17,7 +17,7 @@ namespace Report_BL.Controller.MainInfo.MT4Tester
         /// </summary>
         /// <param name="filePath">Путь к файлу</param>
         /// <returns>String[symbol, '0', startDate, endDate]</returns>
-        public static Report_BL.ReportModel.FirstInfo GetSymbolDateMagic(string filePath)
+        public static Report_BL.ReportModel.FirstInfo? GetSymbolDateMagic(string filePath)
         {
             string? line;
             string? symbol = String.Empty;
@@ -89,15 +89,32 @@ namespace Report_BL.Controller.MainInfo.MT4Tester
                             line = sr.ReadLine();
                             line = sr.ReadLine();
 
-                            // TODO вынести парсинг в отдельную функцию
-                            // line = "<tr align=left><td>Initial deposit</td><td align=right>10000.00</td><td></td><td align=right></td><td>Spread</td><td align=right>Variable</td></tr>"
-                            firstInfo.StartDeposit = int.Parse(line.Split('>')[4].Split('<')[0].Split('.')[0]);
+                            if(ParseDeposit(line, firstInfo)  == null)
+                                return null;
                         }
                     }
                     #endregion
                 }
             }
             return firstInfo;
+        }
+
+        private static int? ParseDeposit(string? line, ReportModel.FirstInfo firstInfo)
+        {
+
+            // TODO вынести парсинг в отдельную функцию
+            // line = "<tr align=left><td>Initial deposit</td><td align=right>10000.00</td><td></td><td align=right></td><td>Spread</td><td align=right>Variable</td></tr>"
+            if(line != null)
+            {
+                try
+                {
+                    firstInfo.StartDeposit = int.Parse(line.Split('>')[4].Split('<')[0].Split('.')[0]);
+                    return 1;
+                }
+                catch {return null;}
+            }
+            return null;
+                
         }
     }
 }

@@ -30,5 +30,51 @@ namespace WPF_NET6.UsersControl
         {
 
         }
+
+        private void SliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if(prO != null)
+            {
+                prO.profitTable_Profit.FontSize = e.NewValue;
+                prO.profitTable_Years.FontSize = e.NewValue;
+                prO.profitTable_January.FontSize = e.NewValue;
+                prO.profitTable_February.FontSize = e.NewValue;
+                prO.profitTable_March.FontSize = e.NewValue;
+                prO.profitTable_April.FontSize = e.NewValue;
+                prO.profitTable_May.FontSize = e.NewValue;
+                prO.profitTable_June.FontSize = e.NewValue;
+                prO.profitTable_July.FontSize = e.NewValue;
+                prO.profitTable_August.FontSize = e.NewValue;
+                prO.profitTable_September.FontSize = e.NewValue;
+                prO.profitTable_October.FontSize = e.NewValue;
+                prO.profitTable_November.FontSize = e.NewValue;
+                prO.profitTable_Desember.FontSize = e.NewValue;
+                prO.profitTable_Average.FontSize = e.NewValue;
+                prO.profitTable_Total.FontSize = e.NewValue;
+
+
+                if (prO.year_ != null) prO.year_.FontSize = e.NewValue;
+                if (prO.january != null) prO.january.FontSize = e.NewValue;
+                if (prO.february != null) prO.february.FontSize = e.NewValue;
+                if (prO.march != null) prO.march.FontSize = e.NewValue;
+                if (prO.april != null) prO.april.FontSize = e.NewValue;
+                if (prO.may != null) prO.may.FontSize = e.NewValue;
+                if (prO.june != null) prO.june.FontSize = e.NewValue;
+                if (prO.july != null) prO.july.FontSize = e.NewValue;
+                if (prO.august != null) prO.august.FontSize = e.NewValue;
+                if (prO.september != null) prO.september.FontSize = e.NewValue;
+                if (prO.october != null) prO.october.FontSize = e.NewValue;
+                if (prO.november != null) prO.november.FontSize = e.NewValue;
+                if (prO.december != null) prO.december.FontSize = e.NewValue;
+                
+                if (prO.averageProfit != null) prO.averageProfit.FontSize = e.NewValue;
+                if (prO.sumProfit != null) prO.sumProfit.FontSize = e.NewValue;
+
+
+
+
+
+            }
+        }
     }
 }

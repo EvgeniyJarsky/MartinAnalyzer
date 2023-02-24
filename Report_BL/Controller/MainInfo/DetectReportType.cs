@@ -17,6 +17,7 @@ namespace Report_BL.Controller.MainInfo
         /// </summary>
         /// <param name="filePath">Путь к файлу.</param>
         /// <returns> string MyFXBook || MT5 || MT4Tester || MT4History || UnKnownFile </returns>
+        
         public static string GetReportType(string filePath)
         {
             string fileExtension = Path.GetExtension(filePath);
@@ -26,6 +27,7 @@ namespace Report_BL.Controller.MainInfo
             if (fileExtension == ".html")
                 return "MT5";
             // Определим какой это отчет: Tester или History
+            
             if (fileExtension == ".htm")
             {
                 foreach(string line in File.ReadLines(filePath))

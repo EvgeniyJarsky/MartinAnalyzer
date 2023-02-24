@@ -58,29 +58,26 @@ namespace WPF_NET6
             Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
             Report_BL.DataCollection.MainTable.mainTable.Clear();
 
-            // #region Словарь для первичной информации
-            // var dicFirstInfo = new Dictionary<string, Func<string, Report_BL.ReportModel.FirstInfo>>();
-
-            // // MT4Tester
-            // dicFirstInfo.Add(
-            //         "MT4Tester",
-            //         new Func<string, Report_BL.ReportModel.FirstInfo>
-            //         (Report_BL.Controller.MainInfo.MT4Tester.GetFirstInfoMT4.GetSymbolDateMagic));
-            // // MT4History
-            // dicFirstInfo.Add(
-            //     "MT4History",
-            //     new Func<string, Report_BL.ReportModel.FirstInfo>
-            //     (Report_BL.Controller.MainInfo.MT4History.GetFirstInfoMT4History.GetSymbolDateMagic));
-            // #endregion
 
             // открываем диалог и выбираем файл
             string filePath = LoadFiles.LoadFile();
 
-            // TODO проверить что reportType != "UnKnownFile"
+            // Определяем тип файла
             string reportType = Report_BL.Controller.MainInfo.DetectReportType.GetReportType(filePath);
+            // Если неизвестый файл - выводим сообщение и завершаем добавление файла
+            if(reportType == "UnKnownFile")
+            {
+                MessageBox.Show("Неверное расширение файла");
+                return;
+            }
 
             //Report_BL.ReportModel.FirstInfo firstInfo = dicFirstInfo[reportType](filePath);
-            Report_BL.ReportModel.FirstInfo firstInfo = Report_BL.Controller.MainInfo.FirstInfo.Get(reportType, filePath);
+            Report_BL.ReportModel.FirstInfo? firstInfo = Report_BL.Controller.MainInfo.FirstInfo.Get(reportType, filePath);
+            if(firstInfo == null)
+                {
+                    MessageBox.Show("Ошибка чтения первичной информации!!!");
+                    return;
+                }
 
             if (firstInfo == null)
                 MessageBox.Show("Ошибка чтения файла!!!");

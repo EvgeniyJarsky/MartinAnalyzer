@@ -24,12 +24,12 @@
         <!-- Шапка таблицы прибыли по месяцам -->
         <StackPanel x:Name="Profit" Grid.Column="1" Grid.Row="0">
 
-            <Slider Width="200" Value="50" Orientation="Horizontal" HorizontalAlignment="Left" 
-IsSnapToTickEnabled="True" Maximum="5" TickPlacement="BottomRight" 
-AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" 
-Ticks="0, 1, 2, 3, 4, 5"/>
+            <Slider x:Name="mySlider" Width="200" Orientation="Horizontal" HorizontalAlignment="Left" 
+IsSnapToTickEnabled="True" Minimum="8" Maximum="32" Value="12" TickPlacement="BottomRight" 
+AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" ValueChanged="SliderChanged" 
+/>
 
-            <local:ProfitTable/>
+            <local:ProfitTable x:Name="prO"/>
         </StackPanel>
 
         <TextBlock Grid.Column="2" Grid.Row="0">1.2</TextBlock>

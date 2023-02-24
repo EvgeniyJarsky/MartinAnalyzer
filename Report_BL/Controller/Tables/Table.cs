@@ -229,7 +229,7 @@ namespace Report_BL.Controller.Tables
             /*
                 Проходим по всему списку сеток и начинаем их заполнять
                 При этом если сеток с таким количеством колен не было то
-                такая строка не создастся
+                такая строка не создастся - это исправим ниже
             */
             foreach(var tree in TreeCollection.grid)
             {
@@ -261,6 +261,7 @@ namespace Report_BL.Controller.Tables
             // Заполняем массив значениями true там где есть строки сеток
             for(int i = countRows-1; i < countRows; i++)
             {
+                var f = Report_BL.DataCollection.MainTable.mainTable[i].countOrders-1;
                 countmass[Report_BL.DataCollection.MainTable.mainTable[i].countOrders-1] = true;
             }
             // Создадим пустые пропущенные строки в главной таблице

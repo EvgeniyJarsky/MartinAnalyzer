@@ -12,7 +12,7 @@ namespace Report_BL.Controller.Parser.MT4Tester
         /// </summary>
         /// <param name="line">Строка из файла для парсинга</param>
         /// <returns>Возвращает либо имя символа либо Null</returns>
-        public static string SymbolParse(string line)
+        public static string? SymbolParse(string line)
         {
             try
             {
