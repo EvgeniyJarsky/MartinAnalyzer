@@ -29,49 +29,49 @@
         </Grid.ColumnDefinitions>
 
         <Border Background="#FF8DB4E2" BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
-            <Label  HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Margin="2,0,2,0">Годы</Label>
+            <Label x:Name="orderCountTable_Year" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Margin="2,0,2,0">Годы</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="12">
-            <Label FontWeight="Bold" HorizontalAlignment="Center" >Максимальное колено в сетках, закрытых за месяц</Label>
+            <Label x:Name="orderCountTable_LongHead" FontWeight="Bold" HorizontalAlignment="Center" >Максимальное колено в сетках, закрытых за месяц</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="1">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Январь</Label>
+            <Label x:Name="orderCountTable_January" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Январь</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="2">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Февраль</Label>
+            <Label x:Name="orderCountTable_February" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Февраль</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="3">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Март</Label>
+            <Label x:Name="orderCountTable_March" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Март</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="4">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Апрель</Label>
+            <Label x:Name="orderCountTable_April" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Апрель</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="5">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Май</Label>
+            <Label x:Name="orderCountTable_May" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Май</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="6">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Июнь</Label>
+            <Label x:Name="orderCountTable_June" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Июнь</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="7">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Июль</Label>
+            <Label x:Name="orderCountTable_July" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Июль</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="8">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Август</Label>
+            <Label x:Name="orderCountTable_August" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Август</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="9">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Сентябрь</Label>
+            <Label x:Name="orderCountTable_September" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Сентябрь</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="10">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Октябрь</Label>
+            <Label x:Name="orderCountTable_October" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Октябрь</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="11">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Ноябрь</Label>
+            <Label x:Name="orderCountTable_November" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Ноябрь</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="12">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Декабрь</Label>
+            <Label x:Name="orderCountTable_December" HorizontalAlignment="Center" FontWeight="Bold" Margin="2,0,2,0">Декабрь</Label>
         </Border>
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="0" Grid.Column="13" Grid.RowSpan="2">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Margin="2,0,2,0">Средняя</Label>
+            <Label x:Name="orderCountTable_Average" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center" Margin="2,0,2,0">Средняя</Label>
         </Border>
 
         <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="0" Grid.Row="2">

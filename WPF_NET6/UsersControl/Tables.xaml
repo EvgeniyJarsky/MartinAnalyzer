@@ -36,7 +36,7 @@ AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" ValueChanged="Slider
         
         <!-- Максимальное колено в сетках, закрытых за месяц -->
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <local:GridCountOrdersTable/>
+            <local:GridCountOrdersTable x:Name="orderCount"/>
         </StackPanel>
         
         <TextBlock Grid.Column="2" Grid.Row="1">2.2</TextBlock>

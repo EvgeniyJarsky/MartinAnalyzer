@@ -69,10 +69,41 @@ namespace WPF_NET6.UsersControl
                 
                 if (prO.averageProfit != null) prO.averageProfit.FontSize = e.NewValue;
                 if (prO.sumProfit != null) prO.sumProfit.FontSize = e.NewValue;
+            }
+        
+            if(orderCount != null)
+            {
+                orderCount.orderCountTable_Year.FontSize = e.NewValue;
+                orderCount.orderCountTable_Average.FontSize = e.NewValue;
+                orderCount.orderCountTable_LongHead.FontSize = e.NewValue;
+                orderCount.orderCountTable_January.FontSize = e.NewValue;
+                orderCount.orderCountTable_February.FontSize = e.NewValue;
+                orderCount.orderCountTable_March.FontSize = e.NewValue;
+                orderCount.orderCountTable_April.FontSize = e.NewValue;
+                orderCount.may.FontSize = e.NewValue;
+                orderCount.orderCountTable_June.FontSize = e.NewValue;
+                orderCount.orderCountTable_July.FontSize = e.NewValue;
+                orderCount.orderCountTable_August.FontSize = e.NewValue;
+                orderCount.orderCountTable_September.FontSize = e.NewValue;
+                orderCount.orderCountTable_October.FontSize = e.NewValue;
+                orderCount.orderCountTable_November.FontSize = e.NewValue;
+                orderCount.orderCountTable_December.FontSize = e.NewValue;
 
-
-
-
+                if (orderCount.year_ != null) orderCount.year_.FontSize = e.NewValue;
+                if (orderCount.orderCountTable_LongHead != null) orderCount.orderCountTable_LongHead.FontSize = e.NewValue;
+                if (orderCount.january != null) orderCount.january.FontSize = e.NewValue;
+                if (orderCount.february != null) orderCount.february.FontSize = e.NewValue;
+                if (orderCount.march != null) orderCount.march.FontSize = e.NewValue;
+                if (orderCount.april != null) orderCount.april.FontSize = e.NewValue;
+                if (orderCount.may != null) orderCount.may.FontSize = e.NewValue;
+                if (orderCount.june != null) orderCount.june.FontSize = e.NewValue;
+                if (orderCount.july != null) orderCount.july.FontSize = e.NewValue;
+                if (orderCount.august != null) orderCount.august.FontSize = e.NewValue;
+                if (orderCount.september != null) orderCount.september.FontSize = e.NewValue;
+                if (orderCount.october != null) orderCount.october.FontSize = e.NewValue;
+                if (orderCount.november != null) orderCount.november.FontSize = e.NewValue;
+                if (orderCount.december != null) orderCount.december.FontSize = e.NewValue;
+                if (orderCount.averageCountOrders != null) orderCount.averageCountOrders.FontSize = e.NewValue;
 
             }
         }
