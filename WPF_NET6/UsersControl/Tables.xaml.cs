@@ -80,7 +80,7 @@ namespace WPF_NET6.UsersControl
                 orderCount.orderCountTable_February.FontSize = e.NewValue;
                 orderCount.orderCountTable_March.FontSize = e.NewValue;
                 orderCount.orderCountTable_April.FontSize = e.NewValue;
-                orderCount.may.FontSize = e.NewValue;
+                orderCount.orderCountTable_May.FontSize = e.NewValue;
                 orderCount.orderCountTable_June.FontSize = e.NewValue;
                 orderCount.orderCountTable_July.FontSize = e.NewValue;
                 orderCount.orderCountTable_August.FontSize = e.NewValue;
@@ -104,6 +104,117 @@ namespace WPF_NET6.UsersControl
                 if (orderCount.november != null) orderCount.november.FontSize = e.NewValue;
                 if (orderCount.december != null) orderCount.december.FontSize = e.NewValue;
                 if (orderCount.averageCountOrders != null) orderCount.averageCountOrders.FontSize = e.NewValue;
+            }
+
+            if(mainTable != null)
+            {
+                mainTable.mainTable_NN.FontSize = e.NewValue;
+
+                mainTable.mainTable_CountGrid.FontSize = e.NewValue;
+                mainTable.mainTable_CountGridSell.FontSize = e.NewValue;
+                mainTable.mainTable_CountGridBuy.FontSize = e.NewValue;
+                mainTable.mainTable_CountGridAll.FontSize = e.NewValue;
+
+                mainTable.mainTable_SumLot1.FontSize = e.NewValue;
+                mainTable.mainTable_SumLot2.FontSize = e.NewValue;
+                mainTable.mainTable_SumLotSell.FontSize = e.NewValue;
+                mainTable.mainTable_SumLotBuy.FontSize = e.NewValue;
+                mainTable.mainTable_SumLotAll.FontSize = e.NewValue;
+                
+                mainTable.mainTable_TotalProfit1.FontSize = e.NewValue;
+                mainTable.mainTable_TotalProfit2.FontSize = e.NewValue;
+                mainTable.mainTable_TotalProfitSell.FontSize = e.NewValue;
+                mainTable.mainTable_TotalProfitBuy.FontSize = e.NewValue;
+                mainTable.mainTable_TotalProfitAll.FontSize = e.NewValue;
+
+                mainTable.mainTable_AverageProfit1.FontSize = e.NewValue;
+                mainTable.mainTable_AverageProfit2.FontSize = e.NewValue;
+                mainTable.mainTable_AverageProfitSell.FontSize = e.NewValue;
+                mainTable.mainTable_AverageProfitBuy.FontSize = e.NewValue;
+                mainTable.mainTable_AverageProfitAll.FontSize = e.NewValue;
+
+                mainTable.mainTable_PercentProfit1.FontSize = e.NewValue;
+                mainTable.mainTable_PercentProfit2.FontSize = e.NewValue;
+                mainTable.mainTable_PercentProfitSell.FontSize = e.NewValue;
+                mainTable.mainTable_PercentProfitBuy.FontSize = e.NewValue;
+                mainTable.mainTable_PercentProfitAll.FontSize = e.NewValue;
+
+                mainTable.mainTable_MaxGridSize1.FontSize = e.NewValue;
+                mainTable.mainTable_MaxGridSize2.FontSize = e.NewValue;
+                mainTable.mainTable_MaxGridSizeSell.FontSize = e.NewValue;
+                mainTable.mainTable_MaxGridSizeBuy.FontSize = e.NewValue;
+
+                mainTable.mainTable_AverageGridSize1.FontSize = e.NewValue;
+                mainTable.mainTable_AverageGridSize2.FontSize = e.NewValue;
+                mainTable.mainTable_AverageGridSizeSell.FontSize = e.NewValue;
+                mainTable.mainTable_AverageGridSizeBuy.FontSize = e.NewValue;
+                mainTable.mainTable_AverageGridSizeAll.FontSize = e.NewValue;
+
+                mainTable.mainTable_MaxPointsToTP1.FontSize = e.NewValue;
+                mainTable.mainTable_MaxPointsToTP2.FontSize = e.NewValue;
+                mainTable.mainTable_MaxPointsToTPSell.FontSize = e.NewValue;
+                mainTable.mainTable_MaxPointsToTPBuy.FontSize = e.NewValue;
+
+                mainTable.mainTable_AveragePointsToTP1.FontSize = e.NewValue;
+                mainTable.mainTable_AveragePointsToTP2.FontSize = e.NewValue;
+                mainTable.mainTable_AveragePointsToTPSell.FontSize = e.NewValue;
+                mainTable.mainTable_AveragePointsToTPBuy.FontSize = e.NewValue;
+                mainTable.mainTable_AveragePointsToTPAll.FontSize = e.NewValue;
+
+                mainTable.mainTable_MaxLifeGrid1.FontSize = e.NewValue;
+                mainTable.mainTable_MaxLifeGrid2.FontSize = e.NewValue;
+                mainTable.mainTable_MaxLifeGridSell.FontSize = e.NewValue;
+                mainTable.mainTable_MaxLifeGridBuy.FontSize = e.NewValue;
+
+                mainTable.mainTable_AverageLifeGrid1.FontSize = e.NewValue;
+                mainTable.mainTable_AverageLifeGrid2.FontSize = e.NewValue;
+                mainTable.mainTable_AverageLifeGridSell.FontSize = e.NewValue;
+                mainTable.mainTable_AverageLifeGridBuy.FontSize = e.NewValue;
+                mainTable.mainTable_AverageLifeGridAll.FontSize = e.NewValue;
+
+                if (mainTable.number_ != null) mainTable.number_.FontSize = e.NewValue;
+
+                if (mainTable.GridCountSell != null) mainTable.GridCountSell.FontSize = e.NewValue;
+                if (mainTable.GridCountBuy != null) mainTable.GridCountBuy.FontSize = e.NewValue;
+                if (mainTable.GridCountAll != null) mainTable.GridCountAll.FontSize = e.NewValue;
+
+                if (mainTable.SumLotSell != null) mainTable.SumLotSell.FontSize = e.NewValue;
+                if (mainTable.SumLotBuy != null) mainTable.SumLotBuy.FontSize = e.NewValue;
+                if (mainTable.SumLotAll != null) mainTable.SumLotAll.FontSize = e.NewValue;
+
+                if (mainTable.TotalProfitSell != null) mainTable.TotalProfitSell.FontSize = e.NewValue;
+                if (mainTable.TotalProfitBuy != null) mainTable.TotalProfitBuy.FontSize = e.NewValue;
+                if (mainTable.TotalProfitAll != null) mainTable.TotalProfitAll.FontSize = e.NewValue;
+
+                if (mainTable.AverageProfitSell != null) mainTable.AverageProfitSell.FontSize = e.NewValue;
+                if (mainTable.AverageProfitBuy != null) mainTable.AverageProfitBuy.FontSize = e.NewValue;
+                if (mainTable.AverageProfitAll != null) mainTable.AverageProfitAll.FontSize = e.NewValue;
+
+                if (mainTable.PersentOfTotalProfitSell != null) mainTable.PersentOfTotalProfitSell.FontSize = e.NewValue;
+                if (mainTable.PersentOfTotalProfitBuy != null) mainTable.PersentOfTotalProfitBuy.FontSize = e.NewValue;
+                if (mainTable.PersentOfTotalProfitAll != null) mainTable.PersentOfTotalProfitAll.FontSize = e.NewValue;
+
+                if (mainTable.MaxGridSizeSell != null) mainTable.MaxGridSizeSell.FontSize = e.NewValue;
+                if (mainTable.MaxGridSizeBuy != null) mainTable.MaxGridSizeBuy.FontSize = e.NewValue;
+                
+                if (mainTable.AverageGridSizeSell != null) mainTable.AverageGridSizeSell.FontSize = e.NewValue;
+                if (mainTable.AverageGridSizeBuy != null) mainTable.AverageGridSizeBuy.FontSize = e.NewValue;
+                if (mainTable.AverageGridSizeAll != null) mainTable.AverageGridSizeAll.FontSize = e.NewValue;
+                
+                if (mainTable.MaxPointsToTP_Sell != null) mainTable.MaxPointsToTP_Sell.FontSize = e.NewValue;
+                if (mainTable.MaxPointsToTP_Buy != null) mainTable.MaxPointsToTP_Buy.FontSize = e.NewValue;
+
+                if (mainTable.AveragePointsToTP_Sell != null) mainTable.AveragePointsToTP_Sell.FontSize = e.NewValue;
+                if (mainTable.AveragePointsToTP_Buy != null) mainTable.AveragePointsToTP_Buy.FontSize = e.NewValue;
+                if (mainTable.AveragePointsToTP_All != null) mainTable.AveragePointsToTP_All.FontSize = e.NewValue;
+
+                if (mainTable.MaxTimeLifeGrid_Sell_str != null) mainTable.MaxTimeLifeGrid_Sell_str.FontSize = e.NewValue;
+                if (mainTable.MaxTimeLifeGrid_Buy_str != null) mainTable.MaxTimeLifeGrid_Buy_str.FontSize = e.NewValue;
+
+                if (mainTable.AverageLifeGrid_Sell_str != null) mainTable.AverageLifeGrid_Sell_str.FontSize = e.NewValue;
+                if (mainTable.AverageLifeGrid_Buy_str != null) mainTable.AverageLifeGrid_Buy_str.FontSize = e.NewValue;
+                if (mainTable.AverageLifeGrid_All_str != null) mainTable.AverageLifeGrid_All_str.FontSize = e.NewValue;
+
 
             }
         }

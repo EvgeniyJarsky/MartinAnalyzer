@@ -46,8 +46,8 @@
 
         </Grid.ColumnDefinitions>
 
-        <Border Background="#FF8DB4E2" BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
-            <Label VerticalAlignment="Center" Margin="2,0,2,0">
+        <Border Background="#FF8DB4E2" BorderBrush="Black" BorderThickness="6,6,3,3" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+            <Label x:Name="mainTable_NN" VerticalAlignment="Center" Margin="2,0,2,0">
                 <StackPanel>
                     <TextBlock Text="№№" FontWeight="Bold"/>
                     <TextBlock Text="колен" FontWeight="Bold"/>
@@ -55,172 +55,173 @@
             </Label>
         </Border>
 
-        <Border Background="#FF8DB4E2" BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3">
-            <Label HorizontalAlignment="Center" FontWeight="Bold" >Количество сеток</Label>
+        <Border Background="#FF8DB4E2" BorderBrush="Black" BorderThickness="3,6,3,1" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3">
+            <Label x:Name="mainTable_CountGrid" HorizontalAlignment="Center" FontWeight="Bold" >Количество сеток</Label>
         </Border>
-        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="1">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
+        <Border Background="#FFE6B8B7" BorderThickness="3,0,1,3" BorderBrush="Black" Grid.Row="1" Grid.Column="1">
+            <Label x:Name="mainTable_CountGridSell" Margin="2,0,2,2" FontWeight="Bold">Sell</Label>
         </Border>
-        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="2">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
+        <Border Background="#FFD8E4BC" BorderThickness="0,0,1,3" BorderBrush="Black" Grid.Row="1" Grid.Column="2">
+            <Label x:Name="mainTable_CountGridBuy" Margin="2,0,2,2" FontWeight="Bold">Buy</Label>
         </Border>
-        <Border Background="#FFC5D9F1" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="3">
-            <Label Margin="2,0,2,0" FontWeight="Bold">All</Label>
+        <Border Background="#FFC5D9F1" BorderThickness="0,0,3,3" BorderBrush="Black" Grid.Row="1" Grid.Column="3">
+            <Label x:Name="mainTable_CountGridAll" Margin="2,0,2,2" FontWeight="Bold">All</Label>
         </Border>
 
-        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="3">
+
+        <Border Background="#FF8DB4E2" BorderThickness="3,6,3,1" BorderBrush="Black" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="3">
             <StackPanel>
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Сумма лотов</TextBlock>
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">ордеров сеток</TextBlock>
+                <TextBlock x:Name="mainTable_SumLot1" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Сумма лотов</TextBlock>
+                <TextBlock x:Name="mainTable_SumLot2" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">ордеров сеток</TextBlock>
             </StackPanel>
         </Border>
-        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="4">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
+        <Border Background="#FFE6B8B7" BorderThickness="3,0,1,3" BorderBrush="Black" Grid.Row="1" Grid.Column="4">
+            <Label x:Name="mainTable_SumLotSell" Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
         </Border>
-        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="5">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
+        <Border Background="#FFD8E4BC" BorderThickness="0,0,1,3" BorderBrush="Black" Grid.Row="1" Grid.Column="5">
+            <Label x:Name="mainTable_SumLotBuy" Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
         </Border>
-        <Border Background="#FFC5D9F1" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="6">
-            <Label Margin="2,0,2,0" FontWeight="Bold">All</Label>
+        <Border Background="#FFC5D9F1" BorderThickness="0,0,3,3" BorderBrush="Black" Grid.Row="1" Grid.Column="6">
+            <Label x:Name="mainTable_SumLotAll" Margin="2,0,2,0" FontWeight="Bold">All</Label>
         </Border>
 
-        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="7" Grid.ColumnSpan="3">
+        <Border Background="#FF8DB4E2" BorderThickness="3,6,3,1" BorderBrush="Black" Grid.Row="0" Grid.Column="7" Grid.ColumnSpan="3">
             <StackPanel >
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Общая прибыль</TextBlock>
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">$</TextBlock>
+                <TextBlock x:Name="mainTable_TotalProfit1" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Общая прибыль</TextBlock>
+                <TextBlock x:Name="mainTable_TotalProfit2" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">$</TextBlock>
             </StackPanel>
         </Border>
-        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="7">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
+        <Border Background="#FFE6B8B7" BorderThickness="3,0,1,3" BorderBrush="Black" Grid.Row="1" Grid.Column="7">
+            <Label x:Name="mainTable_TotalProfitSell" Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
         </Border>
-        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="8">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
+        <Border Background="#FFD8E4BC" BorderThickness="0,0,1,3" BorderBrush="Black" Grid.Row="1" Grid.Column="8">
+            <Label x:Name="mainTable_TotalProfitBuy" Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
         </Border>
-        <Border Background="#FFC5D9F1" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="9">
-            <Label Margin="2,0,2,0" FontWeight="Bold">All</Label>
+        <Border Background="#FFC5D9F1" BorderThickness="0,0,3,3" BorderBrush="Black" Grid.Row="1" Grid.Column="9">
+            <Label x:Name="mainTable_TotalProfitAll" Margin="2,0,2,0" FontWeight="Bold">All</Label>
         </Border>
 
-        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="10" Grid.ColumnSpan="3">
+        <Border Background="#FF8DB4E2" BorderThickness="3,6,3,1" BorderBrush="Black" Grid.Row="0" Grid.Column="10" Grid.ColumnSpan="3">
             <StackPanel>
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Средняя прибыль</TextBlock>
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">сетки, $</TextBlock>
+                <TextBlock x:Name="mainTable_AverageProfit1" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Средняя прибыль</TextBlock>
+                <TextBlock x:Name="mainTable_AverageProfit2" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">сетки, $</TextBlock>
             </StackPanel>
         </Border>
-        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="10">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
+        <Border Background="#FFE6B8B7" BorderThickness="3,0,1,3" BorderBrush="Black" Grid.Row="1" Grid.Column="10">
+            <Label x:Name="mainTable_AverageProfitSell" Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
         </Border>
-        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="11">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
+        <Border Background="#FFD8E4BC" BorderThickness="0,0,1,3" BorderBrush="Black" Grid.Row="1" Grid.Column="11">
+            <Label x:Name="mainTable_AverageProfitBuy" Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
         </Border>
-        <Border Background="#FFC5D9F1" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="12">
-            <Label Margin="2,0,2,0" FontWeight="Bold">All</Label>
+        <Border Background="#FFC5D9F1" BorderThickness="0,0,3,3" BorderBrush="Black" Grid.Row="1" Grid.Column="12">
+            <Label x:Name="mainTable_AverageProfitAll" Margin="2,0,2,0" FontWeight="Bold">All</Label>
         </Border>
 
-        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="13" Grid.ColumnSpan="3">
+        <Border Background="#FF8DB4E2" BorderThickness="3,6,3,1" BorderBrush="Black" Grid.Row="0" Grid.Column="13" Grid.ColumnSpan="3">
             <StackPanel >
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">% от общей</TextBlock>
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">прибыли</TextBlock>
+                <TextBlock x:Name="mainTable_PercentProfit1" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">% от общей</TextBlock>
+                <TextBlock x:Name="mainTable_PercentProfit2" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">прибыли</TextBlock>
             </StackPanel>
         </Border>
-        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="13">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
+        <Border Background="#FFE6B8B7" BorderThickness="3,0,1,3" BorderBrush="Black" Grid.Row="1" Grid.Column="13">
+            <Label x:Name="mainTable_PercentProfitSell" Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
         </Border>
-        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="14">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
+        <Border Background="#FFD8E4BC" BorderThickness="0,0,1,3" BorderBrush="Black" Grid.Row="1" Grid.Column="14">
+            <Label x:Name="mainTable_PercentProfitBuy" Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
         </Border>
-        <Border Background="#FFC5D9F1" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="15">
-            <Label Margin="2,0,2,0" FontWeight="Bold">All</Label>
+        <Border Background="#FFC5D9F1" BorderThickness="0,0,3,3" BorderBrush="Black" Grid.Row="1" Grid.Column="15">
+            <Label x:Name="mainTable_PercentProfitAll" Margin="2,0,2,0" FontWeight="Bold">All</Label>
         </Border>
 
-        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="16" Grid.ColumnSpan="2">
+        <Border Background="#FF8DB4E2" BorderThickness="3,6,3,1" BorderBrush="Black" Grid.Row="0" Grid.Column="16" Grid.ColumnSpan="2">
             <StackPanel >
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Макс. размер</TextBlock>
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">сетки в пунктах</TextBlock>
+                <TextBlock x:Name="mainTable_MaxGridSize1" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Макс. размер</TextBlock>
+                <TextBlock x:Name="mainTable_MaxGridSize2" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">сетки в пунктах</TextBlock>
             </StackPanel>
         </Border>
-        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="16">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
+        <Border Background="#FFE6B8B7" BorderThickness="3,0,1,3" BorderBrush="Black" Grid.Row="1" Grid.Column="16">
+            <Label x:Name="mainTable_MaxGridSizeSell" Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
         </Border>
-        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="17">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
+        <Border Background="#FFD8E4BC" BorderThickness="0,0,3,3" BorderBrush="Black" Grid.Row="1" Grid.Column="17">
+            <Label x:Name="mainTable_MaxGridSizeBuy" Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
         </Border>
 
-        <Border Background="#FF8DB4E2" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="18" Grid.ColumnSpan="3">
+        <Border Background="#FF8DB4E2" BorderThickness="3,6,3,1" BorderBrush="Black" Grid.Row="0" Grid.Column="18" Grid.ColumnSpan="3">
             <StackPanel >
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Средний размер</TextBlock>
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">сетки в пунктах</TextBlock>
+                <TextBlock x:Name="mainTable_AverageGridSize1" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Средний размер</TextBlock>
+                <TextBlock x:Name="mainTable_AverageGridSize2" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">сетки в пунктах</TextBlock>
             </StackPanel>
         </Border>
-        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="18">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
+        <Border Background="#FFE6B8B7" BorderThickness="3,0,1,3" BorderBrush="Black" Grid.Row="1" Grid.Column="18">
+            <Label x:Name="mainTable_AverageGridSizeSell" Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
         </Border>
-        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="19">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
+        <Border Background="#FFD8E4BC" BorderThickness="0,0,1,3" BorderBrush="Black" Grid.Row="1" Grid.Column="19">
+            <Label x:Name="mainTable_AverageGridSizeBuy" Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
         </Border>
-        <Border Background="#FFC5D9F1" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="20">
-            <Label Margin="2,0,2,0" FontWeight="Bold">All</Label>
+        <Border Background="#FFC5D9F1" BorderThickness="0,0,3,3" BorderBrush="Black" Grid.Row="1" Grid.Column="20">
+            <Label x:Name="mainTable_AverageGridSizeAll" Margin="2,0,2,0" FontWeight="Bold">All</Label>
         </Border>
 
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="21" Grid.ColumnSpan="2">
             <StackPanel >
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Макс. кол-во </TextBlock>
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">пунктов до ТП</TextBlock>
+                <TextBlock x:Name="mainTable_MaxPointsToTP1" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Макс. кол-во </TextBlock>
+                <TextBlock x:Name="mainTable_MaxPointsToTP2" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">пунктов до ТП</TextBlock>
             </StackPanel>
         </Border>
-        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="21">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
+        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="1" Grid.Column="21">
+            <Label x:Name="mainTable_MaxPointsToTPSell" Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
         </Border>
-        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="22">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
+        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="1" Grid.Column="22">
+            <Label x:Name="mainTable_MaxPointsToTPBuy" Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
         </Border>
 
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="23" Grid.ColumnSpan="3">
             <StackPanel >
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Среднее кол-во</TextBlock>
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">пунктов до ТП</TextBlock>
+                <TextBlock x:Name="mainTable_AveragePointsToTP1" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Среднее кол-во</TextBlock>
+                <TextBlock x:Name="mainTable_AveragePointsToTP2" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">пунктов до ТП</TextBlock>
             </StackPanel>
         </Border>
-        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="23">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
+        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="1" Grid.Column="23">
+            <Label x:Name="mainTable_AveragePointsToTPSell" Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
         </Border>
-        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="24">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
+        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="1" Grid.Column="24">
+            <Label x:Name="mainTable_AveragePointsToTPBuy" Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
         </Border>
-        <Border Background="#FFC5D9F1" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="25">
-            <Label Margin="2,0,2,0" FontWeight="Bold">All</Label>
+        <Border Background="#FFC5D9F1" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="1" Grid.Column="25">
+            <Label x:Name="mainTable_AveragePointsToTPAll" Margin="2,0,2,0" FontWeight="Bold">All</Label>
         </Border>
 
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="26" Grid.ColumnSpan="2">
             <StackPanel >
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Макс. время</TextBlock>
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">жизни сетки</TextBlock>
+                <TextBlock x:Name="mainTable_MaxLifeGrid1" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Макс. время</TextBlock>
+                <TextBlock x:Name="mainTable_MaxLifeGrid2" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">жизни сетки</TextBlock>
             </StackPanel>
         </Border>
-        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="26">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
+        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="1" Grid.Column="26">
+            <Label x:Name="mainTable_MaxLifeGridSell" Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
         </Border>
-        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="27">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
+        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="1" Grid.Column="27">
+            <Label x:Name="mainTable_MaxLifeGridBuy" Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
         </Border>
 
         <Border Background="#FF8DB4E2" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="0" Grid.Column="28" Grid.ColumnSpan="3">
             <StackPanel >
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Среднее время</TextBlock>
-                <TextBlock FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">жизни сетки</TextBlock>
+                <TextBlock x:Name="mainTable_AverageLifeGrid1" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">Среднее время</TextBlock>
+                <TextBlock x:Name="mainTable_AverageLifeGrid2" FontWeight="Bold" HorizontalAlignment="Center" Margin="2,0,2,0">жизни сетки</TextBlock>
             </StackPanel>
         </Border>
-        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="28">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
+        <Border Background="#FFE6B8B7" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="1" Grid.Column="28">
+            <Label x:Name="mainTable_AverageLifeGridSell" Margin="2,0,2,0" FontWeight="Bold">Sell</Label>
         </Border>
-        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="29">
-            <Label Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
+        <Border Background="#FFD8E4BC" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="1" Grid.Column="29">
+            <Label x:Name="mainTable_AverageLifeGridBuy" Margin="2,0,2,0" FontWeight="Bold">Buy</Label>
         </Border>
-        <Border Background="#FFC5D9F1" BorderThickness="1,1,0,1" BorderBrush="Black" Grid.Row="1" Grid.Column="30">
-            <Label Margin="2,0,2,0" FontWeight="Bold">All</Label>
+        <Border Background="#FFC5D9F1" BorderThickness="1,1,0,0" BorderBrush="Black" Grid.Row="1" Grid.Column="30">
+            <Label x:Name="mainTable_AverageLifeGridAll" Margin="2,0,2,0" FontWeight="Bold">All</Label>
         </Border>
 
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="0" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="6,3,3,3" Grid.Column="0" Grid.Row="2">
             <ItemsControl x:Name="number_">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -229,7 +230,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderThickness="1,1,0,1" BorderBrush="Black">
+                        <Border BorderThickness="0,0,0,1" BorderBrush="Black">
                             <Label HorizontalAlignment="Center" Content="{Binding countOrders}"></Label>
                         </Border>
                     </DataTemplate>
@@ -237,7 +238,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="1" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="3,3,0,3" Grid.Column="1" Grid.Row="2">
             <ItemsControl x:Name="GridCountSell">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -246,7 +247,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center"  Content="{Binding countGridSell}"></Label>
                         </Border>
                     </DataTemplate>
@@ -254,7 +255,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Column="2" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,3,0,3" Grid.Column="2" Grid.Row="2">
             <ItemsControl x:Name="GridCountBuy">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -263,7 +264,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center"  Content="{Binding countGridBuy}"></Label>
                         </Border>
                     </DataTemplate>
@@ -271,7 +272,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,1" Grid.Column="3" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,3,3,3" Grid.Column="3" Grid.Row="2">
             <ItemsControl x:Name="GridCountAll">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -280,7 +281,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding countGridAll}"></Label>
                         </Border>
                     </DataTemplate>
@@ -288,7 +289,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="4" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="3,3,0,3" Grid.Column="4" Grid.Row="2">
             <ItemsControl x:Name="SumLotSell">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -297,7 +298,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding SumLotSell}"></Label>
                         </Border>
                     </DataTemplate>
@@ -305,7 +306,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="5" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,3,0,3" Grid.Column="5" Grid.Row="2">
             <ItemsControl x:Name="SumLotBuy">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -314,7 +315,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding SumLotBuy}"></Label>
                         </Border>
                     </DataTemplate>
@@ -322,7 +323,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="6" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,3,3,3" Grid.Column="6" Grid.Row="2">
             <ItemsControl x:Name="SumLotAll">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -331,7 +332,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding SumLotAll}"></Label>
                         </Border>
                     </DataTemplate>
@@ -339,7 +340,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="7" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="3,3,0,3" Grid.Column="7" Grid.Row="2">
             <ItemsControl x:Name="TotalProfitSell">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -348,7 +349,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding TotalProfitSell}"></Label>
                         </Border>
                     </DataTemplate>
@@ -356,7 +357,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="8" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,3,0,3" Grid.Column="8" Grid.Row="2">
             <ItemsControl x:Name="TotalProfitBuy">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -365,7 +366,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding TotalProfitBuy}"></Label>
                         </Border>
                     </DataTemplate>
@@ -373,7 +374,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="9" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,3,3,3" Grid.Column="9" Grid.Row="2">
             <ItemsControl x:Name="TotalProfitAll">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -382,7 +383,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding TotalProfitAll}"></Label>
                         </Border>
                     </DataTemplate>
@@ -390,7 +391,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="10" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="3,3,0,3" Grid.Column="10" Grid.Row="2">
             <ItemsControl x:Name="AverageProfitSell">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -399,7 +400,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding AverageProfitSell}"></Label>
                         </Border>
                     </DataTemplate>
@@ -407,7 +408,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="11" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,3,0,3" Grid.Column="11" Grid.Row="2">
             <ItemsControl x:Name="AverageProfitBuy">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -416,7 +417,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding AverageProfitBuy}"></Label>
                         </Border>
                     </DataTemplate>
@@ -424,7 +425,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="12" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,3,3,3" Grid.Column="12" Grid.Row="2">
             <ItemsControl x:Name="AverageProfitAll">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -433,7 +434,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding AverageProfitAll}"></Label>
                         </Border>
                     </DataTemplate>
@@ -441,7 +442,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="13" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="3,3,0,3" Grid.Column="13" Grid.Row="2">
             <ItemsControl x:Name="PersentOfTotalProfitSell">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -450,7 +451,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding PersentOfTotalProfitSell}"></Label>
                         </Border>
                     </DataTemplate>
@@ -458,7 +459,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="14" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,3,0,3" Grid.Column="14" Grid.Row="2">
             <ItemsControl x:Name="PersentOfTotalProfitBuy">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -467,7 +468,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding PersentOfTotalProfitBuy}"></Label>
                         </Border>
                     </DataTemplate>
@@ -475,7 +476,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="15" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,3,3,3" Grid.Column="15" Grid.Row="2">
             <ItemsControl x:Name="PersentOfTotalProfitAll">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -484,7 +485,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding PersentOfTotalProfitAll}"></Label>
                         </Border>
                     </DataTemplate>
@@ -492,7 +493,7 @@
             </ItemsControl>
         </Border>
        
-       <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="16" Grid.Row="2">
+       <Border BorderBrush="Black" BorderThickness="3,3,0,3" Grid.Column="16" Grid.Row="2">
             <ItemsControl x:Name="MaxGridSizeSell">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -501,7 +502,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding MaxGridSizeSell}"></Label>
                         </Border>
                     </DataTemplate>
@@ -509,7 +510,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="17" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,3,3,3" Grid.Column="17" Grid.Row="2">
             <ItemsControl x:Name="MaxGridSizeBuy">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -518,7 +519,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding MaxGridSizeBuy}"></Label>
                         </Border>
                     </DataTemplate>
@@ -526,7 +527,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="18" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="3,3,0,3" Grid.Column="18" Grid.Row="2">
             <ItemsControl x:Name="AverageGridSizeSell">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -535,7 +536,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding AverageGridSizeSell}"></Label>
                         </Border>
                     </DataTemplate>
@@ -543,7 +544,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="19" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,3,0,3" Grid.Column="19" Grid.Row="2">
             <ItemsControl x:Name="AverageGridSizeBuy">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -552,7 +553,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding AverageGridSizeBuy}"></Label>
                         </Border>
                     </DataTemplate>
@@ -560,7 +561,7 @@
             </ItemsControl>
         </Border>
 
-        <Border BorderBrush="Black" BorderThickness="1,1,0,0" Grid.Column="20" Grid.Row="2">
+        <Border BorderBrush="Black" BorderThickness="1,3,3,3" Grid.Column="20" Grid.Row="2">
             <ItemsControl x:Name="AverageGridSizeAll">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -569,7 +570,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="Black" BorderThickness="1,1,0,1">
+                        <Border BorderBrush="Black" BorderThickness="0,0,0,1">
                             <Label HorizontalAlignment="Center" Content="{Binding AverageGridSizeAll}"></Label>
                         </Border>
                     </DataTemplate>
