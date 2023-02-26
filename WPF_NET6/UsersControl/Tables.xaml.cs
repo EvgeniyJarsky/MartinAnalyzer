@@ -31,6 +31,7 @@ namespace WPF_NET6.UsersControl
 
         }
 
+        // Масштаб шрифта таблиц
         private void SliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if(prO != null)

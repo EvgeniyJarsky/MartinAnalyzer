@@ -20,10 +20,9 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
-        <!-- Разметка шапки таблицы прибыли по месяцам -->
-        <!-- Шапка таблицы прибыли по месяцам -->
+        
         <StackPanel x:Name="Profit" Grid.Column="1" Grid.Row="0">
-
+            <!-- Слайдер для масштабирования -->
             <Border BorderBrush="Black" BorderThickness="1,1,1,0">
                 <StackPanel Orientation="Horizontal">
                 <Border BorderBrush="Black" BorderThickness="1,1,1,0">
@@ -37,15 +36,15 @@
 
                 </StackPanel>
             </Border>
-            
 
-            <local:ProfitTable x:Name="prO"/>
         </StackPanel>
 
         <TextBlock Grid.Column="2" Grid.Row="0">1.2</TextBlock>
         
-        <!-- Максимальное колено в сетках, закрытых за месяц -->
-        <StackPanel Grid.Column="1" Grid.Row="1">
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+            <!-- Таблица прибыли по месяцам -->
+            <local:ProfitTable x:Name="prO"/>
+            <!-- Максимальное колено в сетках, закрытых за месяц -->
             <local:GridCountOrdersTable x:Name="orderCount"/>
         </StackPanel>
         
