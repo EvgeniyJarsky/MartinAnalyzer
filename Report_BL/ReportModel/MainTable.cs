@@ -115,7 +115,12 @@ namespace Report_BL.ReportModel
         public int AverageGridSizeBuy {get; set;}
         public double AverageGridSizeAll
         {
-            get {return Math.Round( (((double)this.AverageGridSizeSell+(double)this.AverageGridSizeBuy)/2), 2, MidpointRounding.AwayFromZero);}
+            get
+            {
+                if(this.AverageGridSizeSell == 0) return (double)this.AverageGridSizeBuy;
+                if(this.AverageGridSizeBuy == 0) return (double)this.AverageGridSizeSell;
+                return Math.Round( (((double)this.AverageGridSizeSell+(double)this.AverageGridSizeBuy)/2), 2, MidpointRounding.AwayFromZero);
+            }
         }
 
         #endregion

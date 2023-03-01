@@ -67,7 +67,7 @@ namespace WPF_NET6
             // Если неизвестый файл - выводим сообщение и завершаем добавление файла
             if(reportType == "UnKnownFile")
             {
-                MessageBox.Show("Неверное расширение файла");
+                MessageBox.Show("Неверный файл!");
                 return;
             }
 

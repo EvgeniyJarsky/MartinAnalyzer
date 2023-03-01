@@ -7,6 +7,11 @@
              mc:Ignorable="d">
     
     <TreeView x:Name="TreeViewer">
+        <TreeView.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Анализ" Click="AnalisGrid"/>
+            </ContextMenu>
+        </TreeView.ContextMenu>
         <TreeView.ItemTemplate>
             <HierarchicalDataTemplate ItemsSource="{Binding Path=Orders}">
                 <TextBlock Text="{Binding GridInfo}"></TextBlock>

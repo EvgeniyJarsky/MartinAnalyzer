@@ -29,5 +29,10 @@ namespace WPF_NET6.UsersControl
             InitializeComponent();
             TreeViewer.ItemsSource = Report_BL.DataCollection.TreeCollection.grid;
         }
+
+        private void AnalisGrid(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

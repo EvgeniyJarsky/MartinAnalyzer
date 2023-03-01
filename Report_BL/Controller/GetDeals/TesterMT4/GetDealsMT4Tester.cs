@@ -21,13 +21,14 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
         /// <param name="report">Объект класса Report</param>
         public static void Get(NewReport report)
         {
-            int digits = 0; //количество знаков после запятой
-            List<float> buy = new List<float>();
-            List<float> sell = new List<float>();
+            int digits = 0; //количество знаков после запятой.
+            List<float> buy = new List<float>(); // Нумерация сеток buy.
+            List<float> sell = new List<float>();// Нумерация сеток sell.
+
             string[] keywordsMT4 = { ">buy<", ">sell<", "t/p", "s/l", "close at stop", "close" };
 
-
             int countGrid = 0;
+
             Report_BL.ReportModel.TreeViewClass sellGrid = new Report_BL.ReportModel.TreeViewClass();
             Report_BL.ReportModel.TreeViewClass buyGrid = new Report_BL.ReportModel.TreeViewClass();
 
@@ -43,7 +44,7 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                         var parseResult =
                             Report_BL.Controller.GetDeals.TesterMT4.ParseMT4Tester.ParseDealsMT4Tester(line, report.Symbol);
                         // Number|Symbol|Date|Buy_Sell|Direct|Lot|Price|Profit|Balance
-                        
+                       
                         //! Один раз встретилось тип сделки "close" - не знаю что это
                         // Если sell/buy = close - надо найти этот ордер и определить sell это или buy
                         if(parseResult.sell_buy == "close")
@@ -60,10 +61,9 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                         
                         // определяем максимальное количество знаков после запятой
                         int currentDigit = Report_BL.Controller.GetDeals.CountDigits.Count(parseResult.price);
-                        if (digits < currentDigit)
-                            digits = currentDigit;
+                        digits = Math.Max(digits, currentDigit);
                         
-                        // заменим "t/p" на тип сделки
+                        // Запоминаем номера ордеров.
                         if (parseResult.sell_buy == "buy")
                             buy.Add(parseResult.orderNumber);
                         if (parseResult.sell_buy == "sell")
@@ -93,7 +93,7 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                         }
                         #endregion
 
-                        if (parseResult.sell_buy == "t/p" || parseResult.sell_buy == "close at stop")
+                        if (parseResult.sell_buy == "s/l" || parseResult.sell_buy == "t/p" || parseResult.sell_buy == "close at stop")
                         {
                             if (buy.Contains(parseResult.orderNumber))
                                 parseResult.sell_buy = "buy";
@@ -363,37 +363,5 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
             }
     
     }
-
-        
-    
-
-        // private static void ContinueGrid(
-        //     Report_BL.Controller.GetDeals.TesterMT4.ParseMT4Tester.Deal order)
-        // {
-
-        //     foreach(var grid in Report_BL.DataCollection.TreeCollection.grid)
-        //     {
-        //         if(grid.EndDate == DateTime.MaxValue && order.sell_buy == grid.Sell_Buy) // Если нашли незакрытую сетку
-        //         {
-        //             if(order.direct == "open")
-        //             {
-        //                 var newOrder = new Report_BL.ReportModel.Order();
-
-        //                 newOrder.OpenDate = order.dateAndTimeOfDeal;
-        //                 newOrder.OpenPrice = order.price;
-        //                 newOrder.Lot = order.lot;
-
-        //                 grid.CountOrders++;
-        //                 grid.Orders.Add(newOrder);
-        //                 break;
-                
-        //             }
-        //             else // Иначе close
-        //             {
-
-        //             }
-        //         }
-        //     }
-        // }
-    }
+}
 

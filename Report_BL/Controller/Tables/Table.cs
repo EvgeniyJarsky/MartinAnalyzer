@@ -231,6 +231,8 @@ namespace Report_BL.Controller.Tables
                 При этом если сеток с таким количеством колен не было то
                 такая строка не создастся - это исправим ниже
             */
+            int maxOrdersInGrid = 0; // максимальное кол-во колен в сетке
+
             foreach(var tree in TreeCollection.grid)
             {
                 // Находим строку в главной таблице с tree.CountOrders кол-вом колен
@@ -243,11 +245,13 @@ namespace Report_BL.Controller.Tables
                         newRow.countGridSell++;
                         newRow.SumLotSell += tree.Lot;
                         newRow.TotalProfitSell += tree.Profit;
+                        if(tree.CountOrders > maxOrdersInGrid) maxOrdersInGrid = tree.CountOrders;
                         break;
                     case "buy":
                         newRow.countGridBuy++;
                         newRow.SumLotBuy += tree.Lot;
                         newRow.TotalProfitBuy += tree.Profit;
+                        if(tree.CountOrders > maxOrdersInGrid) maxOrdersInGrid = tree.CountOrders;
                         break;
                 }
             }
@@ -255,8 +259,8 @@ namespace Report_BL.Controller.Tables
             #region  Создадим строки с сетками с количеством колен которые в данном отчете отсутствуют
             // что бы не было пропусков номеров в таблице
             int countRows = Report_BL.DataCollection.MainTable.mainTable.Count();
-            bool[] countmass = new bool[countRows]; 
-            Array.Fill(countmass, false);
+            bool[] countmass = new bool[maxOrdersInGrid]; 
+            //Array.Fill(countmass, false);
 
             // Заполняем массив значениями true там где есть строки сеток
             for(int i = countRows-1; i < countRows; i++)
