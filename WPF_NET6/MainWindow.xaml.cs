@@ -181,6 +181,7 @@ namespace WPF_NET6
         {
             var filter = this.OwnedWindows[0];
 
+
             // Коллекция куда добавляем элементы не подходящие под условия фильтра
             var tempGridColliction = new List<Report_BL.ReportModel.TreeViewClass>();
 
@@ -189,7 +190,7 @@ namespace WPF_NET6
                 
                 var hourOpen = grid.Orders[0].OpenDate.Hour;
                 var mass = Report_BL.DataCollection.HourFilter.hourFilter.hourFilterMassive();
-                if(mass[hourOpen] == -100)
+                if(mass[hourOpen] == false)
                 {
                         tempGridColliction.Add(grid);
                 }

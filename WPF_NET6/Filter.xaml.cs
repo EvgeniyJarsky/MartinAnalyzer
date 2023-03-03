@@ -27,6 +27,7 @@ namespace WPF_NET6
         private void CountFilter(object sender, RoutedEventArgs e)
         {
             #region Записываем значения checkBox для каждого часа
+            Report_BL.DataCollection.HourFilter.hourFilter.Hour_0 = hour_0?.IsChecked ?? true;
             Report_BL.DataCollection.HourFilter.hourFilter.Hour_1 = hour_1?.IsChecked ?? true;
             Report_BL.DataCollection.HourFilter.hourFilter.Hour_2 = hour_2?.IsChecked ?? true;
             Report_BL.DataCollection.HourFilter.hourFilter.Hour_3 = hour_3?.IsChecked ?? true;
@@ -50,12 +51,12 @@ namespace WPF_NET6
             Report_BL.DataCollection.HourFilter.hourFilter.Hour_21 = hour_21?.IsChecked ?? true;
             Report_BL.DataCollection.HourFilter.hourFilter.Hour_22 = hour_22?.IsChecked ?? true;
             Report_BL.DataCollection.HourFilter.hourFilter.Hour_23 = hour_23?.IsChecked ?? true;
-            Report_BL.DataCollection.HourFilter.hourFilter.Hour_24 = hour_24?.IsChecked ?? true;
             #endregion
         }
 
         private void SelectAllHours(object sender, RoutedEventArgs e)
         {
+            if (hour_0 != null) hour_0.IsChecked = true;
             if (hour_1 != null) hour_1.IsChecked = true;
             if (hour_2 != null) hour_2.IsChecked = true;
             if (hour_3 != null) hour_3.IsChecked = true;
@@ -79,11 +80,11 @@ namespace WPF_NET6
             if (hour_21 != null) hour_21.IsChecked = true;
             if (hour_22 != null) hour_22.IsChecked = true;
             if (hour_23 != null) hour_23.IsChecked = true;
-            if (hour_24 != null) hour_24.IsChecked = true;
         }
 
         private void UnSelectAllHours(object sender, RoutedEventArgs e)
         {
+            if (hour_0 != null) hour_0.IsChecked = false;
             if (hour_1 != null) hour_1.IsChecked = false;
             if (hour_2 != null) hour_2.IsChecked = false;
             if (hour_3 != null) hour_3.IsChecked = false;
@@ -107,7 +108,6 @@ namespace WPF_NET6
             if (hour_21 != null) hour_21.IsChecked = false;
             if (hour_22 != null) hour_22.IsChecked = false;
             if (hour_23 != null) hour_23.IsChecked = false;
-            if (hour_24 != null) hour_24.IsChecked = false;
         }
 
         private void SelectAllDays(object sender, RoutedEventArgs e)

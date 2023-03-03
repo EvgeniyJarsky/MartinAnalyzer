@@ -259,10 +259,14 @@ namespace Report_BL.Controller.Tables
             #region  Создадим строки с сетками с количеством колен которые в данном отчете отсутствуют
             // что бы не было пропусков номеров в таблице
             int countRows = Report_BL.DataCollection.MainTable.mainTable.Count();
+            if (countRows == 0) // Если строк в таблице нет => выходим из расчета
+                return;
             bool[] countmass = new bool[maxOrdersInGrid]; 
             //Array.Fill(countmass, false);
 
             // Заполняем массив значениями true там где есть строки сеток
+            // TODO тут когда после фильтра не остается строк countRows-1 = -1 => недопустимый
+            // идекс массива
             for(int i = countRows-1; i < countRows; i++)
             {
                 var f = Report_BL.DataCollection.MainTable.mainTable[i].countOrders-1;

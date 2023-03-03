@@ -14,32 +14,32 @@
                         <CheckBox FontWeight="Bold" x:Name="selectAllH" IsChecked="True" Content="Выбрать все" Margin="5,5,5,20" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="SelectAllHours" Unchecked="UnSelectAllHours"></CheckBox>
                         <StackPanel Orientation="Horizontal">
                             <StackPanel>
-                                <CheckBox x:Name="hour_1" IsChecked="True" Content="1 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_2" IsChecked="True" Content="2 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_3" IsChecked="True" Content="3 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_4" IsChecked="True" Content="4 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_5" IsChecked="True" Content="5 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_6" IsChecked="True" Content="6 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_7" IsChecked="True" Content="7 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_8" IsChecked="True" Content="8 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_9" IsChecked="True" Content="9 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_10" IsChecked="True" Content="10 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_11" IsChecked="True" Content="11 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_12" IsChecked="True" Content="12 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_0" IsChecked="True" Content="1 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_1" IsChecked="True" Content="2 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_2" IsChecked="True" Content="3 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_3" IsChecked="True" Content="4 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_4" IsChecked="True" Content="5 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_5" IsChecked="True" Content="6 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_6" IsChecked="True" Content="7 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_7" IsChecked="True" Content="8 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_8" IsChecked="True" Content="9 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_9" IsChecked="True" Content="10 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_10" IsChecked="True" Content="11 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_11" IsChecked="True" Content="12 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
                             </StackPanel>
                             <StackPanel>
-                                <CheckBox x:Name="hour_13" IsChecked="True" Content="13 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_14" IsChecked="True" Content="14 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_15" IsChecked="True" Content="15 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_16" IsChecked="True" Content="16 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_17" IsChecked="True" Content="17 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_18" IsChecked="True" Content="18 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_19" IsChecked="True" Content="19 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_20" IsChecked="True" Content="20 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_21" IsChecked="True" Content="21 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_22" IsChecked="True" Content="22 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_23" IsChecked="True" Content="23 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
-                                <CheckBox x:Name="hour_24" IsChecked="True" Content="24 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_12" IsChecked="True" Content="13 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_13" IsChecked="True" Content="14 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_14" IsChecked="True" Content="15 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_15" IsChecked="True" Content="16 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_16" IsChecked="True" Content="17 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_17" IsChecked="True" Content="18 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_18" IsChecked="True" Content="19 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_19" IsChecked="True" Content="20 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_20" IsChecked="True" Content="21 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_21" IsChecked="True" Content="22 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_22" IsChecked="True" Content="23 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
+                                <CheckBox x:Name="hour_23" IsChecked="True" Content="24 час" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Center"></CheckBox>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

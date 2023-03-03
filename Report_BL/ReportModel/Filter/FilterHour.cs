@@ -9,6 +9,7 @@ namespace Report_BL.ReportModel
 {
     public class FilterHour
     {
+        public bool Hour_0 {get; set;} = true;
         public bool Hour_1 {get; set;} = true;
         public bool Hour_2 {get; set;} = true;
         public bool Hour_3 {get; set;} = true;
@@ -32,39 +33,37 @@ namespace Report_BL.ReportModel
         public bool Hour_21 {get; set;} = true;
         public bool Hour_22 {get; set;} = true;
         public bool Hour_23 {get; set;} = true;
-        public bool Hour_24 {get; set;} = true;
+        
 
-        public sbyte[] hourFilterMassive()
+        public bool[] hourFilterMassive()
         {
-            var rez = new sbyte[24];
-            Array.Fill<sbyte>(rez, -100);
-
-            if(Hour_1) rez[0] = 1;
-            if(Hour_2) rez[1] = 2;
-            if(Hour_3) rez[2] = 3;
-            if(Hour_4) rez[3] = 4;
-            if(Hour_5) rez[4] = 5;
-            if(Hour_6) rez[5] = 6;
-            if(Hour_7) rez[6] = 7;
-            if(Hour_8) rez[7] = 8;
-            if(Hour_9) rez[8] = 9;
-            if(Hour_10) rez[9] = 10;
-            if(Hour_11) rez[10] = 11;
-            if(Hour_12) rez[11] = 12;
-            if(Hour_13) rez[12] = 13;
-            if(Hour_14) rez[13] = 14;
-            if(Hour_15) rez[14] = 15;
-            if(Hour_16) rez[15] = 16;
-            if(Hour_17) rez[16] = 17;
-            if(Hour_18) rez[17] = 18;
-            if(Hour_19) rez[18] = 19;
-            if(Hour_20) rez[19] = 20;
-            if(Hour_21) rez[20] = 21;
-            if(Hour_22) rez[21] = 22;
-            if(Hour_23) rez[22] = 23;
-            if(Hour_24) rez[23] = 24;
-
-            return rez;
+            return new bool[24]
+            {
+                Hour_0,
+                Hour_1,
+                Hour_2,
+                Hour_3,
+                Hour_4,
+                Hour_5,
+                Hour_6,
+                Hour_7,
+                Hour_8,
+                Hour_9,
+                Hour_10,
+                Hour_11,
+                Hour_12,
+                Hour_13,
+                Hour_14,
+                Hour_15,
+                Hour_16,
+                Hour_17,
+                Hour_18,
+                Hour_19,
+                Hour_20,
+                Hour_21,
+                Hour_22,
+                Hour_23
+            };
         }  
 
     }
