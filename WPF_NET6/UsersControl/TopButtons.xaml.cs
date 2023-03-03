@@ -49,8 +49,8 @@ namespace WPF_NET6.UsersControl
         private void Filter(object sender, RoutedEventArgs e)
         {
             FilterEvent?.Invoke(sender, e);
-            WPF_NET6.Filter filter = new();
-            filter.Show();
+            
+            
         }
     }
 }

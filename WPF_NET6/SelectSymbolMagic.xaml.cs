@@ -30,7 +30,6 @@ namespace WPF_NET6
         {
             InitializeComponent();
 
-
             this.firstInfo1 = firstInfo;
 
             #region Добовляем все символы
@@ -40,30 +39,17 @@ namespace WPF_NET6
                 sym = item.Key;
                 symbol.Items.Add(sym);
             }
-            #endregion
-
             // фокус на первом символе из списка
             symbol.SelectedIndex = 0;
-
-
-            // Добавляем все меджики для символа sym
-            foreach(var item in firstInfo.DicSymbolMagic[sym])
-            {
-                magic.Items.Add(item);
-            }
-
-            // Фокус на первом меджике
-            magic.SelectedIndex = 0;
-
-            #region Определяем даты начала и конца теста
-            StartDate.DisplayDate = firstInfo.StartDate;
-            StartDate.SelectedDate = firstInfo.StartDate;
-            EndDate.DisplayDate = firstInfo.EndDate;
-            EndDate.SelectedDate = firstInfo.EndDate;
             #endregion
-
-            #region Выводим депозит
-            Deposit.Text = firstInfo.StartDeposit.ToString();
+            
+            #region Добавляем все меджики для символа sym
+                foreach(var item in firstInfo.DicSymbolMagic[sym])
+                {
+                    magic.Items.Add(item);
+                }
+                // Фокус на первом меджике
+                magic.SelectedIndex = 0;
             #endregion
         }
 
@@ -84,39 +70,35 @@ namespace WPF_NET6
 
         private void ClickButton(object sender, RoutedEventArgs e)
         {
-            string sym = symbol.SelectedItem.ToString();
-            int mag = int.Parse(magic.SelectedItem.ToString());
-            DateTime start = StartDate.SelectedDate.Value;
-            DateTime end = EndDate.SelectedDate.Value;
+            string? sym = symbol.SelectedItem.ToString();
+            string? mag_str = magic.SelectedItem.ToString();
 
-            // Проверим что в окне Депозит введено целое число
-            // TODO Можно вынести в отдельную функцию 
-            if (Deposit.Text.All(char.IsDigit))
+            if(mag_str != null && sym != null)
             {
-                if (!int.TryParse(Deposit.Text, out int depo))
-                {
-                    MessageBox.Show("Депозит должен быть целым числом!");
-                }
-                else
-                {
-                    // Создаем неполный объект из первичной информации
-                    NewReport rep = new NewReport
-                    (
-                        firstInfo1.FilePath,
-                        firstInfo1.ReportType,
-                        sym,
-                        mag,
-                        start,
-                        end,
-                        depo
-                    );
+                int mag = int.Parse(mag_str);
 
-                    Report_BL.DataCollection.ReportCollection.newReport.Add(rep);
-                    // Закрываем окно
-                    this.Close();
-                }
+                NewReport rep = new NewReport
+                (
+                    firstInfo1.FilePath,
+                    firstInfo1.ReportType,
+                    sym,
+                    mag,
+                    firstInfo1.StartDate,
+                    firstInfo1.EndDate,
+                    firstInfo1.StartDeposit
+                );
+                Report_BL.DataCollection.ReportCollection.newReport.Add(rep);
+                // Закрываем окно
+                this.Close();
             }
             else MessageBox.Show("Значение депозита должен быть целым числом!");
+
+
+
+                
+
+                
+            
         }
     }
 }

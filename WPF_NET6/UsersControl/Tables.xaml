@@ -20,7 +20,6 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
-        
         <StackPanel x:Name="Profit" Grid.Column="1" Grid.Row="0">
             <!-- Слайдер для масштабирования -->
             <Border BorderBrush="Black" BorderThickness="1,1,1,0">

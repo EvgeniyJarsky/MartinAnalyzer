@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.IO;
+using System.Linq;
+
 
 using WorkWithFiles.LoadFile;
 
@@ -159,13 +161,59 @@ namespace WPF_NET6
             }
         }
         
+        // При нажатии кнопки Фильтр - идем сюда и очищаем коллекции
         private void Filter(object sender, RoutedEventArgs e)
         {
+            // Очищаем таблицы
             Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable.Clear();
             Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
             Report_BL.DataCollection.MainTable.mainTable.Clear();
-
+            WPF_NET6.Filter filter = new();
+            filter.Show();
+            filter.Owner = this;
+            // Это событие будет выполнятся при нажатии кнопки в окне фильтра
+            filter.CountFilterName.Click += CountFilterName_Click;
             
+        }
+
+        // При нажатии кнопки в окне фильтра будет выполняться этот код
+        private void CountFilterName_Click(object sender, RoutedEventArgs e)
+        {
+            var filter = this.OwnedWindows[0];
+
+            // Коллекция куда добавляем элементы не подходящие под условия фильтра
+            var tempGridColliction = new List<Report_BL.ReportModel.TreeViewClass>();
+
+            foreach(var grid in Report_BL.DataCollection.TreeCollection.grid)
+            {
+                
+                var hourOpen = grid.Orders[0].OpenDate.Hour;
+                var mass = Report_BL.DataCollection.HourFilter.hourFilter.hourFilterMassive();
+                if(mass[hourOpen] == -100)
+                {
+                        tempGridColliction.Add(grid);
+                }
+            }
+            
+            foreach(var grid in tempGridColliction)
+                Report_BL.DataCollection.TreeCollection.grid.Remove(grid);
+
+            //Формируем таблицу прибыли по месяцам
+            Report_BL.Controller.Tables.Table.CreateProfiTable();
+
+            // Формируем таблицу максимального кол-ва колен за месяц
+            Report_BL.Controller.Tables.Table.CreateMaxOrdersGridTable();
+
+            var selectedList = listBox_.SelectedItems;// список выбранных отчетов
+            if (selectedList.Count != 0) // проверка если удалили последний объект
+            {
+                NewReport firstSelected = (NewReport)selectedList[0];
+                Report_BL.Controller.Tables.Table.CreateMainTable(firstSelected);
+            }
+
+            filter.Close();
+            
+            //throw new NotImplementedException();
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -189,6 +237,8 @@ namespace WPF_NET6
             }
             return new NewReport();
         }
+
+        
 
     }
 }
