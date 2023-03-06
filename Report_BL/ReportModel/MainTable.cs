@@ -78,12 +78,20 @@ namespace Report_BL.ReportModel
                     return _averageProfitBuy;
             }
         }
-        private double _averageProfitAll = 0;
+        private double _averageProfitAll =0;
+        
         //! TODO Использую свойства хотя надо использовать поля в Расчете AverageProfit -
         //! надо сделать правильно
         public double AverageProfitAll
         {
-            get {return Math.Round(((this.AverageProfitSell+this.AverageProfitBuy)/2), 2, MidpointRounding.AwayFromZero);}
+            get
+            {
+                //! TODO Так считать не правильно => надо все сделки и селл и бай складывать и делить на общее кол-во
+                // это надо исправлять во всей таблице
+                if(this.AverageProfitSell == 0) return (double)this.AverageProfitBuy;
+                if(this.AverageProfitBuy == 0) return (double)this.AverageProfitSell;
+                return Math.Round( (((double)this.AverageProfitSell+(double)this.AverageProfitBuy)/2), 2, MidpointRounding.AwayFromZero);
+            }
         }
         #endregion
         

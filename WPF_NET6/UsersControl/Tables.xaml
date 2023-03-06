@@ -5,53 +5,45 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_NET6.UsersControl"
              mc:Ignorable="d">
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-    <Grid ShowGridLines="True">
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        
-        <StackPanel x:Name="Profit" Grid.Column="1" Grid.Row="0">
-            <!-- Слайдер для масштабирования -->
-            <Border BorderBrush="Black" BorderThickness="1,1,1,0">
-                <StackPanel Orientation="Horizontal">
-                <Border BorderBrush="Black" BorderThickness="1,1,1,0">
-                    <Slider x:Name="mySlider" Width="200" Orientation="Horizontal" HorizontalAlignment="Left" 
-                        IsSnapToTickEnabled="True" Minimum="8" Maximum="32" Value="12" TickPlacement="BottomRight" 
-                        AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" ValueChanged="SliderChanged"/>
-                </Border>
-                <Border BorderBrush="Black" BorderThickness="1,1,1,0">
-                    <Label FontSize="12" Content="Масштаб"></Label>
-                </Border>
-
+    <ScrollViewer   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid ShowGridLines="False">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition  Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+                <!-- Слайдер для масштабирования -->
+                <StackPanel Grid.Column="0" Grid.Row="0">
+                    <Border Margin="5,5,5,5"  BorderBrush="Black" BorderThickness="1,1,1,1">
+                        <StackPanel Orientation="Horizontal">
+                            <Border BorderBrush="Black" BorderThickness="1,1,1,0">
+                                <Slider x:Name="mySlider" Width="200" Orientation="Horizontal" HorizontalAlignment="Left" 
+                                    IsSnapToTickEnabled="True" Minimum="8" Maximum="32" Value="12" TickPlacement="BottomRight" 
+                                    AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2" ValueChanged="SliderChanged"/>
+                            </Border>
+                            <Border BorderBrush="Black" BorderThickness="1,1,1,0">
+                                <Label FontSize="12" Content="Масштаб"></Label>
+                            </Border>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
-            </Border>
-
-        </StackPanel>
-
-        <TextBlock Grid.Column="2" Grid.Row="0">1.2</TextBlock>
-        
-        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
-            <!-- Таблица прибыли по месяцам -->
-            <local:ProfitTable x:Name="prO"/>
-            <!-- Максимальное колено в сетках, закрытых за месяц -->
-            <local:GridCountOrdersTable x:Name="orderCount"/>
-        </StackPanel>
-        
-        <TextBlock Grid.Column="2" Grid.Row="1">2.2</TextBlock>
-            <StackPanel Grid.Column="1" Grid.Row="2">
-                <local:MainTable x:Name="mainTable"/>
-            </StackPanel>
-        <TextBlock Grid.Column="2" Grid.Row="2">3.2</TextBlock>
-    </Grid>
+                
+                <StackPanel Grid.Column="0" Grid.Row="1">
+                        <StackPanel Orientation="Vertical">
+                            <!-- Главная таблица -->
+                            <local:MainTable x:Name="mainTable"/>
+                            <!-- Таблица прибыли по месяцам -->
+                            <local:ProfitTable x:Name="prO"/>
+                            <!-- Максимальное колено в сетках, закрытых за месяц -->
+                            <local:GridCountOrdersTable x:Name="orderCount"/>
+                        </StackPanel>
+                </StackPanel>
+            <!-- <TextBlock Grid.Column="2" Grid.Row="0">1.2</TextBlock>
+            <TextBlock Grid.Column="2" Grid.Row="1">2.2</TextBlock>
+            <TextBlock Grid.Column="2" Grid.Row="2">3.2</TextBlock> -->
+        </Grid>
     </ScrollViewer>
 </UserControl>

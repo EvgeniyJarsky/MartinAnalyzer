@@ -21,24 +21,6 @@ namespace WPF_NET6
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static ObservableCollection<NewReport> newReport =
-            Report_BL.DataCollection.ReportCollection.newReport;
-
-        /// <summary>
-        /// Коллекция объектов Info(состоит из 2-х значений - парамет и значение)
-        /// </summary>
-        public static ObservableCollection<Info> param = Report_BL.DataCollection.ParamentrsCollection.param;
-
-        /// <summary>
-        /// Коллекция объектов Report(отчетов)
-        /// </summary>
-        public static ObservableCollection<Report> report = Report_BL.DataCollection.ReportCollection.report;
-        
-        /// <summary>
-        /// Коллекция объектов "Сделка" с основными переметрами - время открытия/закрытия, тип ордера, лот и т.д.
-        /// </summary>
-        public static ObservableCollection<Deal> dealsCollection = Report_BL.DataCollection.DealsCollection.dealsCollection;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -179,21 +161,51 @@ namespace WPF_NET6
         // При нажатии кнопки в окне фильтра будет выполняться этот код
         private void CountFilterName_Click(object sender, RoutedEventArgs e)
         {
-            var filter = this.OwnedWindows[0];
+            WPF_NET6.Filter filter = (Filter)this.OwnedWindows[0];
 
+            // Равно/больше/меньше/не важно - берется из окна фильтра для длины сетки
+            string? ComboGridLenght = filter.ComboGridLenght.SelectionBoxItem.ToString();
+            // Длина сетки - берется из окна фильтра
+            string GridLenghtText = filter.GridLenghtText.Text;
+            // Равно/больше/меньше/не важно - берется из окна фильтра для кол-ва колен сетки
+            string? ComboOrdersInGrid = filter.ComboOrdersInGrid.SelectionBoxItem.ToString();
+            // Кол-во колен сетки - берется из окна фильтра
+            string OrdersInGridText = filter.OrdersInGridText.Text;
+
+            var mass = Report_BL.DataCollection.HourFilter.hourFilter.hourFilterMassive();
+            var dayMass = Report_BL.DataCollection.DaysFilter.dayFilter.daysFilterMassive();
 
             // Коллекция куда добавляем элементы не подходящие под условия фильтра
             var tempGridColliction = new List<Report_BL.ReportModel.TreeViewClass>();
 
             foreach(var grid in Report_BL.DataCollection.TreeCollection.grid)
             {
-                
-                var hourOpen = grid.Orders[0].OpenDate.Hour;
-                var mass = Report_BL.DataCollection.HourFilter.hourFilter.hourFilterMassive();
-                if(mass[hourOpen] == false)
+                if(GridFilterLogic(ComboGridLenght,GridLenghtText, grid.GridLenght) == false)
                 {
-                        tempGridColliction.Add(grid);
+                    tempGridColliction.Add(grid);
+                    continue;
                 }
+
+                if(GridFilterLogic(ComboOrdersInGrid,OrdersInGridText, grid.CountOrders) == false)
+                {
+                    tempGridColliction.Add(grid);
+                    continue;
+                }
+
+                #region Если час начала сетки hourOpen равен FALSE => отмечаем эту сетку на удаление
+                    var hourOpen = grid.Orders[0].OpenDate.Hour;
+                    if(mass[hourOpen] == false)
+                    {
+                            tempGridColliction.Add(grid);
+                            continue;
+                    }
+                #endregion
+
+                #region Если день недели начала сетки hourOpen равен FALSE => отмечаем эту сетку на удаление
+                    var startGridDay = (int)grid.Orders[0].OpenDate.DayOfWeek;
+                    if(dayMass[startGridDay] == false)
+                        tempGridColliction.Add(grid);
+                #endregion
             }
             
             foreach(var grid in tempGridColliction)
@@ -211,10 +223,7 @@ namespace WPF_NET6
                 NewReport firstSelected = (NewReport)selectedList[0];
                 Report_BL.Controller.Tables.Table.CreateMainTable(firstSelected);
             }
-
             filter.Close();
-            
-            //throw new NotImplementedException();
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -222,24 +231,64 @@ namespace WPF_NET6
 
         }
 
-        public event EventHandler getSelectedReport;
-
-        private NewReport Button_Click()
+        private bool GridFilterLogic(string mathValue, string textValue, int valueToCompare)
         {
-            if (getSelectedReport != null)
+            if(mathValue == null) return false;
+            // Если выбрано не важно  то сразу TRUE
+            if(mathValue == "не важно") return true;
+
+            //? Если неудачно парсим введенное число вовращаем всегда FALSE => пустые данные
+            if(!int.TryParse(textValue, out int intValue))
             {
-                var selectedList = listBox_.SelectedItems;// список выбранных отчетов
-                if (selectedList.Count != 0) // проверка если удалили последний объект
+                MessageBox.Show("Введено не верное значение. Должно быть целое число.");
+                return false;
+                throw new Exception();
+            }   
+            if(mathValue == "больше")
+            {
+                // bool compareDigits = valueToCompare > intValue;
+                switch (valueToCompare > intValue)
                 {
-                    var f = selectedList[0];
-                    return (NewReport)f;
-                }
-                NewReport firstSelected = (NewReport)selectedList[0];
+                    case true:
+                        return true;
+                    case false:
+                        return false;
+                } 
+            } 
+            else if(mathValue == "меньше")
+            {
+                switch (valueToCompare < intValue)
+                {
+                    case true:
+                        return true;
+                    case false:
+                        return false;
+                } 
             }
-            return new NewReport();
+            else if(mathValue == "равно")
+            {
+                switch (valueToCompare == intValue)
+                {
+                    case true:
+                        return true;
+                    case false:
+                        return false;
+                } 
+            }
+            return false; // Прочие случаи возвращаем FALSE => пустые таблицы 
+            
         }
 
-        
+        public int Digits()
+        {
+            var selectedList = listBox_.SelectedItems;// список выбранных отчетов
 
+            if (selectedList.Count != 0) // проверка если удалили последний объект
+            {
+                NewReport firstSelected = (NewReport)selectedList[0];
+                return firstSelected.Digits;
+            }
+            else throw new Exception("Похоже не выбрат отчет.");
+        }
     }
 }

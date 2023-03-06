@@ -63,26 +63,26 @@
                     <Border Margin="5,5,5,5" BorderThickness="2" Background="AliceBlue" BorderBrush="#FF292121">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="5,5,5,5" Text="Длина сетки"></TextBlock>
-                            <ComboBox Margin="5,5,5,5" IsReadOnly="True">
+                            <ComboBox x:Name="ComboGridLenght" Margin="5,5,5,5" IsReadOnly="True">
                                 <ComboBoxItem IsSelected="True"  Content="не важно"></ComboBoxItem>
                                 <ComboBoxItem Content="равно"></ComboBoxItem>
                                 <ComboBoxItem Content="больше"></ComboBoxItem>
                                 <ComboBoxItem Content="меньше"></ComboBoxItem>
                             </ComboBox>
-                            <TextBox Margin="5,5,5,5">0</TextBox>
+                            <TextBox x:Name="GridLenghtText" Margin="5,5,5,5">0</TextBox>
                         </StackPanel>
                     </Border>
 
                     <Border Margin="5,5,5,5" BorderThickness="2" Background="AliceBlue" BorderBrush="#FF292121">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Margin="5,5,5,5" Text="Колен сетки"></TextBlock>
-                            <ComboBox Margin="5,5,5,5">
+                            <ComboBox x:Name="ComboOrdersInGrid" Margin="5,5,5,5">
                                 <ComboBoxItem IsSelected="True"  Content="не важно"></ComboBoxItem>
                                 <ComboBoxItem Content="равно"></ComboBoxItem>
                                 <ComboBoxItem Content="больше"></ComboBoxItem>
                                 <ComboBoxItem Content="меньше"></ComboBoxItem>
                             </ComboBox>
-                            <TextBox Margin="5,5,5,5">0</TextBox>
+                            <TextBox x:Name="OrdersInGridText" Margin="5,5,5,5">0</TextBox>
                         </StackPanel>
                     </Border>
 

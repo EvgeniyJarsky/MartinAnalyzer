@@ -52,8 +52,15 @@ namespace WPF_NET6
             Report_BL.DataCollection.HourFilter.hourFilter.Hour_22 = hour_22?.IsChecked ?? true;
             Report_BL.DataCollection.HourFilter.hourFilter.Hour_23 = hour_23?.IsChecked ?? true;
             #endregion
+
+            Report_BL.DataCollection.DaysFilter.dayFilter.Monday = mon?.IsChecked ?? true;
+            Report_BL.DataCollection.DaysFilter.dayFilter.Tuesday = tue?.IsChecked ?? true;
+            Report_BL.DataCollection.DaysFilter.dayFilter.Wednesday = wed?.IsChecked ?? true;
+            Report_BL.DataCollection.DaysFilter.dayFilter.Thursday = thu?.IsChecked ?? true;
+            Report_BL.DataCollection.DaysFilter.dayFilter.Friday = fri?.IsChecked ?? true;
         }
 
+        
         private void SelectAllHours(object sender, RoutedEventArgs e)
         {
             if (hour_0 != null) hour_0.IsChecked = true;
