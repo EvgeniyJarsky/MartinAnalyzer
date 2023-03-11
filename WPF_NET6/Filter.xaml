@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_NET6"
         mc:Ignorable="d"
-        Title="Filter" Height="400" Width="500">
+        Title="Фильтр" Height="400" Width="550">
     <Grid VerticalAlignment="Center">
         <StackPanel>
             <StackPanel Orientation="Horizontal">
@@ -69,7 +69,7 @@
                                 <ComboBoxItem Content="больше"></ComboBoxItem>
                                 <ComboBoxItem Content="меньше"></ComboBoxItem>
                             </ComboBox>
-                            <TextBox x:Name="GridLenghtText" Margin="5,5,5,5">0</TextBox>
+                            <TextBox MinWidth="40" x:Name="GridLenghtText" Margin="5,5,5,5">0</TextBox>
                         </StackPanel>
                     </Border>
 
@@ -82,13 +82,12 @@
                                 <ComboBoxItem Content="больше"></ComboBoxItem>
                                 <ComboBoxItem Content="меньше"></ComboBoxItem>
                             </ComboBox>
-                            <TextBox x:Name="OrdersInGridText" Margin="5,5,5,5">0</TextBox>
+                            <TextBox MinWidth="20" x:Name="OrdersInGridText" Margin="5,5,5,5">0</TextBox>
                         </StackPanel>
                     </Border>
 
                     <StackPanel Margin="5,5,5,5">
-                        <Button x:Name="CountFilterName" Click="CountFilter">Расчитать</Button>
-                        <!-- <Button x:Name="CountFilterName">Расчитать</Button> -->
+                        <Button x:Name="CountFilterName" Click="CountFilter">Применить</Button>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

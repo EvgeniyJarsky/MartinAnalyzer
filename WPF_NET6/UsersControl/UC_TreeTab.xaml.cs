@@ -22,8 +22,6 @@ namespace WPF_NET6.UsersControl
     /// </summary>
     public partial class UC_TreeTab : UserControl
     {
-        Report_BL.ReportModel.TreeViewClass ddddf = new Report_BL.ReportModel.TreeViewClass();
-        
         public UC_TreeTab()
         {
             InitializeComponent();
@@ -69,8 +67,20 @@ namespace WPF_NET6.UsersControl
                         break;
                 }
             #endregion
-            
-            var grid =  (Report_BL.ReportModel.TreeViewClass)TreeViewer.SelectedItem;
+
+            #region Проверка если выбрали не сетку а ордер
+                var selectedItem = TreeViewer.SelectedItem;
+                Report_BL.ReportModel.TreeViewClass grid;
+                if(selectedItem is Report_BL.ReportModel.TreeViewClass)
+                {
+                    grid =  (Report_BL.ReportModel.TreeViewClass)TreeViewer.SelectedItem;
+                }
+                else 
+                {
+                    MessageBox.Show("Нужно выбрать сетку");
+                    return;
+                }
+            #endregion
 
             #region Если не выбрали сетку для анализа
                 if (grid == null)
@@ -84,6 +94,7 @@ namespace WPF_NET6.UsersControl
             double lastPrice = 0;
             double firstPrice = 0;
             double sumLot = 0;
+            double deposit = 0;
             foreach(var order in grid.Orders)
             {
                 count++;
@@ -93,6 +104,8 @@ namespace WPF_NET6.UsersControl
                 sumLot += order.Lot;
                 newLine.SumLot = (float)Math.Round(sumLot,2);
 
+                
+
                 #region Текщая длина сетки
                     if(firstPrice == 0)
                     {
@@ -101,7 +114,7 @@ namespace WPF_NET6.UsersControl
                     }
                     else
                     {
-                        newLine.GridLenght = (int)Math.Abs((order.OpenPrice-firstPrice)*mult);
+                        newLine.GridLenght = Convert.ToInt32(Math.Abs((order.OpenPrice-firstPrice)*mult));
                     }
                 #endregion
 
@@ -113,12 +126,14 @@ namespace WPF_NET6.UsersControl
                     }
                     else
                     {
-                        newLine.Step = (int)Math.Abs((order.OpenPrice-lastPrice)*mult);
+                        newLine.Step = Convert.ToInt32(Math.Abs((order.OpenPrice-lastPrice)*mult));
                         lastPrice = order.OpenPrice;
                     }
                 #endregion
 
+
                 Report_BL.DataCollection.AnaliseGridCollection.analiseDealsCollection.Add(newLine);
+                
             }
             
             GridAnalise gridAnalise = new GridAnalise();

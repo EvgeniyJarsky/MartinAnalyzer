@@ -17,7 +17,7 @@ namespace Report_BL.ReportModel
         public int Step { get; set; }
         public int GridLenght { get; set; }
         public float SumLot { get; set; }
-        float margin = 100;
+        float margin = 0;
         public float Margin
         {
             get {return this.margin;}
@@ -31,6 +31,9 @@ namespace Report_BL.ReportModel
             }
         }
         public float PointPrice { get; set; }
+        public float DrawDownMoney { get; set; }
+        public float DrawDownProcent { get; set; }
+        public float DrawDownMoneyAndMargin { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

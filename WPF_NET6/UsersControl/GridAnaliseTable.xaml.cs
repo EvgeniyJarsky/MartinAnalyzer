@@ -31,6 +31,9 @@ namespace WPF_NET6.UsersControl
             SumLot.ItemsSource = Report_BL.DataCollection.AnaliseGridCollection.analiseDealsCollection;
             Margin.ItemsSource = Report_BL.DataCollection.AnaliseGridCollection.analiseDealsCollection;
             PointPrice.ItemsSource = Report_BL.DataCollection.AnaliseGridCollection.analiseDealsCollection;
+            DrawDownMoney.ItemsSource = Report_BL.DataCollection.AnaliseGridCollection.analiseDealsCollection;
+            DrawDownProcent.ItemsSource = Report_BL.DataCollection.AnaliseGridCollection.analiseDealsCollection;
+            DrawDownMoneyAndMargin.ItemsSource = Report_BL.DataCollection.AnaliseGridCollection.analiseDealsCollection;
         }
     }
 }

@@ -28,22 +28,69 @@ namespace WPF_NET6
 
         private void AnaliseGridButton(object sender, RoutedEventArgs e)
         {
-            if(!int.TryParse(MoneyFor1Lot.Text, out int moneyFor1Lot))
-            {
-                MessageBox.Show("Не верное значение залога.");
-                return;
-            }
-            if(!int.TryParse(PointPrice.Text, out int pointPrice))
-            {
-                MessageBox.Show("Не верное значение цены пункта.");
-                return;
-            }
-            
+            #region Data validation
+                if(!float.TryParse(MoneyFor1Lot.Text, out float moneyFor1Lot))
+                {
+                    MessageBox.Show("Не верное значение залога.");
+                    return;
+                }
+                if(!float.TryParse(PointPrice.Text, out float pointPrice))
+                {
+                    MessageBox.Show("Не верное значение цены пункта.");
+                    return;
+                }
+                if(!float.TryParse(Commission.Text, out float commission))
+                {
+                    MessageBox.Show("Не верное значение комиссии.");
+                    return;
+                }
+                if(!float.TryParse(Deposit.Text, out float deposit))
+                {
+                    MessageBox.Show("Не верное значение комиссии.");
+                    return;
+                }
+            #endregion
+
+            int countOrder = 0;
+            float previousDrawDownMoney = 0;
+            float previousSumLot = 0;
+
             foreach(var order in Report_BL.DataCollection.AnaliseGridCollection.analiseDealsCollection)
             {
-                
-                order.Margin = (float)Math.Round(order.SumLot*moneyFor1Lot,2);
+                order.Margin     = (float)Math.Round(order.SumLot*moneyFor1Lot,2);
                 order.PointPrice = (float)Math.Round(order.SumLot*pointPrice,2);
+
+                #region Считаем просадку
+                    if(countOrder == 0) // если это первый ордер
+                    {
+                        if(float.TryParse(Commission.Text, out float comission))
+                        {
+                            order.DrawDownMoney = order.Lot * comission;
+
+                            order.DrawDownProcent = (float)Math.Round(order.DrawDownMoney/float.Parse(Deposit.Text));
+
+                            order.DrawDownMoneyAndMargin = (float)Math.Round(order.DrawDownMoney + order.Margin, 2);
+                            
+                            previousDrawDownMoney = order.DrawDownMoney;
+                            previousSumLot = order.SumLot;
+                            countOrder++;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Комиссия должна быть целым числом.");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        order.DrawDownMoney = (float)Math.Round(previousSumLot*(order.Step)*pointPrice + previousDrawDownMoney + order.Lot*commission, 2);
+                        order.DrawDownProcent = (float)Math.Round((order.DrawDownMoney/float.Parse(Deposit.Text))*100,2);
+                        order.DrawDownMoneyAndMargin = (float)Math.Round(order.DrawDownMoney + order.Margin, 2);
+                        previousDrawDownMoney = order.DrawDownMoney;
+                        previousSumLot = order.SumLot;
+                    }
+                #endregion
+                
             }
             //TODO Надо доводить до ума
             #region Не обновляется коллекция в таблице => пришлось делать костыль

@@ -5,39 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_NET6.UsersControl"
         mc:Ignorable="d"
-        Title="GridAnalise" Height="Auto" Width="Auto">
-    <Grid>
-        <DockPanel>
-            <StackPanel DockPanel.Dock="Top">
-                <StackPanel Orientation="Horizontal">
-                    <Label Width="100" Content="Валютная пара:"></Label>
-                    <Label x:Name="SymbolName" Width="70" Content="--"></Label>
+        Title="Анализ сетки" Height="450" Width="500" WindowStartupLocation="CenterScreen">
+    <ScrollViewer   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Валютная пара:"></Label>
+                        <Label x:Name="SymbolName" Width="70" Content="--"></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Цена пункта"></Label>
+                        <TextBox x:Name="PointPrice" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center">1</TextBox>
+                        <Label Content="$"></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Залог за 1 лот"></Label>
+                        <TextBox x:Name="MoneyFor1Lot" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center">200</TextBox>
+                        <Label Content="$"></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Комиссия"></Label>
+                        <TextBox x:Name="Commission" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center">6</TextBox>
+                        <Label Content="$"></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Депозит"></Label>
+                        <TextBox x:Name="Deposit" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center">10000</TextBox>
+                        <Label Content="$"></Label>
+                    </StackPanel>
+                    <!-- <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Stop out"></Label>
+                        <TextBox Width="50" HorizontalAlignment="Center" VerticalAlignment="Center">40</TextBox>
+                        <Label Content="%"></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Width="100" Content="Плечо"></Label>
+                        <TextBox Width="50" HorizontalAlignment="Center" VerticalAlignment="Center">500</TextBox>
+                    </StackPanel> -->
+                    <Button Margin="5,5,5,5" Content="Рассчитать" HorizontalAlignment="Left" Width="100" Height="20" Click="AnaliseGridButton"></Button>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Width="100" Content="Цена пункта"></Label>
-                    <TextBox x:Name="PointPrice" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center">10</TextBox>
-                    <Label Content="$"></Label>
+                <StackPanel DockPanel.Dock="Bottom">
+                    <local:GridAnaliseTable></local:GridAnaliseTable>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Width="100" Content="Залог за 1 лот"></Label>
-                    <TextBox x:Name="MoneyFor1Lot" Width="50" HorizontalAlignment="Center" VerticalAlignment="Center">200</TextBox>
-                    <Label Content="$"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Width="100" Content="Stop out"></Label>
-                    <TextBox Width="50" HorizontalAlignment="Center" VerticalAlignment="Center">40</TextBox>
-                    <Label Content="%"></Label>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Width="100" Content="Плечо"></Label>
-                    <TextBox Width="50" HorizontalAlignment="Center" VerticalAlignment="Center">500</TextBox>
-                </StackPanel>
-                <Button Content="Рассчитать" HorizontalAlignment="Left" Width="100" Height="20" Click="AnaliseGridButton"></Button>
-            </StackPanel>
-            
-            <StackPanel DockPanel.Dock="Bottom">
-                <local:GridAnaliseTable></local:GridAnaliseTable>
-            </StackPanel>
-        </DockPanel>
-    </Grid>
+            </DockPanel>
+        </Grid>
+    </ScrollViewer>
 </Window>

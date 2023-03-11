@@ -116,6 +116,8 @@ namespace WPF_NET6
         // При изменении выбранного отчета
         private void ChangeSelectedListBox(object sender, SelectionChangedEventArgs e)
         {
+            
+
             Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
             Report_BL.DataCollection.TreeCollection.grid.Clear();
 

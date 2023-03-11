@@ -24,12 +24,12 @@ namespace Report_BL.DataCollection
         /// <param name="report"> Объект класса Report</param>
         public static void AddNewItem(NewReport report)
         {
-            param.Add(new Info() { Value = report.ExpertName, Parametr = "Expert name" });
-            param.Add(new Info() { Value = report.Symbol, Parametr = "Symbol" });
-            param.Add(new Info() { Value = report.TimeFrame, Parametr = "Timeframe" });
-            param.Add(new Info() { Value = report.TradePeriod, Parametr = "Test period" });
-            param.Add(new Info() { Value = report.Deposit.ToString(), Parametr = "Deposit" });
-            param.Add(new Info() { Value = report.Profit.ToString(), Parametr = "Profit" });
+            param.Add(new Info() { Value = report.ExpertName, Parametr          = "Expert name" });
+            param.Add(new Info() { Value = report.Symbol, Parametr              = "Symbol" });
+            param.Add(new Info() { Value = report.TimeFrame, Parametr           = "Timeframe" });
+            param.Add(new Info() { Value = report.TradePeriod, Parametr         = "Test period" });
+            param.Add(new Info() { Value = report.Deposit.ToString(), Parametr  = "Deposit" });
+            param.Add(new Info() { Value = report.Profit.ToString(), Parametr   = "Profit" });
             param.Add(new Info() { Value = report.DrawDown.ToString(), Parametr = "DrawDown" });
         }
         

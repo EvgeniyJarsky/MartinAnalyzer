@@ -8,10 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal">
-            <Button Click="Btn_LoadFile" Margin="10" Content="Load" MaxWidth = "100" MaxHeight = "40" Width="55" />
-            <Button Click="DeleteItem" Margin="10" Content="Delete" MaxWidth = "100" MaxHeight = "40" Width="55" />
-            <Button Click="DeleteAll" Margin="10" Content="Delete All" MaxWidth = "100" MaxHeight = "40" Width="55" />
-            <Button Click="Filter" Margin="10" Content="Filter" MaxWidth = "100" MaxHeight = "40" Width="55" />
+            <Button Click="Btn_LoadFile" Margin="10" Content="Открыть" MaxWidth = "100" MaxHeight = "40" Width="55" />
+            <Button Click="DeleteItem" Margin="10" Content="Удалить" MaxWidth = "100" MaxHeight = "40" Width="55" />
+            <Button Click="DeleteAll" Margin="10" Content="Очистить" MaxWidth = "100" MaxHeight = "40" Width="55" />
+            <Button Click="Filter" Margin="10" Content="Фильтр" MaxWidth = "100" MaxHeight = "40" Width="55" />
         </StackPanel>
     </Grid>
 </UserControl>
