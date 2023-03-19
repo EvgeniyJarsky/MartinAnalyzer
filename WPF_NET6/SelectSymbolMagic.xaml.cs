@@ -43,14 +43,14 @@ namespace WPF_NET6
             symbol.SelectedIndex = 0;
             #endregion
             
-            #region Добавляем все меджики для символа sym
-                foreach(var item in firstInfo.DicSymbolMagic[sym])
-                {
-                    magic.Items.Add(item);
-                }
+            // #region Добавляем все меджики для символа sym
+                // foreach(var item in firstInfo.DicSymbolMagic[symbol.SelectedValue.ToString()])
+                // {
+                //     magic.Items.Add(item);
+                // }
                 // Фокус на первом меджике
                 magic.SelectedIndex = 0;
-            #endregion
+            // #endregion
         }
 
         // Выбрали новый символ

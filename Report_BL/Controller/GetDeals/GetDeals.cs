@@ -23,18 +23,13 @@ namespace Report_BL.Controller.GetDeals
                 // Создаем список сделок List 
                 Report_BL.Controller.GetDeals.TesterMT4.GetDealsMT4Tester.Get(report);
 
-                // Читаем БД
-                //Report_BL.SQL_Work.ReadDB.ReadDBExampl(report);
-
-                // Создаем базу данных
-                //Report_BL.SQL_Work.CreateDB_MT4Tester.Create_DB(report);
-
-
-                // Создаем коллекцию которая биндится с TreeView WPF
-                //Report_BL.Controller.TreeViewer.TreeViewer.CreteTreeView(report);
-
-                
             }
+            if(report.ReportType == "MT4History")
+            {
+                Report_BL.Controller.GetDeals.HistoryMT4.GetDealsHistoryMT4.GetDaels(report);
+                Report_BL.Controller.GetDeals.HistoryMT4.GridTree.CreateGridTree(report);
+            }
+
         }
     }
 }

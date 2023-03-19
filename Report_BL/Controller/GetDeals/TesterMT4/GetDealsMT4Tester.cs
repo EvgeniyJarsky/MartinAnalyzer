@@ -339,7 +339,7 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                         _order.ClosePrice = order.price;
                         _order.Profit = order.profit;
 
-                        Grid.Profit += _order.Profit;
+                        // Grid.Profit += _order.Profit;
                         break;
                     }
                 }

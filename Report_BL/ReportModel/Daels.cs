@@ -103,7 +103,7 @@ namespace Report_BL.ReportModel
         double lot;
         public double Lot
         {
-            get { return this.lot; }
+            get { return Math.Round(this.lot, 2) ;}
             set
             {
                 if (this.lot != value)
@@ -120,7 +120,7 @@ namespace Report_BL.ReportModel
         double price;
         public double Price
         {
-            get { return this.price; }
+            get { return Math.Round(this.price, 5);}
             set
             {
                 if (this.price != value)

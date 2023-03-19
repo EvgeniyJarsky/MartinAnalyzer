@@ -136,7 +136,7 @@ namespace Report_BL.Controller.TreeViewer
                                             JOIN symbol ON symbol.id = deal.symbol_id
                                             WHERE grid_number = $item
                                             AND symbol.symbol_name = $reportSymbol;"; 
-                    grid.Profit = Math.Round(Convert.ToDouble(command.ExecuteScalar()), 2);
+                    // grid.Profit = Math.Round(Convert.ToDouble(command.ExecuteScalar()), 2);
                     #endregion
 
                     #region определим размер сетки

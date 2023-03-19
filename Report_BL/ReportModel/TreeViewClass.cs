@@ -33,8 +33,9 @@ namespace Report_BL.ReportModel
         private double profit = 0;
         public double Profit
         {
-            get {return Math.Round(profit, 2, MidpointRounding.AwayFromZero);}
-            set {profit = value;}
+            // get {return Math.Round(profit, 2, MidpointRounding.AwayFromZero);}
+            // set {profit = value;}
+            get { return GetGridProfit();}
         }
         // Длина сетки
         public int GridLenght {set; get;}
@@ -66,6 +67,15 @@ namespace Report_BL.ReportModel
             {
                 return @$"Сетка {NumberGrid} | Колен {CountOrders} | Символ {Symbol} | Тип {Sell_Buy} | Суммарный лот {Lot} | Прибыль {Profit} | Длина сетки {GridLenght} | Время жизни {GridPeriod} | Пунктов до ТП {PointsToTP}";
             }
+        }
+    
+        private float GetGridProfit()
+        {
+            float profit = 0;
+            foreach(var order in this.Orders)
+                profit += (float)order.Profit;
+
+            return (float)Math.Round(profit,2, MidpointRounding.AwayFromZero);
         }
     }
 
@@ -107,4 +117,6 @@ namespace Report_BL.ReportModel
             }
         }
     }
+
+
 }

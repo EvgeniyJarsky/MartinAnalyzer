@@ -21,7 +21,7 @@
         <local:TopButtons x:Name="switcher" LoadFileEvent="Btn_LoadFile" DeleteItemEvent="DeleteItem" DeleteAllEvent="DeleteAll" FilterEvent="Filter"/>
 
         <GridSplitter Grid.ColumnSpan="3" Grid.Row="2" ShowsPreview="False" Height="3"
-        HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+        HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
         <GridSplitter Grid.Column="1" Grid.Row="1" ShowsPreview="False" Width="2"
         HorizontalAlignment="Center" VerticalAlignment="Stretch" />
         <ListView Background="#FFD9D9D9"  x:Name="listBox_" SelectionChanged="ChangeSelectedListBox" Grid.Column="0" Grid.Row="1">
