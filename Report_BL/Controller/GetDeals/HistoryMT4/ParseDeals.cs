@@ -49,9 +49,9 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
                                     newOrder.Date = order.openDate;
                                     newOrder.Price = order.openPrice;
                                     newOrder.Lot = order.lot;
-                                    newOrder.Profit = "0";
+                                    newOrder.Profit = 0;
                                     newOrder.Direct = "open";
-                                    newOrder.Balance = balance.ToString();
+                                    newOrder.Balance = (float)balance;
 
                                     // Report_BL.DataCollection.DealsCollection.dealsCollection.Add(newOrder);
                                     dealList.Add(newOrder);
@@ -64,9 +64,9 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
                                     newOrder.Date = order.closeDate;
                                     newOrder.Price = order.closePrice;
                                     newOrder.Lot = order.lot;
-                                    newOrder.Profit = order.profit.ToString();
+                                    newOrder.Profit = order.profit;
                                     newOrder.Direct = "close";
-                                    newOrder.Balance = (balance + order.profit).ToString();
+                                    newOrder.Balance = (float)(balance + order.profit);
 
                                     // Report_BL.DataCollection.DealsCollection.dealsCollection.Add(newOrder);
                                     dealList.Add(newOrder);

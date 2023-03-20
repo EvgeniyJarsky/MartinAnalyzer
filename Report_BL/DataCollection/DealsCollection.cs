@@ -33,8 +33,8 @@ namespace Report_BL.DataCollection
                 // Lot = double.Parse(param[5].Replace(',', '.'), CultureInfo.InvariantCulture),
                 // Price = double.Parse(param[6].Replace(',', '.'), CultureInfo.InvariantCulture),
                 //! убрать преобразование в стринг
-                Profit = deal.profit.ToString(),
-                Balance = deal.balance.ToString()
+                Profit = deal.profit,
+                Balance = deal.balance
             });
         }
     }

@@ -126,8 +126,8 @@ namespace Report_BL.SQL_Work
                         command = new SQLiteCommand(
                             CreateMainTables.UpdateDeal(
                                 deal.Date,// 02.01.2020 3:22:00
-                                deal.Profit,
-                                deal.Balance,
+                                deal.Profit.ToString(),
+                                deal.Balance.ToString(),
                                 deal.Number,
                                 deal.Price),
                             connection);
@@ -208,8 +208,8 @@ namespace Report_BL.SQL_Work
                         command = new SQLiteCommand(
                             CreateMainTables.UpdateDeal(
                                 deal.Date,// 02.01.2020 3:22:00
-                                deal.Profit,
-                                deal.Balance,
+                                deal.Profit.ToString(),
+                                deal.Balance.ToString(),
                                 deal.Number,
                                 deal.Price),
                             connection);

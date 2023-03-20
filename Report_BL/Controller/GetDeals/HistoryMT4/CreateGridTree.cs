@@ -58,7 +58,7 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
                                 _order.CloseDate = order.Date;
                                 _order.ClosePrice = order.Price;
                                 // TODO из-за того что баланс это строка приходится менять тип
-                                _order.Profit = Convert.ToDouble(order.Profit);
+                                _order.Profit = order.Profit;
                             }
                             // Если сетка закрыта
                             if(IsGridClosed(sellGrid))
@@ -110,7 +110,7 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
                                 _order.CloseDate = order.Date;
                                 _order.ClosePrice = order.Price;
                                 // TODO из-за того что баланс это строка приходится менять тип
-                                _order.Profit = Convert.ToDouble(order.Profit);
+                                _order.Profit = order.Profit;
                             }
                             // Если сетка закрыта
                             if(IsGridClosed(buyGrid))

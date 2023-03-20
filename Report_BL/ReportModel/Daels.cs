@@ -100,10 +100,10 @@ namespace Report_BL.ReportModel
         /// <summary>
         /// Лот
         /// </summary>
-        double lot;
-        public double Lot
+        float lot;
+        public float Lot
         {
-            get { return Math.Round(this.lot, 2) ;}
+            get { return (float)Math.Round(this.lot, 2) ;}
             set
             {
                 if (this.lot != value)
@@ -117,10 +117,10 @@ namespace Report_BL.ReportModel
         /// <summary>
         /// Цена открытия или закрытия позиции
         /// </summary>
-        double price;
-        public double Price
+        float price;
+        public float Price
         {
-            get { return Math.Round(this.price, 5);}
+            get { return (float)Math.Round(this.price, 5);}
             set
             {
                 if (this.price != value)
@@ -132,10 +132,10 @@ namespace Report_BL.ReportModel
         }
 
         /// <summary>
-        /// Прибыль ль сделки(если она есть)
+        /// Прибыль сделки(если она есть)
         /// </summary>
-        string profit;
-        public string Profit
+        float profit;
+        public float Profit
         {
             get { return this.profit; }
             set
@@ -151,8 +151,8 @@ namespace Report_BL.ReportModel
         /// <summary>
         /// Баланс на текущий момент
         /// </summary>
-        string balance;
-        public string Balance
+        float balance;
+        public float Balance
         {
             get { return this.balance; }
             set
