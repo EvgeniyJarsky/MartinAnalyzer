@@ -7,6 +7,7 @@ using Report_BL.ReportModel;
 
 namespace Report_BL.Controller.GetDeals.HistoryMT4
 {
+    // Парсим сделки
     public static class GetDealsHistoryMT4
     {
         public static void GetDaels(NewReport report)
