@@ -11,7 +11,7 @@
                     <GridView>
                 <GridViewColumn DisplayMemberBinding="{Binding Number}" Width="Auto">№</GridViewColumn>
                 <GridViewColumn DisplayMemberBinding="{Binding Symbol}" Width="Auto">Symbol</GridViewColumn>
-                <GridViewColumn DisplayMemberBinding="{Binding Date, StringFormat=dd.MM.yyyy hh:mm:ss (ddd)}" Width="Auto">Date</GridViewColumn>
+                <GridViewColumn DisplayMemberBinding="{Binding Date, StringFormat=dd.MM.yyyy HH:mm:ss (ddd)}" Width="Auto">Date</GridViewColumn>
                 <GridViewColumn DisplayMemberBinding="{Binding Buy_Sell}" Width="Auto">buy/sell</GridViewColumn>
                 <GridViewColumn DisplayMemberBinding="{Binding Direct}" Width="Auto">Direct</GridViewColumn>
                 <GridViewColumn DisplayMemberBinding="{Binding Lot}" Width="Auto">Lot</GridViewColumn>

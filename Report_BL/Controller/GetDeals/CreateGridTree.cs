@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 using Report_BL.ReportModel;
 using System.Collections.ObjectModel;
 
-namespace Report_BL.Controller.GetDeals.HistoryMT4
+namespace Report_BL.Controller.GetDeals
 {
     public static class GridTree
     {
@@ -20,6 +20,8 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
             var sellGrid = new Report_BL.ReportModel.TreeViewClass();
             var buyGrid = new Report_BL.ReportModel.TreeViewClass();
             int counGrid = 0;
+
+            Report_BL.DataCollection.TreeCollection.grid.Clear();
 
 
             foreach(var order in Report_BL.DataCollection.DealsCollection.dealsCollection)
@@ -37,6 +39,7 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
                     if(order.Direct == "open")
                     {
                         sellGrid.CountOrders++;
+
                         var newOrder = new Order();
 
                         newOrder.orderNumber = order.Number;
@@ -57,7 +60,6 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
                             {
                                 _order.CloseDate = order.Date;
                                 _order.ClosePrice = order.Price;
-                                // TODO из-за того что баланс это строка приходится менять тип
                                 _order.Profit = order.Profit;
                             }
                             // Если сетка закрыта
@@ -109,7 +111,6 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
                             {
                                 _order.CloseDate = order.Date;
                                 _order.ClosePrice = order.Price;
-                                // TODO из-за того что баланс это строка приходится менять тип
                                 _order.Profit = order.Profit;
                             }
                             // Если сетка закрыта

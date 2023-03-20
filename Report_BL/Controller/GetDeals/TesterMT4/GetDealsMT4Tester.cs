@@ -116,36 +116,37 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                         **********************************************************************
                         **********************************************************************
                         */
-                        if(parseResult.sell_buy == "buy")
-                        {
-                            if(buyGrid.CountOrders == 0)// значит открытых сеток sell нет
-                            {
-                                CreateNewGridTree(
-                                    parseResult,
-                                    ref buyGrid,
-                                    ref countGrid);
-                            }
-                            else // если сетка sell уже строиться
-                            {
-                                // Если это открытие позиции
-                                if(parseResult.direct == "open")
-                                {
-                                    AddNewOrder(
-                                    parseResult,
-                                    ref buyGrid,
-                                    ref countGrid);
-                                }
-                                // Если это закрытие позиции
-                                else
-                                {
-                                    AddCloseOrder(
-                                    parseResult,
-                                    ref buyGrid,
-                                    ref countGrid);
-                                }
-                            }
-                        }
-                        if(parseResult.sell_buy == "sell")
+
+                        // if(parseResult.sell_buy == "buy")
+                        // {
+                        //     if(buyGrid.CountOrders == 0)// значит открытых сеток sell нет
+                        //     {
+                        //         CreateNewGridTree(
+                        //             parseResult,
+                        //             ref buyGrid,
+                        //             ref countGrid);
+                        //     }
+                        //     else // если сетка sell уже строиться
+                        //     {
+                        //         // Если это открытие позиции
+                        //         if(parseResult.direct == "open")
+                        //         {
+                        //             AddNewOrder(
+                        //             parseResult,
+                        //             ref buyGrid,
+                        //             ref countGrid);
+                        //         }
+                        //         // Если это закрытие позиции
+                        //         else
+                        //         {
+                        //             AddCloseOrder(
+                        //             parseResult,
+                        //             ref buyGrid,
+                        //             ref countGrid);
+                        //         }
+                        //     }
+                        // }
+                        // if(parseResult.sell_buy == "sell")
                         {
                             if(sellGrid.CountOrders == 0)// значит открытых сеток sell нет
                             {
@@ -180,28 +181,28 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                         **********************************************************************
                         **********************************************************************
                         */
-                        report.Digits = digits;
+                        // report.Digits = digits;
                         //break;
                     }
             }
 
-            #region Удалим сетки ордера которых закрыты из-за окончания теста
-            var grid_ = new ObservableCollection<Report_BL.ReportModel.TreeViewClass>();
+            // #region Удалим сетки ордера которых закрыты из-за окончания теста
+            // var grid_ = new ObservableCollection<Report_BL.ReportModel.TreeViewClass>();
 
-            foreach(var grid in Report_BL.DataCollection.TreeCollection.grid)
-            {
-                foreach(var order in grid.Orders)
-                {
-                    if(exeptNumberOrder.Contains(order.orderNumber))
-                    {
-                        grid_.Add(grid);
-                        break;
-                    }
-                }
-            }
-            foreach(var grid in grid_)
-                Report_BL.DataCollection.TreeCollection.grid.Remove(grid);
-            #endregion
+            // foreach(var grid in Report_BL.DataCollection.TreeCollection.grid)
+            // {
+            //     foreach(var order in grid.Orders)
+            //     {
+            //         if(exeptNumberOrder.Contains(order.orderNumber))
+            //         {
+            //             grid_.Add(grid);
+            //             break;
+            //         }
+            //     }
+            // }
+            // foreach(var grid in grid_)
+            //     Report_BL.DataCollection.TreeCollection.grid.Remove(grid);
+            // #endregion
             
 
 
@@ -218,7 +219,7 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                     }
                 }
 
-                #region Округляем цены, находим кол-во пунктов до ТП, считаем время жизни сетки
+                // #region Округляем цены, находим кол-во пунктов до ТП, считаем время жизни сетки
                 double averageClosePrice = 0;
                 double priceSell = double.MinValue;
                 double priceBuy = double.MaxValue;
@@ -277,7 +278,7 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                 #endregion
 
             }
-            #endregion
+            // #endregion
 
 
         }

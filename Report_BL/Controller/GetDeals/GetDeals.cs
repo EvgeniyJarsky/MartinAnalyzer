@@ -22,12 +22,12 @@ namespace Report_BL.Controller.GetDeals
             {
                 // Создаем список сделок List 
                 Report_BL.Controller.GetDeals.TesterMT4.GetDealsMT4Tester.Get(report);
-
+                Report_BL.Controller.GetDeals.GridTree.CreateGridTree(report);
             }
             if(report.ReportType == "MT4History")
             {
                 Report_BL.Controller.GetDeals.HistoryMT4.GetDealsHistoryMT4.GetDaels(report);
-                Report_BL.Controller.GetDeals.HistoryMT4.GridTree.CreateGridTree(report);
+                Report_BL.Controller.GetDeals.GridTree.CreateGridTree(report);
             }
 
         }
