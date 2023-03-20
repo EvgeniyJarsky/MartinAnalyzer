@@ -44,6 +44,11 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                         var parseResult =
                             Report_BL.Controller.GetDeals.TesterMT4.ParseMT4Tester.ParseDealsMT4Tester(line, report.Symbol);
                         // Number|Symbol|Date|Buy_Sell|Direct|Lot|Price|Profit|Balance
+
+                        if(parseResult.orderNumber == 53 || parseResult.orderNumber == 56 || parseResult.orderNumber == 62 || parseResult.orderNumber == 64)
+                        {
+                            int g = 0;
+                        }
                        
                         //! Один раз встретилось тип сделки "close" - не знаю что это
                         // Если sell/buy = close - надо найти этот ордер и определить sell это или buy
@@ -59,9 +64,10 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                             }
                         }
                         
-                        // определяем максимальное количество знаков после запятой
-                        int currentDigit = Report_BL.Controller.GetDeals.CountDigits.Count(parseResult.price);
-                        digits = Math.Max(digits, currentDigit);
+                        #region Определяем максимальное количество знаков после запятой
+                            int currentDigit = Report_BL.Controller.GetDeals.CountDigits.Count(parseResult.price);
+                            digits = Math.Max(digits, currentDigit);
+                        #endregion
                         
                         // Запоминаем номера ордеров.
                         if (parseResult.sell_buy == "buy")
@@ -77,7 +83,6 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                         #region Удалить сделки закрытые по причине окончания теста
                         // Если есть сделки закрыытые close at stop - их нужно удалить
                         // т.к. они закрыты не по стратегии и портят статистику
-                        var col = Report_BL.DataCollection.DealsCollection.dealsCollection;
                         if(parseResult.sell_buy == "close at stop")
                         {
                             foreach( var deal in Report_BL.DataCollection.DealsCollection.dealsCollection)
@@ -86,8 +91,11 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                                 // закрыт по close at stop
                                 if(deal.Number == parseResult.orderNumber)
                                 {
+                                    
+                                    
                                     Report_BL.DataCollection.DealsCollection.dealsCollection.Remove(deal);
                                     break;
+                                    // ordersToDeleteList.Add(deal);
                                 }
                             }
                         }
@@ -95,13 +103,14 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
 
                         if (parseResult.sell_buy == "s/l" || parseResult.sell_buy == "t/p" || parseResult.sell_buy == "close at stop")
                         {
-                            if (buy.Contains(parseResult.orderNumber))
+                            if (buy.Contains(parseResult.orderNumber) && parseResult.sell_buy != "close at stop")
                                 parseResult.sell_buy = "buy";
-                            else
+                            else if(parseResult.sell_buy != "close at stop")
                                 parseResult.sell_buy= "sell";
                         }
                         
-                        Report_BL.DataCollection.DealsCollection.AddNewItem(parseResult);
+                        if(parseResult.sell_buy != "close at stop")
+                            Report_BL.DataCollection.DealsCollection.AddNewItem(parseResult);
 
                         /*
                         **********************************************************************
@@ -217,8 +226,8 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                 foreach(var order in Report_BL.DataCollection.TreeCollection.grid[i].Orders)
                 {
                     // Округляем цены
-                    order.OpenPrice = Math.Round(order.OpenPrice, report.Digits, MidpointRounding.AwayFromZero);
-                    order.ClosePrice = Math.Round(order.ClosePrice, report.Digits, MidpointRounding.AwayFromZero);
+                    order.OpenPrice = (float)Math.Round(order.OpenPrice, report.Digits, MidpointRounding.AwayFromZero);
+                    order.ClosePrice = (float)Math.Round(order.ClosePrice, report.Digits, MidpointRounding.AwayFromZero);
                     
                     // считаем время жизни сетки
                     if(Report_BL.DataCollection.TreeCollection.grid[i].StartDate == DateTime.MinValue)

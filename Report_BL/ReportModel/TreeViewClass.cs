@@ -89,14 +89,14 @@ namespace Report_BL.ReportModel
         // Время закрытия ордера
         public DateTime CloseDate {set; get;}
         // Цена открытия
-        public double OpenPrice {set; get;}
+        public float OpenPrice {set; get;}
         // Цена закрытия
-        public double ClosePrice {set; get;}
+        public float ClosePrice {set; get;}
         // Лот
-        private double lot = 0;
-        public double Lot
+        private float lot = 0;
+        public float Lot
         {
-            get {return Math.Round(lot, 2, MidpointRounding.AwayFromZero);}
+            get {return (float)Math.Round(lot, 2, MidpointRounding.AwayFromZero);}
             set {lot = value;}
         }
         // Прибыль

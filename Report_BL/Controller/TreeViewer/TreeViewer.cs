@@ -92,9 +92,9 @@ namespace Report_BL.Controller.TreeViewer
                                 grid.Orders.Add(new Order{
                                     OpenDate = Convert.ToDateTime(reader["open_date"]),
                                     CloseDate = Convert.ToDateTime(reader["close_date"]),
-                                    OpenPrice = Convert.ToDouble(reader["open_price"]),
-                                    ClosePrice = Convert.ToDouble(reader["close_price"]),
-                                    Lot = Convert.ToDouble(reader["lot"]),
+                                    OpenPrice = (float)Convert.ToDouble(reader["open_price"]),
+                                    ClosePrice = (float)Convert.ToDouble(reader["close_price"]),
+                                    Lot = (float)Convert.ToDouble(reader["lot"]),
                                     Profit = Convert.ToDouble(reader["profit"])
                                     });
                                 #endregion
