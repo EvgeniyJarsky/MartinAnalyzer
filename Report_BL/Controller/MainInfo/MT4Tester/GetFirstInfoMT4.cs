@@ -21,6 +21,12 @@ namespace Report_BL.Controller.MainInfo.MT4Tester
         {
             string? line;
             string? symbol = String.Empty;
+
+            string robotName = String.Empty;
+            string timeFrame = String.Empty;
+
+            float profit;
+            float drawDown;
             
 
             /// <summary>
@@ -44,6 +50,14 @@ namespace Report_BL.Controller.MainInfo.MT4Tester
             {
                 while ((line = sr.ReadLine()) != null)
                 {
+                    if(robotName == String.Empty)
+                    {
+                        if(line.Contains("title"))
+                        {
+                            firstInfo.RobotName = line.Split('>')[1].Split('<')[0].Split(':')[1];
+                        }
+                    }
+                    
                     #region Определяем имя символа
                     // Если нашли строке с ключевыми символами
                     // и символ еще не определялся, т.е. равен пустой строке
@@ -63,11 +77,12 @@ namespace Report_BL.Controller.MainInfo.MT4Tester
                     }
                     #endregion
 
-                    #region Определим даты начала и конца теста
+                    #region Определим даты начала и конца теста и таймфрейм на котором тестировали
                     if (line.Contains("<tr align=left><td colspan=2>") && firstInfo.StartDate == DateTime.MinValue)
                         {
-
 // "<tr align=left><td colspan=2>������</td><td colspan=4>15 ����� (M15)  2012.01.03 01:00 - 2020.02.20 01:45</td></tr>"
+                            
+                            firstInfo.TimeFrame = line.Split('(')[1].Split(')')[0];
                             DateTime[]? date = new DateTime[2];
                             date = Report_BL.Controller.Parser.MT4Tester.MT4TesterDataParse.DateParse(line);
                             if (date == null)
@@ -91,6 +106,12 @@ namespace Report_BL.Controller.MainInfo.MT4Tester
 
                             if(ParseDeposit(line, firstInfo)  == null)
                                 return null;
+
+                            line = sr.ReadLine();
+                            firstInfo.Profit = (float)Convert.ToDouble(line?.Split('>')[4].Split('<')[0].Replace('.',','));
+                            line = sr.ReadLine();
+                            line = sr.ReadLine();
+                            firstInfo.DrawDown = (float)Convert.ToDouble(line?.Split('>')[8].Split(' ')[0].Replace('.',','));
                         }
                     }
                     #endregion

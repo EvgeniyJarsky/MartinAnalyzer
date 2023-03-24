@@ -66,7 +66,7 @@ namespace Report_BL.Controller.GetDeals
                             if(IsGridClosed(sellGrid))
                             {
                                 sellGrid.EndDate = _order.CloseDate;
-                                
+                                sellGrid.GridLenght = GetGridLenght(report,sellGrid);
                                 Report_BL.DataCollection.TreeCollection.grid.Add(sellGrid);
                                 sellGrid = new Report_BL.ReportModel.TreeViewClass();
 
@@ -117,6 +117,8 @@ namespace Report_BL.Controller.GetDeals
                             if(IsGridClosed(buyGrid))
                             {
                                 buyGrid.EndDate = _order.CloseDate;
+
+                                buyGrid.GridLenght = GetGridLenght(report,buyGrid);
                                 Report_BL.DataCollection.TreeCollection.grid.Add(buyGrid);
                                 buyGrid = new Report_BL.ReportModel.TreeViewClass();
                                 break;
@@ -132,6 +134,26 @@ namespace Report_BL.Controller.GetDeals
             foreach(var order in gridTree.Orders)
                 if(order.CloseDate == DateTime.MinValue) return false;
             return true;
+        }
+
+        private static int GetGridLenght(NewReport report, TreeViewClass tree)
+        {
+            var price = new List<float>();
+
+            if(tree.CountOrders < 2)
+                return 0;
+            
+            
+            foreach(var order in tree.Orders)
+            {
+                price.Add(order.OpenPrice);
+            }
+
+            short digits = 10000;
+            if(report.Deposit == 3)
+                digits = 1000;
+
+            return Convert.ToInt32((price.Max() - price.Min())*digits*10);
         }
     }
 }

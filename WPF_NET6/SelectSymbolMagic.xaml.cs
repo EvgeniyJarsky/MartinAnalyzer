@@ -87,6 +87,10 @@ namespace WPF_NET6
                     firstInfo1.EndDate,
                     firstInfo1.StartDeposit
                 );
+                rep.ExpertName = firstInfo1.RobotName;
+                rep.TimeFrame = firstInfo1.TimeFrame;
+                rep.Profit = firstInfo1.Profit;
+                rep.DrawDown = firstInfo1.DrawDown;
                 Report_BL.DataCollection.ReportCollection.newReport.Add(rep);
                 // Закрываем окно
                 this.Close();

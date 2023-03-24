@@ -185,7 +185,7 @@ namespace Report_BL.ReportModel
         private double profit;
         public double Profit
         {
-            get { return this.profit; }
+            get { return Math.Round(this.profit, 2);}
             set
             {
                 if (this.profit != value)
@@ -202,7 +202,7 @@ namespace Report_BL.ReportModel
         private double drawDown;
         public double DrawDown
         {
-            get { return this.drawDown; }
+            get { return Math.Round(this.drawDown, 2); }
             set
             {
                 if (this.drawDown != value)

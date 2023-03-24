@@ -35,7 +35,7 @@ namespace Report_BL.ReportModel
         {
             // get {return Math.Round(profit, 2, MidpointRounding.AwayFromZero);}
             // set {profit = value;}
-            get { return GetGridProfit();}
+            get { return Math.Round(GetGridProfit(), 2);}
         }
         // Длина сетки
         public int GridLenght {set; get;}
@@ -117,6 +117,4 @@ namespace Report_BL.ReportModel
             }
         }
     }
-
-
 }

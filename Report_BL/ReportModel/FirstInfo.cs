@@ -20,6 +20,19 @@ namespace Report_BL.ReportModel
         /// </summary>
         private string filePath = String.Empty;
         public string FilePath { get { return filePath; } }
+        
+        /// <summary>
+        /// Название робота
+        /// </summary>
+        string robotName = String.Empty;
+        public string RobotName {set; get;}
+
+        /// <summary>
+        /// Таймфрейм тестирования
+        /// </summary>
+        string timeFrame = String.Empty;
+        public string TimeFrame {set; get;}
+        
         /// <summary>
         /// Тип отчета
         /// </summary>
@@ -56,6 +69,19 @@ namespace Report_BL.ReportModel
                     startDeposit = 0;
             }
         }
+        
+        /// <summary>
+        /// Прибыль
+        /// </summary>
+        float profit;
+        public float Profit {get; set;}
+
+        /// <summary>
+        /// Просадка
+        /// </summary>
+        float drawDown;
+        public float DrawDown {get; set;}
+
         #endregion
 
         /// <summary>

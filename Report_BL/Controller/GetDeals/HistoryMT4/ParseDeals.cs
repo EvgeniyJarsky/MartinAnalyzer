@@ -33,8 +33,11 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
                         if(line.Contains(report.Symbol.ToLower()))
                         {
                             string lineToParse = line;
-                            string? newLine = sr.ReadLine();
-                            if(newLine.Contains(report.Magic.ToString()))
+
+                            // string? newLine = sr.ReadLine();
+                            // bool f = IsMagicCorrect(line, report.Magic);
+
+                            if(IsMagicCorrect(line, report.Magic))
                             {
                                 ParseHistoryMT4Line.ParseRez(line, ref order);
                                 if(order.lot != 0) // распрсили строку успешно
@@ -98,6 +101,27 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
             foreach(var ord in dealList)
                 Report_BL.DataCollection.DealsCollection.dealsCollection.Add(ord);
 
+        }
+
+        private static bool IsMagicCorrect(string line, int magic)
+        {
+            // if(Int16.TryParse())
+            int parseMadgic = 0;;
+            bool rezult = false;
+            try
+            {
+                parseMadgic = Convert.ToInt32(line.Split('#')[1].Split(' ')[0]);
+            }
+            catch(FormatException ex)
+            {
+                parseMadgic = Convert.ToInt32(line.Split('#')[2].Split(' ')[0]);
+            }
+            finally
+            {
+                if(parseMadgic == magic)
+                    rezult = true;
+            }
+            return rezult;
         }
     }
 
