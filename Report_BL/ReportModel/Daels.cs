@@ -137,7 +137,7 @@ namespace Report_BL.ReportModel
         float profit;
         public float Profit
         {
-            get { return this.profit; }
+            get { return (float)Math.Round(this.profit, 2); }
             set
             {
                 if (this.profit != value)
@@ -154,7 +154,7 @@ namespace Report_BL.ReportModel
         float balance;
         public float Balance
         {
-            get { return this.balance; }
+            get { return (float)Math.Round(this.balance, 2); }
             set
             {
                 if (this.balance != value)

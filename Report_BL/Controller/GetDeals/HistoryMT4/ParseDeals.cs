@@ -102,10 +102,12 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
                 Report_BL.DataCollection.DealsCollection.dealsCollection.Add(ord);
 
         }
-
+        /*
+        Проверка что в строке line сщдержится magic
+        Можно попробовать line.Contains(magic)!?
+        */
         private static bool IsMagicCorrect(string line, int magic)
         {
-            // if(Int16.TryParse())
             int parseMadgic = 0;;
             bool rezult = false;
             try
