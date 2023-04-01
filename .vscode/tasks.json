@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/WPF_NET6/WPF_NET6.csproj",
+                "${workspaceFolder}/ThinkingMartin/ThinkingMartin.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/WPF_NET6/WPF_NET6.csproj",
+                "${workspaceFolder}/ThinkingMartin/ThinkingMartin.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/WPF_NET6/WPF_NET6.csproj"
+                "${workspaceFolder}/ThinkingMartin/ThinkingMartin.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
