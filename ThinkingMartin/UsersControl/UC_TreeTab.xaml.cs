@@ -28,11 +28,14 @@ namespace WPF_NET6.UsersControl
             TreeViewer.ItemsSource = Report_BL.DataCollection.TreeCollection.grid;
         }
 
+        public event RoutedEventHandler ContextMenuEvent;
+
         /// <summary>
         /// Кнопка нажатия контекстного меню в дереве сеток
         /// </summary>
         private void AnalisGrid(object sender, RoutedEventArgs e)
         {
+            
             #region Определим кол-во знаков после запятой
                 // Так как не знаю как получить значение кол-во цифр после запятой
                 // из выбранного отчета => пройдемся по дереву сеток и найдем 
@@ -136,10 +139,13 @@ namespace WPF_NET6.UsersControl
                 
             }
             
-            GridAnalise gridAnalise = new GridAnalise();
-            gridAnalise.Show();
 
-            gridAnalise.SymbolName.Content = grid.Symbol;
+            if (ContextMenuEvent != null) ContextMenuEvent.Invoke(sender, e);
+
+            // GridAnalise gridAnalise = new GridAnalise();
+            // gridAnalise.Show();
+
+            // gridAnalise.SymbolName.Content = grid.Symbol;
 
         }
     }

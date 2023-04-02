@@ -18,6 +18,8 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
+
+        <!-- Кнопки -->
         <local:TopButtons x:Name="switcher" LoadFileEvent="Btn_LoadFile" DeleteItemEvent="DeleteItem" DeleteAllEvent="DeleteAll" FilterEvent="Filter"/>
 
         <GridSplitter Grid.ColumnSpan="3" Grid.Row="2" ShowsPreview="False" Height="3"
@@ -53,7 +55,7 @@
         <TabControl Background="#FFD9D9D9" x:Name="TabContrl" Grid.Row="3" Grid.ColumnSpan="3" SelectionChanged="TabControl_SelectionChanged">
 
             <TabItem MinWidth="100"  Background="#FFD9D9D9" x:Name="Tree" Header="Сетки">
-                <local:UC_TreeTab/>
+                <local:UC_TreeTab ContextMenuEvent="ContextMenuAnaliseGrid"/>
             </TabItem>
 
             <TabItem MinWidth="100"  Background="#FFD9D9D9" x:Name="Deals" Header="Ордера">

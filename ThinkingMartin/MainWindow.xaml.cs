@@ -233,6 +233,18 @@ namespace WPF_NET6
 
         }
 
+        private void ContextMenuAnaliseGrid(object sender, RoutedEventArgs e)
+        {
+            // MessageBox.Show("sdfsd");
+            GridAnalise gridAnalise = new GridAnalise();
+            gridAnalise.Owner = this;
+            gridAnalise.ShowDialog();
+            // gridAnalise.Show();
+
+            
+
+        }
+
         private bool GridFilterLogic(string mathValue, string textValue, int valueToCompare)
         {
             if(mathValue == null) return false;
@@ -290,7 +302,7 @@ namespace WPF_NET6
                 NewReport firstSelected = (NewReport)selectedList[0];
                 return firstSelected.Digits;
             }
-            else throw new Exception("Похоже не выбрат отчет.");
+            else throw new Exception("Похоже не выбран отчет...");
         }
     }
 }
