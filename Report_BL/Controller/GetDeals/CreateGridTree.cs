@@ -150,10 +150,10 @@ namespace Report_BL.Controller.GetDeals
             }
 
             short digits = 10000;
-            if(report.Deposit == 3)
+            if(report.Digits == 3)
                 digits = 1000;
 
-            return Convert.ToInt32((price.Max() - price.Min())*digits*10);
+            return Convert.ToInt32((price.Max() - price.Min())*digits);
         }
     }
 }

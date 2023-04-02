@@ -181,7 +181,7 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                         **********************************************************************
                         **********************************************************************
                         */
-                        // report.Digits = digits;
+                        report.Digits = digits;
                         //break;
                     }
             }
