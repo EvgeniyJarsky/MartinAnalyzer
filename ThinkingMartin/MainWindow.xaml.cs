@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.IO;
 using System.Linq;
+using System.Windows.Media.Imaging;
 
 
 using WorkWithFiles.LoadFile;
@@ -41,6 +42,7 @@ namespace WPF_NET6
             Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable.Clear();
             Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
             Report_BL.DataCollection.MainTable.mainTable.Clear();
+            
 
 
             // открываем диалог и выбираем файл
@@ -81,7 +83,8 @@ namespace WPF_NET6
 
         private void DeleteItem(object sender, RoutedEventArgs e)
         {
-            
+            graphImage.Source = null;
+
             // получим список выбранных отчетов
             var selectedReports = listBox_.SelectedItems;
 
@@ -111,12 +114,18 @@ namespace WPF_NET6
             Report_BL.DataCollection.MainTable.mainTable.Clear();
             
             Report_BL.DataCollection.ReportCollection.newReport.Clear();
+
+            graphImage.Source = null;
         }
 
         // При изменении выбранного отчета
         private void ChangeSelectedListBox(object sender, SelectionChangedEventArgs e)
         {
-            
+             
+            // string str = @"F:\!Coding\C#\ThinkingMartin\ReportExamples\QLT_EURUSD_Scalp.gif";
+            // graphImage.Source = new BitmapImage(new Uri(str, UriKind.Absolute));
+            // graphImage.Width = 200;
+            // graphImage.Height = 100;
 
             Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
             Report_BL.DataCollection.TreeCollection.grid.Clear();
@@ -125,11 +134,21 @@ namespace WPF_NET6
             Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
             Report_BL.DataCollection.MainTable.mainTable.Clear();
 
+            graphImage.Source = null;
+
             var selectedList = listBox_.SelectedItems;// список выбранных отчетов
 
             if (selectedList.Count != 0) // проверка если удалили последний объект
             {
                 NewReport firstSelected = (NewReport)selectedList[0];
+
+
+                string pathToImage = firstSelected.FilePath.Split('.')[0] + ".gif";
+                if(File.Exists(pathToImage))
+                {
+                    graphImage.Source = new BitmapImage(new Uri(pathToImage, UriKind.Absolute));
+                }
+
                 Report_BL.DataCollection.ParamentrsCollection.AddNewItem(firstSelected);
 
                 Report_BL.Controller.GetDeals.GetDeals.Get(firstSelected);
