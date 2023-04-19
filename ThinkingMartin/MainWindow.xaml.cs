@@ -13,7 +13,9 @@ using WorkWithFiles.LoadFile;
 using Report_BL.ReportModel;
 
 using System.Data.SQLite;
-
+using System.ComponentModel;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace WPF_NET6
 {
@@ -22,26 +24,39 @@ namespace WPF_NET6
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
-            // listBox_.ItemsSource = newReport;
+
             listBox_.ItemsSource = Report_BL.DataCollection.ReportCollection.newReport;
-            // info.ItemsSource = param;
             info.ItemsSource = Report_BL.DataCollection.ParamentrsCollection.param;
-            //deals.ItemsSource = dealsCollection;
         }
-        
+
+
+        private void ShowWindow2()
+        {
+            ThinkingMartin.Progress sd = new();
+            sd.ShowDialog();
+            System.Windows.Threading.Dispatcher.Run();
+        }
+
+
         /// <summary>
         /// Кнопка открыть файл
         /// </summary>
         private void Btn_LoadFile(object sender, RoutedEventArgs e)
         {
-            // Очишаем данные
+            
+            
+            #region Очишаем данные
             Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
             Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable.Clear();
             Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
             Report_BL.DataCollection.MainTable.mainTable.Clear();
+
+            graphImage.Source = null;
+            #endregion
             
 
 
@@ -119,22 +134,25 @@ namespace WPF_NET6
         }
 
         // При изменении выбранного отчета
-        private void ChangeSelectedListBox(object sender, SelectionChangedEventArgs e)
+        private async void ChangeSelectedListBox(object sender, SelectionChangedEventArgs e)
         {
-             
-            // string str = @"F:\!Coding\C#\ThinkingMartin\ReportExamples\QLT_EURUSD_Scalp.gif";
-            // graphImage.Source = new BitmapImage(new Uri(str, UriKind.Absolute));
-            // graphImage.Width = 200;
-            // graphImage.Height = 100;
+            var thr = new Thread(ShowWindow2);
+            thr.SetApartmentState(ApartmentState.STA);
+            thr.IsBackground = true;
+            thr.Start();
 
-            Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
-            Report_BL.DataCollection.TreeCollection.grid.Clear();
 
-            Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable.Clear();
-            Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
-            Report_BL.DataCollection.MainTable.mainTable.Clear();
+            #region Очистка данных
+                Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
+                Report_BL.DataCollection.TreeCollection.grid.Clear();
+    
+                Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable.Clear();
+                Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
+                Report_BL.DataCollection.MainTable.mainTable.Clear();
 
-            graphImage.Source = null;
+                graphImage.Source = null;
+            #endregion
+
 
             var selectedList = listBox_.SelectedItems;// список выбранных отчетов
 
@@ -143,7 +161,10 @@ namespace WPF_NET6
                 NewReport firstSelected = (NewReport)selectedList[0];
 
 
-                string pathToImage = firstSelected.FilePath.Split('.')[0] + ".gif";
+                // Путь к графику
+                string fileName = Path.GetFileNameWithoutExtension(firstSelected.FilePath) + ".gif";
+                string pathToImage = Path.GetDirectoryName(firstSelected.FilePath)+ "\\" + fileName;
+                
                 if(File.Exists(pathToImage))
                 {
                     graphImage.Source = new BitmapImage(new Uri(pathToImage, UriKind.Absolute));
@@ -161,7 +182,14 @@ namespace WPF_NET6
 
                 // Формируем главную таблицу
                 Report_BL.Controller.Tables.Table.CreateMainTable(firstSelected);
+
+                
+
             }
+            
+            //System.Windows.Threading.Dispatcher.FromThread(thr).BeginInvoke((Action)(() => this.Close()));
+            //System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke((Action)(() => this.Close()));
+            //System.Windows.Threading.Dispatcher.CurrentDispatcher.
         }
         
         // При нажатии кнопки Фильтр - идем сюда и очищаем коллекции

@@ -4,6 +4,8 @@ using System.ComponentModel.Design;
 using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Console_UI
 {
@@ -17,6 +19,22 @@ namespace Console_UI
             Console.WriteLine("Open db");
             func();
             Console.WriteLine("Close db");
+        }
+
+        static void SlowMetod()
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                //Thread.Sleep(500);
+                Console.WriteLine("Slow Metod executed");
+            }
+            
+        }
+
+        static async Task MetodAsync()
+        {
+            //await Console.WriteLine("StartAsync");
+            await Task.Run(() => SlowMetod());
         }
 
         static void Main(string[] args)
@@ -48,6 +66,16 @@ namespace Console_UI
             double rezult = double.Parse(number.Replace(',', '.'), CultureInfo.InvariantCulture);
             Console.WriteLine(rezult);
             #endregion
+
+
+            #region Async
+            MetodAsync();
+            #endregion
+
+            for(int i = 0; i < 10; i++)
+            {
+                Console.WriteLine($"Point {i}");
+            }
 
             Console.ReadLine();
         }
