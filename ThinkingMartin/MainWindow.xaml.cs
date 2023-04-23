@@ -24,7 +24,8 @@ namespace WPF_NET6
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        private static object _lock = new Object(); // для асинхронного изменения коллекций
+
         public MainWindow()
         {
             InitializeComponent();
@@ -41,6 +42,38 @@ namespace WPF_NET6
             System.Windows.Threading.Dispatcher.Run();
         }
 
+        async private Task TaskAsyncFunc(NewReport report)
+        {
+            // progressWindow.ShowDialog();
+            await Task.Run(()=> ClearFunc());
+                
+            await Task.Run(()=>Report_BL.DataCollection.ParamentrsCollection.AddNewItem(report));
+
+            await Task.Run(()=>Report_BL.Controller.GetDeals.GetDeals.Get(report));
+
+            await Task.Run(()=>Report_BL.Controller.Tables.Table.CreateProfiTable());
+
+            await Task.Run(()=>Report_BL.Controller.Tables.Table.CreateMaxOrdersGridTable());
+
+            await Task.Run(()=>Report_BL.Controller.Tables.Table.CreateMainTable(report));
+
+        }
+
+        private void ClearFunc()
+        {
+                // Report_BL.DataCollection.TreeCollection.grid.Clear();
+                
+                // Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
+    
+                Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable.Clear();
+                Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
+                Report_BL.DataCollection.MainTable.mainTable.Clear();
+
+                // graphImage.Source = null;
+                Report_BL.DataCollection.ParamentrsCollection.param.Clear();
+                Report_BL.DataCollection.TreeCollection.grid.Clear();
+                Report_BL.DataCollection.DealsCollection.dealsCollection.Clear();
+        }
 
         /// <summary>
         /// Кнопка открыть файл
@@ -136,60 +169,73 @@ namespace WPF_NET6
         // При изменении выбранного отчета
         private async void ChangeSelectedListBox(object sender, SelectionChangedEventArgs e)
         {
-            var thr = new Thread(ShowWindow2);
-            thr.SetApartmentState(ApartmentState.STA);
-            thr.IsBackground = true;
-            thr.Start();
-
-
-            #region Очистка данных
-                Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
-                Report_BL.DataCollection.TreeCollection.grid.Clear();
-    
-                Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable.Clear();
-                Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
-                Report_BL.DataCollection.MainTable.mainTable.Clear();
-
-                graphImage.Source = null;
+            #region Сделаем коллекции работающими с разными потоками
+                System.Windows.Data.BindingOperations.EnableCollectionSynchronization
+                (
+                    Report_BL.DataCollection.ParamentrsCollection.param, _lock
+                );
+                System.Windows.Data.BindingOperations.EnableCollectionSynchronization
+                (
+                    Report_BL.DataCollection.TreeCollection.grid, _lock
+                );
+                System.Windows.Data.BindingOperations.EnableCollectionSynchronization
+                (
+                    Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable, _lock
+                );
+                System.Windows.Data.BindingOperations.EnableCollectionSynchronization
+                (
+                    Report_BL.DataCollection.ProfitTableCollection.profitTable, _lock
+                );
+                System.Windows.Data.BindingOperations.EnableCollectionSynchronization
+                (
+                    Report_BL.DataCollection.MainTable.mainTable, _lock
+                );
+                System.Windows.Data.BindingOperations.EnableCollectionSynchronization
+                (
+                    Report_BL.DataCollection.MainTable.mainTable, _lock
+                );
+                System.Windows.Data.BindingOperations.EnableCollectionSynchronization
+                (
+                    Report_BL.DataCollection.DealsCollection.dealsCollection, _lock
+                );
             #endregion
+            
+            var selectedReport = listBox_.SelectedItems;// список выбранных отчетов
 
+            NewReport report = null;
 
-            var selectedList = listBox_.SelectedItems;// список выбранных отчетов
-
-            if (selectedList.Count != 0) // проверка если удалили последний объект
+            if (selectedReport.Count != 0) // проверка если удалили последний объект
             {
-                NewReport firstSelected = (NewReport)selectedList[0];
-
-
-                // Путь к графику
-                string fileName = Path.GetFileNameWithoutExtension(firstSelected.FilePath) + ".gif";
-                string pathToImage = Path.GetDirectoryName(firstSelected.FilePath)+ "\\" + fileName;
-                
-                if(File.Exists(pathToImage))
+                if (selectedReport[0] is NewReport && selectedReport[0] !=null)
                 {
-                    graphImage.Source = new BitmapImage(new Uri(pathToImage, UriKind.Absolute));
+                    report = (NewReport)selectedReport[0];
+                }
+            }
+
+            // Путь к графику
+            if(report != null)
+            {
+                string fileName_ = Path.GetFileNameWithoutExtension(report.FilePath) + ".gif";
+                string pathToImage_ = Path.GetDirectoryName(report.FilePath)+ "\\" + fileName_;
+                
+                if(File.Exists(pathToImage_))
+                {
+                    graphImage.Source = new BitmapImage(new Uri(pathToImage_, UriKind.Absolute));
                 }
 
-                Report_BL.DataCollection.ParamentrsCollection.AddNewItem(firstSelected);
+                ThinkingMartin.Progress progressWindow = new();
+                progressWindow.Show();
+                progressWindow.Owner = this;
 
-                Report_BL.Controller.GetDeals.GetDeals.Get(firstSelected);
-
-                //Формируем таблицу прибыли по месяцам
-                Report_BL.Controller.Tables.Table.CreateProfiTable();
-
-                // Формируем таблицу максимального кол-ва колен за месяц
-                Report_BL.Controller.Tables.Table.CreateMaxOrdersGridTable();
-
-                // Формируем главную таблицу
-                Report_BL.Controller.Tables.Table.CreateMainTable(firstSelected);
-
-                
-
+                // await TaskAsyncFunc(report);
+                var waitW = TaskAsyncFunc(report);
+                // waitW.Wait();
+                var f = waitW.AsyncState;
+                await waitW;
+                if(waitW.IsCompleted)
+                    progressWindow.Close();
             }
-            
-            //System.Windows.Threading.Dispatcher.FromThread(thr).BeginInvoke((Action)(() => this.Close()));
-            //System.Windows.Threading.Dispatcher.CurrentDispatcher.BeginInvoke((Action)(() => this.Close()));
-            //System.Windows.Threading.Dispatcher.CurrentDispatcher.
+
         }
         
         // При нажатии кнопки Фильтр - идем сюда и очищаем коллекции

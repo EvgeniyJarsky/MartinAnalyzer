@@ -24,6 +24,7 @@ namespace Report_BL.DataCollection
         /// <param name="report"> Объект класса Report</param>
         public static void AddNewItem(NewReport report)
         {
+            
             if(report.ExpertName != null)
                 param.Add(new Info() { Value = report.ExpertName, Parametr = "Название робота" });
             param.Add(new Info() { Value = report.Symbol, Parametr = "Валютная пара" });

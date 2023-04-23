@@ -18,6 +18,7 @@ namespace Report_BL.DataCollection
         /// </summary>
         public static ObservableCollection<Info> param = new ObservableCollection<Info>();
 
+
         /// <summary>
         /// При выборе отчета заполняем param новыми объектами что бы потом отобразить их
         /// </summary>

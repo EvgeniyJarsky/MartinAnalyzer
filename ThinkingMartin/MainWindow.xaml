@@ -45,19 +45,21 @@
             </ListView.View>
         </ListView>
 
-        <StackPanel Grid.Row="1" Grid.Column="2">
-            <ListView  Background="#FFD9D9D9"  Name="info">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Параметр" DisplayMemberBinding="{Binding Parametr}"/>
-                    <GridViewColumn Header="Значение" DisplayMemberBinding="{Binding Value}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Image x:Name="graphImage">
-
-        </Image>
-        </StackPanel>
+        <ScrollViewer Grid.Row="1" Grid.Column="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <ListView  Background="#FFD9D9D9"  Name="info">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Параметр" DisplayMemberBinding="{Binding Parametr}"/>
+                        <GridViewColumn Header="Значение" DisplayMemberBinding="{Binding Value}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Image x:Name="graphImage">
+            
+            </Image>
+            </StackPanel>
+        </ScrollViewer>
         
 
         <TabControl Background="#FFD9D9D9" x:Name="TabContrl" Grid.Row="3" Grid.ColumnSpan="3" SelectionChanged="TabControl_SelectionChanged">
