@@ -13,7 +13,7 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
         public static void GetDaels(NewReport report)
         {
             string[] keywordsMT4 = { ">buy<", ">sell<"};
-            int digits = 0;
+            int digits = 0; //количество знаков после запятой.
             int countOrder = 0;
             double balance = 0;
             OrderStruct.Order order = new OrderStruct.Order();
@@ -42,6 +42,11 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
                                 ParseHistoryMT4Line.ParseRez(line, ref order);
                                 if(order.lot != 0) // распрсили строку успешно
                                 {
+                                    #region Определяем максимальное количество знаков после запятой
+                                    int currentDigit = Report_BL.Controller.GetDeals.CountDigits.Count(order.openPrice);
+                                    digits = Math.Max(digits, currentDigit);
+                                    #endregion
+                                    
                                     countOrder++;
 
                                     var newOrder = new Report_BL.ReportModel.Deal();
@@ -81,6 +86,7 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
 
                             }
                         }
+                        report.Digits = digits;
                     }
                 }
             }
@@ -98,6 +104,22 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
                     }
                 }
             }
+
+            // Ситуация когда одним временем закрывается сетка из одного ордера и сразу же 
+            // открывается новая сетка - необходимо чтобы сначала шел ордера закрытия а потом уже 
+            // шел ордер отрытия новой сетки
+
+            // ObservableCollection<Deal>? dealList1 = new ObservableCollection<Deal>();
+            // for(int i =0; i<dealList.Count(); i++)
+            // {
+            //     if(start == 0)
+            //     {
+            //         start = 1;
+            //         continue;
+            //     }
+            // }
+
+
             foreach(var ord in dealList)
                 Report_BL.DataCollection.DealsCollection.dealsCollection.Add(ord);
 

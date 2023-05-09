@@ -127,6 +127,93 @@ namespace Report_BL.Controller.GetDeals
                     }
                 }
             }
+
+
+            #region Сортировка пузырьком дерева сеток
+            for(int i=0; i<Report_BL.DataCollection.TreeCollection.grid.Count(); i++)
+            {
+                for(int j = i+1; j<Report_BL.DataCollection.TreeCollection.grid.Count(); j++)
+                {
+                    if(Report_BL.DataCollection.TreeCollection.grid[i].NumberGrid > Report_BL.DataCollection.TreeCollection.grid[j].NumberGrid)
+                    {
+                        var temp = Report_BL.DataCollection.TreeCollection.grid[i];
+                        Report_BL.DataCollection.TreeCollection.grid[i] = Report_BL.DataCollection.TreeCollection.grid[j];
+                        Report_BL.DataCollection.TreeCollection.grid[j] = temp;
+                    }
+                }
+
+                // #region Округляем цены, находим кол-во пунктов до ТП, считаем время жизни сетки
+                double averageClosePrice = 0;
+                double priceSell = double.MinValue;
+                double priceBuy = double.MaxValue;
+                double startPrice = -1;
+                foreach(var order in Report_BL.DataCollection.TreeCollection.grid[i].Orders)
+                {
+                    // Округляем цены
+                    order.OpenPrice = (float)Math.Round(order.OpenPrice, report.Digits, MidpointRounding.AwayFromZero);
+                    order.ClosePrice = (float)Math.Round(order.ClosePrice, report.Digits, MidpointRounding.AwayFromZero);
+                    
+                    // считаем время жизни сетки
+                    if(Report_BL.DataCollection.TreeCollection.grid[i].StartDate == DateTime.MinValue)
+                        Report_BL.DataCollection.TreeCollection.grid[i].StartDate = order.OpenDate;
+                    Report_BL.DataCollection.TreeCollection.grid[i].EndDate = order.CloseDate;
+
+                    // Сложим все цены закрытия ордеров что бы потом найти среднее значение
+                    averageClosePrice += order.ClosePrice;
+
+                    // в зависимости от типа сетки sell/buy определим крайнюю цену что бы потом найти кол-во 
+                    // пунктов до ТП
+                    if(Report_BL.DataCollection.TreeCollection.grid[i].Sell_Buy == "sell")
+                    {
+                        if(order.OpenPrice > priceSell)
+                            priceSell = order.OpenPrice;
+                    }
+                    else
+                    {
+                        if(order.OpenPrice < priceBuy)
+                            priceBuy = order.OpenPrice;
+                    }
+                    // Определим цену открытия первого ордера что бы посчитать длину сетки
+                    if(startPrice < 0)
+                        startPrice = order.OpenPrice;
+                }
+
+                //TODO DELETE
+                if(Report_BL.DataCollection.TreeCollection.grid[i].Orders.Count() > 1)
+                {
+                    int d = 0;
+                }
+
+
+                averageClosePrice = Math.Round(averageClosePrice/Report_BL.DataCollection.TreeCollection.grid[i].Orders.Count(), report.Digits, MidpointRounding.AwayFromZero);
+                int digit_ = 1000;
+                if(report.Digits == 5)
+                    digit_ = 100000;
+                if(Report_BL.DataCollection.TreeCollection.grid[i].Sell_Buy == "sell")
+                {
+                    Report_BL.DataCollection.TreeCollection.grid[i].PointsToTP = 
+                    Convert.ToInt32(Math.Round((priceSell-averageClosePrice), 5, MidpointRounding.AwayFromZero)*digit_);
+
+                    Report_BL.DataCollection.TreeCollection.grid[i].GridLenght = 
+                    Convert.ToInt32((priceSell - startPrice)*digit_); 
+                }
+                else
+                {
+                    Report_BL.DataCollection.TreeCollection.grid[i].PointsToTP = 
+                    Convert.ToInt32(Math.Round((averageClosePrice - priceBuy), 5, MidpointRounding.AwayFromZero)*digit_);
+
+                    Report_BL.DataCollection.TreeCollection.grid[i].GridLenght = 
+                    Convert.ToInt32((startPrice - priceBuy)*digit_);
+
+                    var tp = Report_BL.DataCollection.TreeCollection.grid[i].PointsToTP;
+                    var lenght_ = Report_BL.DataCollection.TreeCollection.grid[i].GridLenght;
+                }
+            }
+            #endregion
+
+
+
+
         }
 
         private static bool IsGridClosed(TreeViewClass gridTree)

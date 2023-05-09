@@ -65,7 +65,7 @@ namespace Report_BL.ReportModel
             private set{}
             get
             {
-                return @$"Сетка {NumberGrid} | Колен {CountOrders} | Символ {Symbol} | Тип {Sell_Buy} | Суммарный лот {Lot} | Прибыль {Profit} | Длина сетки {GridLenght} | Время жизни {GridPeriod} | Пунктов до ТП {PointsToTP}";
+                return @$"Сетка {NumberGrid} | Колен {CountOrders} | Символ {Symbol} | Тип {Sell_Buy} | Суммарный лот {Lot} | Прибыль {Profit} | Длина сетки {GridLenght} | Время жизни {GridPeriod} | Пунктов до ТП {PointsToTP}({PercentToTP(this.GridLenght,this.PointsToTP)})";
             }
         }
     
@@ -76,6 +76,15 @@ namespace Report_BL.ReportModel
                 profit += (float)order.Profit;
 
             return (float)Math.Round(profit,2, MidpointRounding.AwayFromZero);
+        }
+
+        private string PercentToTP(int gridLenght, int pointToTP)
+        {
+            if(gridLenght == 0) return "0%";
+            double gridLenghtD = gridLenght;
+            double pointToTPD = pointToTP;
+            var rezInt = Convert.ToInt32((pointToTPD/gridLenghtD)*100); 
+            return rezInt.ToString() + '%';
         }
     }
 
