@@ -19,8 +19,8 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
             OrderStruct.Order order = new OrderStruct.Order();
 
             var dealList = new ObservableCollection<Deal>();
-            
 
+            // Читаем файл
             using(StreamReader sr = new StreamReader(report.FilePath))
             {
                 string? line;
@@ -34,9 +34,6 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
                         {
                             string lineToParse = line;
 
-                            // string? newLine = sr.ReadLine();
-                            // bool f = IsMagicCorrect(line, report.Magic);
-
                             if(IsMagicCorrect(line, report.Magic))
                             {
                                 ParseHistoryMT4Line.ParseRez(line, ref order);
@@ -49,37 +46,39 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
                                     
                                     countOrder++;
 
-                                    var newOrder = new Report_BL.ReportModel.Deal();
+                                    #region Запоминаем открытие позиции
+                                        var newOrder = new Report_BL.ReportModel.Deal();
+    
+                                        newOrder.Number = countOrder;
+                                        newOrder.Symbol = order.symbol;
+                                        newOrder.Buy_Sell = order.sell_buy;
+                                        newOrder.Date = order.openDate;
+                                        newOrder.Price = order.openPrice;
+                                        newOrder.Lot = order.lot;
+                                        newOrder.Profit = 0;
+                                        newOrder.Direct = "open";
+                                        newOrder.Balance = (float)balance;
+    
+                                        dealList.Add(newOrder);
+                                    #endregion
 
-                                    newOrder.Number = countOrder;
-                                    newOrder.Symbol = order.symbol;
-                                    newOrder.Buy_Sell = order.sell_buy;
-                                    newOrder.Date = order.openDate;
-                                    newOrder.Price = order.openPrice;
-                                    newOrder.Lot = order.lot;
-                                    newOrder.Profit = 0;
-                                    newOrder.Direct = "open";
-                                    newOrder.Balance = (float)balance;
+                                    #region Запоминаем закрытие позиции
+                                        newOrder = new Report_BL.ReportModel.Deal();
+    
+                                        newOrder.Number = countOrder;
+                                        newOrder.Symbol = order.symbol;
+                                        newOrder.Buy_Sell = order.sell_buy;
+                                        newOrder.Date = order.closeDate;
+                                        newOrder.Price = order.closePrice;
+                                        newOrder.Lot = order.lot;
+                                        newOrder.Profit = order.profit;
+                                        newOrder.Direct = "close";
+                                        newOrder.Balance = (float)(balance + order.profit);
+    
+                                        dealList.Add(newOrder);
+                                    #endregion
 
-                                    // Report_BL.DataCollection.DealsCollection.dealsCollection.Add(newOrder);
-                                    dealList.Add(newOrder);
-
-                                    newOrder = new Report_BL.ReportModel.Deal();
-
-                                    newOrder.Number = countOrder;
-                                    newOrder.Symbol = order.symbol;
-                                    newOrder.Buy_Sell = order.sell_buy;
-                                    newOrder.Date = order.closeDate;
-                                    newOrder.Price = order.closePrice;
-                                    newOrder.Lot = order.lot;
-                                    newOrder.Profit = order.profit;
-                                    newOrder.Direct = "close";
-                                    newOrder.Balance = (float)(balance + order.profit);
-
-                                    // Report_BL.DataCollection.DealsCollection.dealsCollection.Add(newOrder);
-                                    dealList.Add(newOrder);
-
-
+                                    // Обнуляем информацию
                                     order = new OrderStruct.Order();
 
                                 }
@@ -109,20 +108,67 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
             // открывается новая сетка - необходимо чтобы сначала шел ордера закрытия а потом уже 
             // шел ордер отрытия новой сетки
 
-            // ObservableCollection<Deal>? dealList1 = new ObservableCollection<Deal>();
-            // for(int i =0; i<dealList.Count(); i++)
-            // {
-            //     if(start == 0)
-            //     {
-            //         start = 1;
-            //         continue;
-            //     }
-            // }
+            ObservableCollection<Deal>? dealList1 = new ObservableCollection<Deal>();
+
+            var deal = new Deal();
+            deal = null;
+            
+            // Одновременно определим максимальный номер ордера
+            // что бы потом исправить нумерацию ордеров - сделать по порядку
+            int orderNumber = 0;
+
+            for(int i =0; i<dealList.Count(); i++)
+            {
+
+                orderNumber = Math.Max(orderNumber, dealList[i].Number);
+
+                // Если это первый ордет => пропускаем
+                if(deal == null)
+                {
+                    deal = new Deal();
+                    deal = dealList[i];
+
+                    dealList1.Add(deal);
+
+                    continue;
+                }
+                else
+                {
+                    deal = dealList[i-1];
+                }
+
+                if(deal.Date == dealList[i].Date)
+                {
+                    if(deal.Direct == "open" && dealList[i].Direct == "close")
+                    {
+                        dealList1.Remove(deal);
+                        dealList1.Add(dealList[i]);
+                        dealList1.Add(deal);
+                    }
+                    else
+                    {
+                        //dealList1.Add(deal);
+                        dealList1.Add(dealList[i]);
+                    }
+                }
+                else
+                {
+                    //dealList1.Add(deal);
+                    dealList1.Add(dealList[i]);
+                }
+                
+            }
 
 
-            foreach(var ord in dealList)
+            #region Выстраиваем нумерацию ордеров
+                foreach (var ord in dealList1)
+                {
+                    ord.Number = orderNumber - ord.Number + 1;    
+                }
+            #endregion
+
+            foreach(var ord in dealList1)
                 Report_BL.DataCollection.DealsCollection.dealsCollection.Add(ord);
-
         }
         /*
         Проверка что в строке line сщдержится magic

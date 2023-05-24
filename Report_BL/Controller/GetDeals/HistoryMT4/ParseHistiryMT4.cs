@@ -4,7 +4,6 @@ namespace Report_BL.Controller.GetDeals.HistoryMT4
     {
         public static void ParseRez(string line, ref OrderStruct.Order orderStruct)
         {
-            // var orderStruct = new Report_BL.Controller.GetDeals.HistoryMT4.OrderStruct.Order();
             try
             {
                 var parseRez = line.Split('>');

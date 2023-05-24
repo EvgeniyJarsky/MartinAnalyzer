@@ -129,7 +129,12 @@ namespace WPF_NET6.UsersControl
                     }
                     else
                     {
-                        newLine.Step = Convert.ToInt32(Math.Abs((order.OpenPrice-lastPrice)*mult));
+                        if(grid.Sell_Buy == "buy"){
+                            newLine.Step = Convert.ToInt32((lastPrice - order.OpenPrice)*mult);
+                        }
+                        else{
+                            newLine.Step = Convert.ToInt32((order.OpenPrice-lastPrice)*mult);
+                        }
                         lastPrice = order.OpenPrice;
                     }
                 #endregion
