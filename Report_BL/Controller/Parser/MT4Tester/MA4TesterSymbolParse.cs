@@ -20,9 +20,9 @@ namespace Report_BL.Controller.Parser.MT4Tester
             }
             catch(Exception)
             {
-                Logging.Logging.WriteLog("Ошибка чтения символа отчета Tester MT4");
-                Logging.Logging.WriteLog(line);
-                Logging.Logging.WriteLog(" ");
+                //Logging.Logging.WriteLog("Ошибка чтения символа отчета Tester MT4");
+                //Logging.Logging.WriteLog(line);
+                //Logging.Logging.WriteLog(" ");
 
                 return null;
             }

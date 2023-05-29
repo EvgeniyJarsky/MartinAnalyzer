@@ -54,7 +54,7 @@ namespace Report_BL.Controller.MainInfo.MT4Tester
                     {
                         if(line.Contains("title"))
                         {
-                            firstInfo.RobotName = line.Split('>')[1].Split('<')[0].Split(':')[1];
+                            firstInfo.RobotName = line.Split('>')[1].Split('<')[0].Split(':')[1].Trim();
                         }
                     }
                     

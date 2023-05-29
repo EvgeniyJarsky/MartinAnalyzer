@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_NET6.UsersControl"
         mc:Ignorable="d"
-        Title="Анализ сетки" Height="450" Width="500" WindowStartupLocation="CenterScreen">
+        Title="Анализ сетки" Height="450" Width="Auto" WindowStartupLocation="CenterScreen">
     <ScrollViewer   VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid>
             <DockPanel>
-                <StackPanel DockPanel.Dock="Top">
+                <StackPanel HorizontalAlignment="Left" DockPanel.Dock="Top">
                     <StackPanel Orientation="Horizontal">
                         <Label Width="100" Content="Валютная пара:"></Label>
                         <Label x:Name="SymbolName" Width="70" Content="--"></Label>
@@ -45,7 +45,7 @@
                     </StackPanel> -->
                     <Button Margin="5,5,5,5" Content="Рассчитать" HorizontalAlignment="Left" Width="100" Height="20" Click="AnaliseGridButton"></Button>
                 </StackPanel>
-                <StackPanel DockPanel.Dock="Bottom">
+                <StackPanel HorizontalAlignment="Left" DockPanel.Dock="Bottom">
                     <local:GridAnaliseTable></local:GridAnaliseTable>
                 </StackPanel>
             </DockPanel>

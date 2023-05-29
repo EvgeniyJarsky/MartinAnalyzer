@@ -12,7 +12,7 @@ namespace Report_BL.Controller.MainInfo.MT4History
         /// <summary>
         /// Получаем первичную информацию с отчета МТ4History
         /// </summary>
-        /// <param name="filePath"></param>
+        /// <param name="filePath">Путь к файлу</param>
         /// <returns></returns>
         public static Report_BL.ReportModel.FirstInfo GetSymbolDateMagic(string filePath)
         {

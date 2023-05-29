@@ -29,22 +29,22 @@ namespace WPF_NET6
         private void AnaliseGridButton(object sender, RoutedEventArgs e)
         {
             #region Data validation
-                if(!float.TryParse(MoneyFor1Lot.Text, out float moneyFor1Lot))
+                if(!float.TryParse(MoneyFor1Lot.Text.Replace('.',','), out float moneyFor1Lot))
                 {
                     MessageBox.Show("Не верное значение залога.");
                     return;
                 }
-                if(!float.TryParse(PointPrice.Text, out float pointPrice))
+                if(!float.TryParse(PointPrice.Text.Replace('.',','), out float pointPrice))
                 {
                     MessageBox.Show("Не верное значение цены пункта.");
                     return;
                 }
-                if(!float.TryParse(Commission.Text, out float commission))
+                if(!float.TryParse(Commission.Text.Replace('.',','), out float commission))
                 {
                     MessageBox.Show("Не верное значение комиссии.");
                     return;
                 }
-                if(!float.TryParse(Deposit.Text, out float deposit))
+                if(!float.TryParse(Deposit.Text.Replace('.',','), out float deposit))
                 {
                     MessageBox.Show("Не верное значение комиссии.");
                     return;
@@ -63,11 +63,11 @@ namespace WPF_NET6
                 #region Считаем просадку
                     if(countOrder == 0) // если это первый ордер
                     {
-                        if(float.TryParse(Commission.Text, out float comission))
+                        if(float.TryParse(Commission.Text.Replace('.',','), out float comission))
                         {
                             order.DrawDownMoney = order.Lot * comission;
 
-                            order.DrawDownProcent = (float)Math.Round(order.DrawDownMoney/float.Parse(Deposit.Text));
+                            order.DrawDownProcent = (float)Math.Round(order.DrawDownMoney/float.Parse(Deposit.Text.Replace('.',',')));
 
                             order.DrawDownMoneyAndMargin = (float)Math.Round(order.DrawDownMoney + order.Margin, 2);
                             
@@ -84,7 +84,7 @@ namespace WPF_NET6
                     else
                     {
                         order.DrawDownMoney = (float)Math.Round(previousSumLot*(order.Step)*pointPrice + previousDrawDownMoney + order.Lot*commission, 2);
-                        order.DrawDownProcent = (float)Math.Round((order.DrawDownMoney/float.Parse(Deposit.Text))*100,2);
+                        order.DrawDownProcent = (float)Math.Round((order.DrawDownMoney/float.Parse(Deposit.Text.Replace('.',',')))*100,2);
                         order.DrawDownMoneyAndMargin = (float)Math.Round(order.DrawDownMoney + order.Margin, 2);
                         previousDrawDownMoney = order.DrawDownMoney;
                         previousSumLot = order.SumLot;

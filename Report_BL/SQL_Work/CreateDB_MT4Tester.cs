@@ -1,7 +1,6 @@
-﻿using Report_BL.ReportModel;
+﻿/*using Report_BL.ReportModel;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -248,3 +247,4 @@ namespace Report_BL.SQL_Work
         }
     }
 }
+*/

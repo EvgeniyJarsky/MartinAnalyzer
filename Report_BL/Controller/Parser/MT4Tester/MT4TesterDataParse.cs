@@ -30,9 +30,9 @@ namespace Report_BL.Controller.Parser.MT4Tester
             }
             catch
             {
-                Logging.Logging.WriteLog("Ошибка чтения периода тестирования отчета Tester MT4");
-                Logging.Logging.WriteLog(line);
-                Logging.Logging.WriteLog(" ");
+                //Logging.Logging.WriteLog("Ошибка чтения периода тестирования отчета Tester MT4");
+                //Logging.Logging.WriteLog(line);
+                //Logging.Logging.WriteLog(" ");
 
                 return null;
             }

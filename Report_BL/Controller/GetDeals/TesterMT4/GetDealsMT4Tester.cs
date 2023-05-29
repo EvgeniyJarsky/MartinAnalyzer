@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
 using System.Data.SqlTypes;
 using System.IO;
 using System.Linq;
@@ -164,6 +163,12 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
             Grid.Orders.Add(newOrder);
         }
 
+        /// <summary>
+        /// Добавим ордер закрытия в соответсвующую сетку
+        /// </summary>
+        /// <param name="order">Ордер закрытия</param>
+        /// <param name="Grid">Сетка</param>
+        /// <param name="countGrid"></param>
         public static void AddCloseOrder(
             Report_BL.Controller.GetDeals.TesterMT4.ParseMT4Tester.Deal order,
             ref Report_BL.ReportModel.TreeViewClass Grid,
@@ -192,6 +197,11 @@ namespace Report_BL.Controller.GetDeals.TesterMT4
                 }
             }
 
+            /// <summary>
+            /// Проверка что сетка закрыта
+            /// </summary>
+            /// <param name="Grid">Сетка</param>
+            /// <returns></returns>
             public static bool IsGridClosed(ref Report_BL.ReportModel.TreeViewClass Grid)
             {
                 foreach(var order in Grid.Orders)
