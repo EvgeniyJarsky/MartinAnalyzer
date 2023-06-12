@@ -43,7 +43,7 @@ namespace WPF_NET6
 
         async private Task TaskAsyncFunc(NewReport report)
         {
-            // progressWindow.ShowDialog();
+            // Очищаем все коллекции
             await Task.Run(()=> ClearFunc());
                 
             await Task.Run(()=>Report_BL.DataCollection.ParamentrsCollection.AddNewItem(report));
@@ -60,15 +60,10 @@ namespace WPF_NET6
 
         private void ClearFunc()
         {
-                // Report_BL.DataCollection.TreeCollection.grid.Clear();
-                
-                // Report_BL.DataCollection.ClearAllData.ClearParamAndDeals();
-    
                 Report_BL.DataCollection.GridOrdersCountTableCollection.MaxOrdersTable.Clear();
                 Report_BL.DataCollection.ProfitTableCollection.profitTable.Clear();
                 Report_BL.DataCollection.MainTable.mainTable.Clear();
 
-                // graphImage.Source = null;
                 Report_BL.DataCollection.ParamentrsCollection.param.Clear();
                 Report_BL.DataCollection.TreeCollection.grid.Clear();
                 Report_BL.DataCollection.DealsCollection.dealsCollection.Clear();
