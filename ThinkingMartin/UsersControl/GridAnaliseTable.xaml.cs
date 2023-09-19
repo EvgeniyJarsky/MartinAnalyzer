@@ -24,6 +24,10 @@ namespace WPF_NET6.UsersControl
         {
             InitializeComponent();
 
+            var request = new Report_BL.Controller.MyWebRequest.GetRequest("https://scripts.tlap.com/quotes.php?q=AUDCAD");
+            request.Run();
+            var rez = request.Response;
+
             OrderNumber.ItemsSource = Report_BL.DataCollection.AnaliseGridCollection.analiseDealsCollection;
             Lot.ItemsSource = Report_BL.DataCollection.AnaliseGridCollection.analiseDealsCollection;
             Step.ItemsSource = Report_BL.DataCollection.AnaliseGridCollection.analiseDealsCollection;
