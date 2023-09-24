@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 namespace WPF_NET6
 {
     /// <summary>
+    /// Окно анализа сетки
     /// Логика взаимодействия для GridAnalise.xaml
     /// </summary>
     public partial class GridAnalise : Window
@@ -24,6 +25,20 @@ namespace WPF_NET6
             InitializeComponent();
 
             this.Closed += GridAnalise_Closed;
+
+            this.Activated += ActivatedWindow;
+           
+        }
+
+        /// <summary>
+        /// При активации окна определить валютную пару и привязать ее к SymbolName
+        /// </summary>
+        private void ActivatedWindow(object? sender, EventArgs e)
+        {
+            // Тут надо получить значение валютной пары и отбразить 
+            SymbolName.Content = Report_BL.DataCollection.DealsCollection.dealsCollection[0].Symbol;
+
+            //throw new NotImplementedException();
         }
 
         private void AnaliseGridButton(object sender, RoutedEventArgs e)
