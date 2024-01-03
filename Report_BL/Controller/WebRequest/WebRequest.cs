@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 
-namespace Report_BL.Controller.MyWebRequest
+namespace Report_BL.Controller.MyWebRequest_
 {
     /*
         var request = new GetRequest("https://scripts.tlap.com/quotes.php?q=AUDCAD");
@@ -29,6 +29,7 @@ namespace Report_BL.Controller.MyWebRequest
         public void Run()
         {
             _request = (HttpWebRequest)WebRequest.Create(_address);
+            
             _request.Method = "GET";
 
             try

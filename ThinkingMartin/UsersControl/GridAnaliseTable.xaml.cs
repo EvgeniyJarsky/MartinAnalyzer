@@ -24,7 +24,7 @@ namespace WPF_NET6.UsersControl
         {
             InitializeComponent();
 
-            var request = new Report_BL.Controller.MyWebRequest.GetRequest("https://scripts.tlap.com/quotes.php?q=AUDCAD");
+            var request = new Report_BL.Controller.MyWebRequest_.GetRequest("https://scripts.tlap.com/quotes.php?q=AUDCAD");
             request.Run();
             var rez = request.Response;
 
