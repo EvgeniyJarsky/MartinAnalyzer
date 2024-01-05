@@ -12,6 +12,7 @@ namespace Report_BL.Controller.MyWebRequest_
         var request = new GetRequest("https://scripts.tlap.com/quotes.php?q=AUDCAD");
         request.Run();
         var rez = request.Response;
+        resalt = "[{\"symbol\":\"AUDCAD\",\"digits\":4,\"ask\":0.8957,\"bid\":0.8949,\"change\":-0.0001,\"lasttime\":1704405642,\"change24h\":-0.0036}]"
     */
     public class GetRequest
     {

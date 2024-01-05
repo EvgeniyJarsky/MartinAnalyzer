@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.Json;
+using Report_BL.Controller.WebRequest_;
 
 namespace WPF_NET6.UsersControl
 {
@@ -24,9 +26,11 @@ namespace WPF_NET6.UsersControl
         {
             InitializeComponent();
 
-            var request = new Report_BL.Controller.MyWebRequest_.GetRequest("https://scripts.tlap.com/quotes.php?q=AUDCAD");
-            request.Run();
-            var rez = request.Response;
+            // Получим текущюю цену по выбранному символу
+            var currentSymbolPrice = new CurrentSymbolPriceFromWeb();
+            currentSymbolPrice.SymbolName = "AUDCAD";
+            string price = currentSymbolPrice.Get();
+
 
             OrderNumber.ItemsSource = Report_BL.DataCollection.AnaliseGridCollection.analiseDealsCollection;
             Lot.ItemsSource = Report_BL.DataCollection.AnaliseGridCollection.analiseDealsCollection;
